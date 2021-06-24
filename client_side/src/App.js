@@ -4,7 +4,7 @@ import LogSign from "./pages/logsign";
 import Vplayer from "./components/vplayer/vplayer";
 // import PopUp from "./components/html/popup";
 // import Home from "./pages/home";
-// import Nav from "./components/navbar/nav";
+import Nav from "./components/navbar/nav";
 // import Footer from "./components/footer/footer";
 
 const App = () => {
@@ -12,12 +12,12 @@ const App = () => {
     <>
       <BrowserRouter>
         <div>
-          {/* <Nav /> */}
+          <Nav />
           <Switch>
             {/* <popUp /> */}
             <Route path="/" component={LogSign} exact></Route>
+            <Route path="/user" component={Vplayer} exact></Route>
           </Switch>
-          <Vplayer />
           {/* <Footer /> */}
         </div>
       </BrowserRouter>

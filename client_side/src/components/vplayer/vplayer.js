@@ -5,8 +5,6 @@ import axios from "axios";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import ReactPlayer from "react-player";
 import Slider from "@material-ui/core/Slider";
@@ -18,13 +16,17 @@ import VolumeDown from "@material-ui/icons/VolumeDown";
 import VolumeMute from "@material-ui/icons/VolumeOff";
 import FullScreen from "@material-ui/icons/Fullscreen";
 import Popover from "@material-ui/core/Popover";
-import screenful from "screenfull";
+import screenfull from "screenfull";
 
 const useStyles = makeStyles((theme) => ({
   playerWrapper: {
-    width: "100%",
-
+    width: "87%",
+    backgroundColor: "red",
     position: "relative",
+    top: "20px",
+    left: "40px",
+    right: 0,
+    bottom: 0,
     // "&:hover": {
     //   "& $controlsWrapper": {
     //     visibility: "visible",
@@ -178,7 +180,6 @@ const Vplayer = () => {
   const canvasRef = useRef(null);
   const {
     playing,
-    controls,
     light,
     muted,
     loop,
@@ -206,7 +207,7 @@ const Vplayer = () => {
       controlsRef.current.style.visibility = "hidden";
       count = 0;
     }
-    if (controlsRef.current.style.visibility == "visible") {
+    if (controlsRef.current.style.visibility === "visible") {
       count += 1;
     }
     if (!state.seeking) {
@@ -247,7 +248,7 @@ const Vplayer = () => {
   };
 
   const toggleFullScreen = () => {
-    screenful.toggle(playerContainerRef.current);
+    screenfull.toggle(playerContainerRef.current);
   };
 
   const handleMouseMove = () => {
@@ -263,7 +264,7 @@ const Vplayer = () => {
 
   const handleDisplayFormat = () => {
     setTimeDisplayFormat(
-      timeDisplayFormat == "normal" ? "remaining" : "normal"
+      timeDisplayFormat === "normal" ? "remaining" : "normal"
     );
   };
 
@@ -308,7 +309,7 @@ const Vplayer = () => {
   const duration =
     playerRef && playerRef.current ? playerRef.current.getDuration() : "00:00";
   const elapsedTime =
-    timeDisplayFormat == "normal"
+    timeDisplayFormat === "normal"
       ? format(currentTime)
       : `-${format(duration - currentTime)}`;
 
@@ -317,7 +318,7 @@ const Vplayer = () => {
   const [currentUrl, setcurrentUrl] = useState(
     "http://localhost:5000/recording/recording_1624542675237.webm"
   );
-  const [fastLoad, setfastLoad] = useState(true);
+  //   const [fastLoad, setfastLoad] = useState(true);
   const retUrl = async () => {
     const res = await axios.get("http://localhost:5000/app/getrecurl");
     const data = await res.data;
@@ -403,7 +404,11 @@ const Vplayer = () => {
                 }}
                 elevation={3}
               >
-                <img crossOrigin="anonymous" src={bookmark.image} />
+                <img
+                  crossOrigin="anonymous"
+                  src={bookmark.image}
+                  alt="bookmark"
+                />
                 <Typography variant="body2" align="center">
                   bookmark at {bookmark.display}
                 </Typography>
@@ -413,7 +418,6 @@ const Vplayer = () => {
         </Grid>
         <canvas ref={canvasRef} />
       </Container>
-
       <button
         onClick={() => {
           console.log("clicked");
