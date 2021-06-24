@@ -6,7 +6,7 @@ body {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    // background: linear-gradient(45deg, #a547b1, #f84298) center;
+    background: grey;
     background-size: 100vw 100vh;
     height: 100vh;
     display: flex;
@@ -83,7 +83,7 @@ body {
             height: calc(40px - 1px);
             border-radius: 5px;
             position: absolute;
-            top: 55.5px;
+            top: 55px;
             left: 0px;
             opacity: 0.9;
             transition: all 0.4s ease;

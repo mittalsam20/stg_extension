@@ -1,8 +1,68 @@
 import "./logsign.scss";
-// import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import ReactPlayer from "react-player";
 // import $ from "jquery";
 
 const LogSign = () => {
+  //---------------------USESTATES--------------------------
+  const [InputEmail, setInputEmail] = useState("");
+  //   const [validator, setValidator] = useState();
+  const [InputPass, setInputPass] = useState("");
+  const [InputConfirmPass, setInputConfirmPass] = useState("");
+  const [error, setError] = useState("");
+
+  // -----------------------EMAIL VALIDATION------------------------
+
+  //   const EmailApi = async (Email, pass) => {
+  //     const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc";
+  //     // const url = `https://ipqualityscore.com/api/json/email/${Key}/${Email}`;
+  //     const url = `/api/json/email/${Key}/${Email}`;
+  //     const res = await axios.get(url);
+  //     const data = await res.data;
+  //     // console.log(data);
+  //     if (
+  //       data.valid &&
+  //       data.overall_score > 2 &&
+  //       data.smtp_score > 1 &&
+  //       !data.disposable &&
+  //       data.dns_valid &&
+  //       !data.honeypot
+  //     ) {
+  //       console.log(Email);
+
+  //       setValidator(1);
+  //       console.log(data.sanitized_email);
+  //       // console.log(validator);
+  //     } else {
+  //       setValidator(0);
+  //       // console.log("Please Enter An Valid Email..!!");
+  //       // console.log(validator);
+  //     }
+  //   };
+  // -----------------------PASSWORD CHECKER------------------------
+
+  const passwordChecker = (a, b) => {
+    if (a === b) {
+      console.log("matched");
+      setError("");
+      return 1;
+    } else {
+      console.log("not matched");
+      setError("Password Not Matched..!!");
+      return 0;
+    }
+  };
+
+  //   useEffect(() => {
+  //     // console.log(validator);
+  //     if (validator === 0) {
+  //       setError("Please Use a Valid Email-Id");
+  //     }
+  //   }, [validator]);
+
+  //----------------------------------RETURN FUNCTION---------------------------------------
+
   return (
     <>
       <div>
@@ -13,7 +73,7 @@ const LogSign = () => {
               className="radio"
               name="radio"
               id="login"
-              checked
+              defaultChecked
             />
             <input type="radio" className="radio" name="radio" id="signup" />
             <div className="tile">
@@ -31,6 +91,8 @@ const LogSign = () => {
               <div className="form_fild login_form">
                 <div className="input_group">
                   <input
+                    // onChange={EmailApi}
+                    // value={InputEmail}
                     type="email"
                     className="input"
                     placeholder="Email Address"
@@ -38,13 +100,15 @@ const LogSign = () => {
                 </div>
                 <div className="input_group">
                   <input
+                    // onChange={EmailApi}
+                    // value={InputEmail}
                     type="password"
                     className="input"
                     placeholder="Password"
                   />
                 </div>
 
-                <a href="#forgot" className="forgot">
+                <a href="" className="forgot">
                   Forgot password?
                 </a>
 
@@ -60,6 +124,10 @@ const LogSign = () => {
               <div className="form_fild signup_form">
                 <div className="input_group">
                   <input
+                    onChange={(ev) => {
+                      setInputEmail(ev.target.value);
+                    }}
+                    value={InputEmail}
                     type="email"
                     className="input"
                     placeholder="Email Address"
@@ -67,20 +135,60 @@ const LogSign = () => {
                 </div>
                 <div className="input_group">
                   <input
+                    onChange={(ev) => {
+                      setInputPass(ev.target.value);
+                      passwordChecker(InputPass, ev.target.value);
+                    }}
                     type="password"
                     className="input"
                     placeholder="Password"
+                    value={InputPass}
                   />
                 </div>
 
                 <div className="input_group">
                   <input
+                    onChange={(ev) => {
+                      setInputConfirmPass(ev.target.value);
+                      passwordChecker(InputPass, ev.target.value);
+                    }}
                     type="password"
                     className="input"
                     placeholder="Confirm Password"
+                    value={InputConfirmPass}
                   />
                 </div>
-                <input type="submit" className="btn" value="Signup" />
+                <p>{error}</p>
+                <input
+                  type="submit"
+                  className="btn"
+                  value="Signup"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    <ReactPlayer url="http://localhost:5000/recording/recording_1624485538756.webm" />;
+                    console.log(
+                      ReactPlayer.canPlay(
+                        "http://localhost:5000/recording/recording_1624485538756.webm"
+                      )
+                    );
+
+                    console.log("clicked");
+                    // EmailApi(InputEmail, InputPass);
+                    if (
+                      //   validator === 1 &&
+                      passwordChecker(InputPass, InputConfirmPass)
+                    ) {
+                      const reg = {
+                        emailId: InputEmail,
+                        password: InputPass,
+                      };
+                      console.log(reg);
+                      axios
+                        .post("http://localhost:5000/app/signup", reg)
+                        .then((res) => console.log(res.data));
+                    }
+                  }}
+                />
               </div>
             </div>
           </div>

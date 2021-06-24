@@ -1,31 +1,13 @@
 const express = require("express")
 const router = express.Router();
 const bodyParser = require("body-parser")
-const user = require("../models/signupmodels")
-const bcrypt = require('bcrypt')
+const recordings = require("../models/recordingmodels")
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.post('/try', (req, res) => {
-    res.json({
-        success: true,
-        meesage: "Register Route"
-    })
-})
-
-router.post('/signup', async(req, res) => {
+router.get('/getrecurl', (req, res) => {
     try {
-        const salt = await bcrypt.genSalt(10)
-        const hashedPass = await bcrypt.hash(req.body.password, salt)
-        const newUser = new user({
-            emailId: req.body.emailId,
-            password: hashedPass
-        })
-        console.log(req.body.emailId)
-        newUser.save().then(data => {
-            res.status(200).json(data);
-            console.log(json(data));
-        }).catch(error => { res.status(500).json(error) })
+        recordings.find().then(foundrec => res.json(foundrec))
     } catch (err) {
         res.status(500).json(err)
     }

@@ -13,6 +13,7 @@ const app = express();
 app.use(cors());
 const Port = process.env.Port || 5000;
 const authRoute = require("./routes/auth");
+const recRoute = require("./routes/recordingurl")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -24,7 +25,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
     useCreateIndex: true,
     useFindAndModify: true,
 }, () => console.log("Database Connected successfully..!!"));
-const recording = require("./models/recording")
+const recording = require("./models/recordingmodels")
 
 
 //Multer Portion
@@ -65,6 +66,7 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
 
 //Calling Of All Routes
 app.use("/app", authRoute);
+app.use("/app", recRoute);
 app.use((req, res, next) => {
     res.status(404).json({
         success: false,
