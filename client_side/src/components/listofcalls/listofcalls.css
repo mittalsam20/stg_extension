@@ -1,11 +1,28 @@
+body {
+    overflow-y: hidden;
+    overflow-x: hidden
+}
+
 .loc-container {
     background-color: green;
-    width: 100%;
-    height: 100%;
+    height: 550px;
+    overflow-y: scroll
+}
+
+hr {
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    size: 100px;
+    height: 1000px;
+    /* border: 0ch black solid; */
 }
 
 .loc {
-    background-color: red;
-    width: 100%;
-    height: 100%;
+    /* background-color: red; */
+    margin-bottom: 30px;
+}
+
+.loc h3 {
+    text-align: center;
 }
