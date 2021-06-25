@@ -1,27 +1,27 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Card from "@material-ui/core/Card";
+// import CardActions from "@material-ui/core/CardActions";
+// import CardContent from "@material-ui/core/CardContent";
+// import Button from "@material-ui/core/Button";
+// import Typography from "@material-ui/core/Typography";
+import { useState } from "react";
 import axios from "axios";
 import "./listofcalls.css";
-import Frame from "react-frame-component";
-import CallCard from "../callcard/callcard";
+import CallCard from "./callcard";
 
 const ListOfCalls = () => {
-  const retUrl = async (req, res) => {
-    res = await axios.get("http://localhost:5000/app/getrecurl");
+  const [print, setPrint] = useState(["s"]);
+  const retUrl = async () => {
+    const res = await axios.get("http://localhost:5000/app/getrecurl");
     const data = await res.data;
     // console.log(data);
     // console.log(data[1].recordingUrl);
-    return data;
+    setPrint(data);
+    // return data;
   };
-  //   const a[] = retUrl();
-  //   retUrl();
-  //   console.log(a);
-  //   const m = retUrl();
-  //   console.log(m);
+  //   setPrint(retUrl());
+  retUrl();
+  //   console.log(print);
   return (
     <div className="loc-container">
       <div className="loc">
@@ -29,12 +29,18 @@ const ListOfCalls = () => {
           All Recording's
         </h3>
       </div>
-      {/* {data.map((rec) => {
-        //   console.log(rec.date);
+
+      {print.map((rec) => {
+        /* console.log("pradumna", rec.date); */
         return (
-          <CallCard Key={rec.id} name={rec.recordingFileName} date={rec.date} />
+          <CallCard
+            Key={rec.id}
+            name={rec.recordingFileName}
+            date={rec.date}
+            url={rec.recordingUrl}
+          />
         );
-      })} */}
+      })}
     </div>
   );
 };

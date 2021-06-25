@@ -133,13 +133,13 @@ $(document).ready(function() {
         } else if ($("#format-select").val() == "webm") {
             var superBuffer2 = new Blob(blobs, {
                 type: 'video/webm'
-                return superBuffer2;
             });
             var url = window.URL.createObjectURL(superBuffer2);
             chrome.downloads.download({
                 url: url
             });
             $("#download-label").html(chrome.i18n.getMessage("download"))
+            return superBuffer2;
         } else if ($("#format-select").val() == "gif") {
             var superBuffer = new Blob(blobs, {
                 type: 'video/webm'

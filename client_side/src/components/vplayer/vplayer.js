@@ -1,6 +1,6 @@
 import Vcontrols from "../vcontrols/vcontrols";
-import { useState, useRef, useEffect } from "react";
-import { findDOMNode } from "react-dom";
+import { useState, useRef } from "react";
+// import { findDOMNode } from "react-dom";
 import axios from "axios";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -11,17 +11,16 @@ import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import VolumeUp from "@material-ui/icons/VolumeUp";
-import VolumeDown from "@material-ui/icons/VolumeDown";
-import VolumeMute from "@material-ui/icons/VolumeOff";
-import FullScreen from "@material-ui/icons/Fullscreen";
-import Popover from "@material-ui/core/Popover";
+// import VolumeUp from "@material-ui/icons/VolumeUp";
+// import VolumeDown from "@material-ui/icons/VolumeDown";
+// import VolumeMute from "@material-ui/icons/VolumeOff";
+// import FullScreen from "@material-ui/icons/Fullscreen";
+// import Popover from "@material-ui/core/Popover";
 import screenfull from "screenfull";
 
 const useStyles = makeStyles((theme) => ({
   playerWrapper: {
     width: "100%",
-    backgroundColor: "red",
     position: "relative",
     top: "20px",
     left: "0px",
@@ -154,7 +153,7 @@ const format = (seconds) => {
 
 let count = 0;
 
-const Vplayer = () => {
+const Vplayer = (props) => {
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
   // const [count, setCount] = useState(0);
@@ -323,9 +322,10 @@ const Vplayer = () => {
   const retUrl = async () => {
     const res = await axios.get("http://localhost:5000/app/getrecurl");
     const data = await res.data;
-    console.log(data);
-    console.log(data[1].recordingUrl);
-    setcurrentUrl(data[1].recordingUrl);
+    // console.log(data);
+    // console.log(data[1].recordingUrl);
+    console.log(props.sendurl);
+    setcurrentUrl(props.sendurl);
   };
   // useEffect(() => {
   //   if (validator === 0) {

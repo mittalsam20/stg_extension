@@ -1,3 +1,4 @@
+import "./notes.css";
 const Notes = () => {
   return (
     <>
