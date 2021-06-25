@@ -20,13 +20,14 @@ import screenfull from "screenfull";
 
 const useStyles = makeStyles((theme) => ({
   playerWrapper: {
-    width: "87%",
+    width: "100%",
     backgroundColor: "red",
     position: "relative",
     top: "20px",
-    left: "40px",
+    left: "0px",
     right: 0,
     bottom: 0,
+    padding: "0px",
     // "&:hover": {
     //   "& $controlsWrapper": {
     //     visibility: "visible",
@@ -333,8 +334,16 @@ const Vplayer = () => {
   // }, [currentUrl]);
 
   return (
-    <div>
-      <Container maxWidth="md">
+    <>
+      <Container
+        maxWidth="md"
+        style={{
+          padding: "0px",
+          width: "100%",
+          marginRight: "0",
+          marginLeft: "0",
+        }}
+      >
         <div
           onMouseMove={handleMouseMove}
           onMouseLeave={hanldeMouseLeave}
@@ -426,7 +435,7 @@ const Vplayer = () => {
       >
         hello
       </button>
-    </div>
+    </>
   );
 };
 
