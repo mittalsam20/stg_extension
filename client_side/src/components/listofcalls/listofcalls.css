@@ -4,17 +4,20 @@ body {
 }
 
 .loc-container {
-    background-color: green;
+    /* background-color: green; */
     height: 550px;
     overflow-y: scroll
 }
 
-hr {
+.loc-container::-webkit-scrollbar {
+    display: none;
+}
+
+.loc-container hr {
     margin: 0;
     padding: 0;
-    width: 100px;
-    size: 100px;
-    height: 1000px;
+    width: 50%;
+    border: solid black 1px;
     /* border: 0ch black solid; */
 }
 

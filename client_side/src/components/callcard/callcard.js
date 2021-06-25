@@ -5,11 +5,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
     maxWidth: 375,
+    marginBottom: "0px",
   },
   bullet: {
     display: "inline-block",
@@ -20,38 +22,34 @@ const useStyles = makeStyles({
     fontSize: 14,
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 8,
+    marginTop: 8,
+  },
+  btn: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
 });
 
-const CallCard = () => {
+const CallCard = (props) => {
+  const [url, setUrl] = useState();
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <>
       <Card className={classes.root}>
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            Word of the Day
-          </Typography>
+        <CardContent style={{ paddingBottom: "0" }}>
           <Typography variant="h5" component="h2">
-            be{bull}nev{bull}o{bull}lent
+            {props.name}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            adjective
-          </Typography>
-          <Typography variant="body2" component="p">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
+            {props.date}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.btn}>
           <Button size="small" color="primary">
             Play
           </Button>

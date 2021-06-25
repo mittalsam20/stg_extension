@@ -52,7 +52,7 @@ const Assemble = () => {
                 style={{
                   paddingLeft: "0",
                   paddingRight: "0",
-                  maxWidth: "60%",
+                  maxWidth: "55%",
                   flexShrink: "3",
                 }}
               >
