@@ -50,7 +50,13 @@ const CallCard = (props) => {
           </Typography>
         </CardContent>
         <CardActions className={classes.btn}>
-          <Button size="small" color="primary">
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              setUrl(props.recurl);
+            }}
+          >
             Play
           </Button>
           <Button size="small" color="primary">
