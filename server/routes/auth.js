@@ -4,7 +4,9 @@ const bodyParser = require("body-parser")
 const user = require("../models/signupmodels")
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
+const AuthMid = require("../middleware/authmid");
 router.use(bodyParser.urlencoded({ extended: true }));
+
 
 router.post('/try', (req, res) => {
     res.json({
@@ -58,7 +60,7 @@ router.post("/login", async(req, res) => {
         console.log(userLogin);
         const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
         token = await userLogin.generateAuthToken();
-        console.log(token);
+        console.log("sds", token);
         res.cookie("stgUserToken", token, { expires: new Date(Date.now() + 25892000000), httpOnly: true });
 
         if (!userLogin) {
@@ -74,4 +76,11 @@ router.post("/login", async(req, res) => {
 });
 
 
+router.get("/about", AuthMid, (req, res) => {
+
+
+    consol.log("entered in about");
+    res.send("hello from the about page from res send", req.rootUser)
+
+})
 module.exports = router;

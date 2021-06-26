@@ -21,7 +21,7 @@ userSchema.methods.generateAuthToken = async function() {
     let curtoken = jwt.sign({ _id: this._id }, "illbethebestworkharder")
     this.tokens = this.tokens.concat({ token: curtoken })
     await this.save();
-    return token;
+    return curtoken;
 }
 
 module.exports = mongoose.model("user", userSchema);
