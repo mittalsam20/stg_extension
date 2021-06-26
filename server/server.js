@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");

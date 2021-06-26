@@ -1,8 +1,8 @@
 import Vcontrols from "../vcontrols/vcontrols";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 // import { findDOMNode } from "react-dom";
-import axios from "axios";
-
+// import axios from "axios";
+import recurldata from "../../App";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -154,6 +154,8 @@ const format = (seconds) => {
 let count = 0;
 
 const Vplayer = (props) => {
+  const urldata = useContext(recurldata);
+
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
   // const [count, setCount] = useState(0);
@@ -318,15 +320,16 @@ const Vplayer = (props) => {
   const [currentUrl, setcurrentUrl] = useState(
     "http://localhost:5000/recording/recording_1624542675237.webm"
   );
+
   //   const [fastLoad, setfastLoad] = useState(true);
-  const retUrl = async () => {
-    const res = await axios.get("http://localhost:5000/app/getrecurl");
-    const data = await res.data;
-    // console.log(data);
-    // console.log(data[1].recordingUrl);
-    console.log(props.sendurl);
-    setcurrentUrl(props.sendurl);
-  };
+  // const retUrl = async () => {
+  //   const res = await axios.get("http://localhost:5000/app/getrecurl");
+  //   const data = await res.data;
+  //   // console.log(data);
+  //   // console.log(data[1].recordingUrl);
+  //   console.log(props.sendurl);
+  //   setcurrentUrl(props.sendurl);
+  // };
   // useEffect(() => {
   //   if (validator === 0) {
   //     setError("Please Use a Valid Email-Id");
@@ -430,7 +433,9 @@ const Vplayer = (props) => {
       <button
         onClick={() => {
           console.log("clicked");
-          retUrl();
+          console.log(props.sendurl);
+          setcurrentUrl(props.sendurl);
+          console.log(currentUrl);
         }}
       >
         hello

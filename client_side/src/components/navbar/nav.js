@@ -60,15 +60,15 @@ const Nav = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Stg Logo
+            <img src="/logo_w.png" alt="" style={{ width: "8%" }} />
           </Typography>
           {/* auth &&  */}
           {
             <div>
               <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
+                ariaLabel="account of current user"
+                ariaControls="menu-appbar"
+                ariaHaspopup="true"
                 onClick={handleMenu}
                 color="inherit"
               >

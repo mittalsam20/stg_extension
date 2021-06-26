@@ -40,33 +40,27 @@ const Assemble = () => {
           spacing={0}
           style={{ flexWrap: "nowrap" }}
         >
-          <Grid item xs={12}>
-            <Grid container justify="strecth" spacing={2}>
-              <Grid item>
-                {/* <Paper className={classes.paper}> */}
-                <ListOfCalls />
-                {/* </Paper> */}
-              </Grid>
-              <Grid
-                item
-                style={{
-                  paddingLeft: "0",
-                  paddingRight: "0",
-                  maxWidth: "55%",
-                  flexShrink: "3",
-                }}
-              >
-                {/* <Paper className={classes.paper}> */}
-                <Vplayer />
-                {/* </Paper> */}
-              </Grid>{" "}
-              <Grid item>
-                {/* <Paper className={classes.paper}> */}
-                <Notes />
-                {/* </Paper> */}
-              </Grid>
+          {/* <Grid item xs={12}> */}
+          <Grid container justify="strecth" spacing={2}>
+            <Grid item>
+              <ListOfCalls />
+            </Grid>
+            <Grid
+              item
+              style={{
+                paddingLeft: "0",
+                paddingRight: "0",
+                maxWidth: "50%",
+                flexShrink: "3",
+              }}
+            >
+              <Vplayer />
+            </Grid>{" "}
+            <Grid item>
+              <Notes />
             </Grid>
           </Grid>
+          {/* </Grid> */}
         </Grid>
       </div>
     </>
@@ -74,35 +68,3 @@ const Assemble = () => {
 };
 
 export default Assemble;
-
-// export default function SpacingGrid() {
-
-//   return (
-
-//       <Grid item xs={12}>
-//         <Paper className={classes.control}>
-//           <Grid container>
-//             <Grid item>
-//               <FormLabel>spacing</FormLabel>
-//               <RadioGroup
-//                 name="spacing"
-//                 aria-label="spacing"
-//                 value={spacing.toString()}
-//                 onChange={handleChange}
-//                 row
-//               >
-//                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-//                   <FormControlLabel
-//                     key={value}
-//                     value={value.toString()}
-//                     control={<Radio />}
-//                     label={value.toString()}
-//                   />
-//                 ))}
-//               </RadioGroup>
-//             </Grid>
-//           </Grid>
-//         </Paper>
-//       </Grid>
-//   );
-// }

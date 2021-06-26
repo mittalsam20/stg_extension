@@ -31,20 +31,23 @@ router.post('/signup', async(req, res) => {
     }
 })
 
-router.post("/login", async(req, res) => {
-    // try {
-    const user = await user.findOne({ emailId: req.body.emailId });
-    if (!user) { res.status(400).json('Invalid username or password!!'); } else { res.status(200).json("user founded") }
-
-    const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Invalid username or password")
-
-    const { password, ...others } = user._doc;
-    res.status(200).json(others)
-        // } catch (err) {
-        // res.status(500).json(err)
-        // }
-})
+router.post("/login", (req, res) => {
+    user.findOne({ emailId: req.body.logEmail }).then(founduser => {
+        if (founduser) {
+            console.log("mil gata")
+            bcrypt.compare(req.body.logPass, founduser.password).then(result => {
+                if (result) {
+                    console.log("right pass");
+                    console.log(founduser.emailId);
+                } else {
+                    console.log("wrong pass");
+                }
+            })
+        } else {
+            console.log("user not found");
+        }
+    });
+});
 
 
 module.exports = router;

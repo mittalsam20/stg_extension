@@ -4,24 +4,15 @@
 // import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
-import { useState } from "react";
-import axios from "axios";
-import "./listofcalls.css";
+// import { useState } from "react";
+import { useContext } from "react";
 import CallCard from "./callcard";
+import "./listofcalls.css";
+import { recurldata } from "../../App";
 
 const ListOfCalls = () => {
-  const [print, setPrint] = useState(["s"]);
-  const retUrl = async () => {
-    const res = await axios.get("http://localhost:5000/app/getrecurl");
-    const data = await res.data;
-    // console.log(data);
-    // console.log(data[1].recordingUrl);
-    setPrint(data);
-    // return data;
-  };
-  //   setPrint(retUrl());
-  retUrl();
-  //   console.log(print);
+  const urldata = useContext(recurldata);
+  // console.log(urldata);
   return (
     <div className="loc-container">
       <div className="loc">
@@ -29,9 +20,7 @@ const ListOfCalls = () => {
           All Recording's
         </h3>
       </div>
-
-      {print.map((rec) => {
-        /* console.log("pradumna", rec.date); */
+      {urldata.map((rec) => {
         return (
           <CallCard
             Key={rec.id}

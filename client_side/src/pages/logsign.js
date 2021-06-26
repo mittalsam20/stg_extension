@@ -6,11 +6,14 @@ import ReactPlayer from "react-player";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
-  const [InputEmail, setInputEmail] = useState("");
+
   //   const [validator, setValidator] = useState();
+  const [InputEmail, setInputEmail] = useState("");
   const [InputPass, setInputPass] = useState("");
   const [InputConfirmPass, setInputConfirmPass] = useState("");
   const [error, setError] = useState("");
+  const [logEmail, setLogEmail] = useState("");
+  const [logPass, setLogPass] = useState("");
 
   // -----------------------EMAIL VALIDATION------------------------
 
@@ -77,22 +80,24 @@ const LogSign = () => {
             />
             <input type="radio" className="radio" name="radio" id="signup" />
             <div className="tile">
-              <h3 className="login">Login Form</h3>
-              <h3 className="signup">Signup Form</h3>
-            </div>
+              <h3 className="login"> Login Form </h3>{" "}
+              <h3 className="signup"> Signup Form </h3>{" "}
+            </div>{" "}
             <label className="tab login_tab" for="login">
-              Login
-            </label>
+              Login{" "}
+            </label>{" "}
             <label className="tab signup_tab" for="signup">
-              Signup
-            </label>
-            <span className="shape"></span>
+              Signup{" "}
+            </label>{" "}
+            <span className="shape"> </span>{" "}
             <div className="form_wrap">
               <div className="form_fild login_form">
                 <div className="input_group">
                   <input
-                    // onChange={EmailApi}
-                    // value={InputEmail}
+                    onChange={(ev) => {
+                      setLogEmail(ev.target.value);
+                    }}
+                    value={logEmail}
                     type="email"
                     className="input"
                     placeholder="Email Address"
@@ -100,27 +105,43 @@ const LogSign = () => {
                 </div>
                 <div className="input_group">
                   <input
-                    // onChange={EmailApi}
-                    // value={InputEmail}
+                    onChange={(ev) => {
+                      setLogPass(ev.target.value);
+                    }}
+                    value={logPass}
                     type="password"
                     className="input"
                     placeholder="Password"
                   />
                 </div>
-
                 <a href="" className="forgot">
-                  Forgot password?
+                  Forgot password ?
                 </a>
+                <input
+                  type="submit"
+                  className="btn"
+                  value="Login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log("login clicked");
+                    // EmailApi(InputEmail, InputPass);
 
-                <input type="submit" className="btn" value="Login" />
-
+                    const loginreg = {
+                      logEmail: logEmail,
+                      logPass: logPass,
+                    };
+                    console.log(loginreg);
+                    axios
+                      .post("http://localhost:5000/app/login", loginreg)
+                      .then((res) => console.log("sam var", res.data));
+                  }}
+                />
                 <div className="not_mem">
                   <label for="signup">
-                    Not a member? <span> Signup now</span>
-                  </label>
-                </div>
+                    Not a member ? <span> Signup now </span>{" "}
+                  </label>{" "}
+                </div>{" "}
               </div>
-
               <div className="form_fild signup_form">
                 <div className="input_group">
                   <input
@@ -132,7 +153,7 @@ const LogSign = () => {
                     className="input"
                     placeholder="Email Address"
                   />
-                </div>
+                </div>{" "}
                 <div className="input_group">
                   <input
                     onChange={(ev) => {
@@ -143,9 +164,8 @@ const LogSign = () => {
                     className="input"
                     placeholder="Password"
                     value={InputPass}
-                  />
+                  />{" "}
                 </div>
-
                 <div className="input_group">
                   <input
                     onChange={(ev) => {
@@ -156,22 +176,15 @@ const LogSign = () => {
                     className="input"
                     placeholder="Confirm Password"
                     value={InputConfirmPass}
-                  />
-                </div>
-                <p>{error}</p>
+                  />{" "}
+                </div>{" "}
+                <p> {error} </p>{" "}
                 <input
                   type="submit"
                   className="btn"
                   value="Signup"
                   onClick={(e) => {
                     e.preventDefault();
-                    <ReactPlayer url="http://localhost:5000/recording/recording_1624485538756.webm" />;
-                    console.log(
-                      ReactPlayer.canPlay(
-                        "http://localhost:5000/recording/recording_1624485538756.webm"
-                      )
-                    );
-
                     console.log("clicked");
                     // EmailApi(InputEmail, InputPass);
                     if (
@@ -188,12 +201,12 @@ const LogSign = () => {
                         .then((res) => console.log(res.data));
                     }
                   }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+                />{" "}
+              </div>{" "}
+            </div>{" "}
+          </div>{" "}
+        </section>{" "}
+      </div>{" "}
     </>
   );
 };
