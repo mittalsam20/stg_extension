@@ -58,16 +58,26 @@ router.post("/login", async(req, res) => {
 
         const userLogin = await user.findOne({ emailId: req.body.logEmail });
         console.log(userLogin);
-        const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
-        token = await userLogin.generateAuthToken();
-        console.log("sds", token);
-        res.cookie("stgUserToken", token);
-        // , { expires: new Date(Date.now() + 25892000000), httpOnly: true }
         if (!userLogin) {
             res.status(400).json({ error: "Id Not Registered" })
-        } else if (!userLogPass) {
+        }
+
+        const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
+
+        // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // res.header('Access-Control-Allow-Credentials', true);
+
+
+        if (!userLogPass) {
             res.status(400).json({ error: "InCorrect Password" })
         } else if (userLogin || userLogPass) {
+            token = await userLogin.generateAuthToken();
+            console.log("i am getting token", token);
+            res.cookie("stgUserToken", token, {
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
             res.json({ message: "Login SuccessFull..!!" })
         }
     } catch (err) {
@@ -77,10 +87,7 @@ router.post("/login", async(req, res) => {
 
 
 router.get("/main", AuthMid, (req, res) => {
-
-
     console.log("entered in about");
-    res.send("hello from the about page from res send", req.rootUser)
-
+    res.status(200).send(req.rootUser)
 })
 module.exports = router;

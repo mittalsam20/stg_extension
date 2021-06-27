@@ -1,12 +1,11 @@
 import "./logsign.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
-// import $ from "jquery";
+import { Link, useHistory } from "react-router-dom";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
-
+  const history = useHistory();
   //   const [validator, setValidator] = useState();
   const [InputEmail, setInputEmail] = useState("");
   const [InputPass, setInputPass] = useState("");
@@ -117,10 +116,11 @@ const LogSign = () => {
                 <a href="" className="forgot">
                   Forgot password ?
                 </a>
-                <input
-                  type="submit"
+                {/* <Link to="/user"> */}
+                <button
+                  // type="submit"
                   className="btn"
-                  value="Login"
+                  // value="Login"
                   onClick={(e) => {
                     e.preventDefault();
                     console.log("login clicked");
@@ -132,10 +132,16 @@ const LogSign = () => {
                     };
                     console.log(loginreg);
                     axios
-                      .post("http://localhost:5000/app/login", loginreg)
+                      .post("http://localhost:5000/app/login", loginreg, {
+                        withCredentials: true,
+                      })
                       .then((res) => console.log("sam var", res.data));
+                    history.push("/user");
                   }}
-                />
+                >
+                  Login
+                </button>
+                {/* </Link> */}
                 <div className="not_mem">
                   <label for="signup">
                     Not a member ? <span> Signup now </span>{" "}

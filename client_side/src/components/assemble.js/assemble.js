@@ -34,7 +34,11 @@ const Assemble = () => {
   let userdata;
   const callMainPage = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/app/main");
+      const res = await axios.get("http://localhost:5000/app/main", {
+        withCredentials: true,
+      });
+      // const res=fetch
+
       userdata = await res.data;
       console.log(userdata);
 
