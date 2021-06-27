@@ -61,8 +61,8 @@ router.post("/login", async(req, res) => {
         const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
         token = await userLogin.generateAuthToken();
         console.log("sds", token);
-        res.cookie("stgUserToken", token, { expires: new Date(Date.now() + 25892000000), httpOnly: true });
-
+        res.cookie("stgUserToken", token);
+        // , { expires: new Date(Date.now() + 25892000000), httpOnly: true }
         if (!userLogin) {
             res.status(400).json({ error: "Id Not Registered" })
         } else if (!userLogPass) {
@@ -76,10 +76,10 @@ router.post("/login", async(req, res) => {
 });
 
 
-router.get("/about", AuthMid, (req, res) => {
+router.get("/main", AuthMid, (req, res) => {
 
 
-    consol.log("entered in about");
+    console.log("entered in about");
     res.send("hello from the about page from res send", req.rootUser)
 
 })

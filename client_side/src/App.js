@@ -14,13 +14,18 @@ const recurldata = createContext();
 
 const App = () => {
   const [temp, setTemp] = useState([]);
+  let recdata;
   const retUrl = async () => {
     const res = await axios.get("http://localhost:5000/app/getrecurl");
     const data = await res.data;
     setTemp(data);
+    recdata = data;
+    console.log(recdata);
   };
 
-  retUrl();
+  useEffect(() => {
+    retUrl();
+  }, []);
 
   return (
     <>

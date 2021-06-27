@@ -2,9 +2,11 @@ import ListOfCalls from "../listofcalls/listofcalls";
 import Nav from "../navbar/nav";
 import Notes from "../notes/notes";
 import Vplayer from "../vplayer/vplayer";
-
+import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 // import FormLabel from "@material-ui/core/FormLabel";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import RadioGroup from "@material-ui/core/RadioGroup";
@@ -28,6 +30,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Assemble = () => {
+  const history = useHistory();
+  let userdata;
+  const callMainPage = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/app/main");
+      userdata = await res.data;
+      console.log(userdata);
+
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log("error i am finding", err);
+      history.push("/");
+    }
+  };
+
+  useEffect(() => {
+    callMainPage();
+  }, []);
+
   const classes = useStyles();
 
   return (

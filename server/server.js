@@ -7,9 +7,10 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-
+const cookieParser = require('cookie-parser');
 //Intialization
 const app = express();
+app.use(cookieParser());
 app.use(cors());
 const Port = process.env.Port || 5000;
 const authRoute = require("./routes/auth");

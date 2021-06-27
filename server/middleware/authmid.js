@@ -4,6 +4,8 @@ const user = require("../models/signupmodels")
 const AuthMid = async(req, res, next) => {
     try {
         const token = req.cookies.stgUserToken;
+        console.log("reached");
+        console.log(token);
         const verifyToken = jwt.verify(token, "illbethebestworkharder")
         console.log("verify token ki value true ya falise", verifyToken)
         const rootUser = await user.findOne({ _id: verifyToken._id, "tokens.token": token })
