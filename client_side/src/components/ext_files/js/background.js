@@ -21,14 +21,14 @@ var height = 1080;
 var quality = "max";
 var fps = 60;
 var camerasize = "small-size";
-var camerapos = {x:"10px", y:"10px"};
-var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+var camerapos = { x: "10px", y: "10px" };
+var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 
 // Get list of available audio devices
 getDeviceId();
 
 chrome.runtime.onInstalled.addListener(function() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),"OnInstalled:: ", 'background.js--> chrome.runtime.onInstalled.addListener(function()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), "OnInstalled:: ", 'background.js--> chrome.runtime.onInstalled.addListener(function()');
 
     // Set defaults when the extension is installed
     chrome.storage.sync.set({
@@ -43,11 +43,11 @@ chrome.runtime.onInstalled.addListener(function() {
         quality: "max",
         fps: 60
     });
-    
-    
+
+
     //Inject content scripts in existing tabs
-    chrome.tabs.query({currentWindow: true}, function gotTabs(tabs){
-        console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> chrome.tabs.query({currentWindow: true}');
+    chrome.tabs.query({ currentWindow: true }, function gotTabs(tabs) {
+        console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> chrome.tabs.query({currentWindow: true}');
 
         for (let index = 0; index < tabs.length; index++) {
             // if (tabs[index].url.includes("https://meet.google.com/") && !(tabs[index].url == "https://meet.google.com" || tabs[index].url == "https://meet.google.com/")) {
@@ -74,11 +74,11 @@ chrome.runtime.onInstalled.addListener(function() {
 
 // Set up recording
 function newRecording(stream) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function newRecording(stream)');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function newRecording(stream)');
 
     // Show recording icon
-    chrome.browserAction.setIcon({path: "../assets/extension-icons/logo-32-rec.png"});
-    
+    chrome.browserAction.setIcon({ path: "../assets/extension-icons/logo-32-rec.png" });
+
     // Start Media Recorder
     if (quality == "max") {
         mediaConstraints = {
@@ -91,37 +91,38 @@ function newRecording(stream) {
         }
     }
     mediaRecorder = new MediaRecorder(stream, mediaConstraints);
-    console.log('recording::',recording)
-    //injectContent(true);
+    console.log('recording::', recording)
+        //injectContent(true);
     if (!recording) {
         mediaRecorder.start(1000);
         recording = true;
-        console.log('recording::',recording)
-        chrome.runtime.sendMessage({type: "loaded"});
+        console.log('recording::', recording)
+        chrome.runtime.sendMessage({ type: "loaded" });
 
     }
 }
 
 // Save recording
 function saveRecording(recordedBlobs) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function saveRecording(recordedBlobs)');
-
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function saveRecording(recordedBlobs)');
     newwindow = window.open('../html/videoeditor.html');
     newwindow.recordedBlobs = recordedBlobs;
+    console.log("background ka", newwindow.recordedBlobs);
 }
 
 // Stop recording
 function endRecording(stream, recordedBlobs) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function endRecording(stream, recordedBlobs)');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function endRecording(stream, recordedBlobs)');
 
     // Show default icon
-    chrome.browserAction.setIcon({path: "../assets/extension-icons/logo-32.png"});
-    
+    chrome.browserAction.setIcon({ path: "../assets/extension-icons/logo-32.png" });
+
     // Save recording if requested
     if (!cancel) {
         saveRecording(recordedBlobs);
-    } 
-    
+        console.log("background ka", newwindow.recordedBlobs);
+    }
+
     // Hide injected content
     recording = false;
     // chrome.tabs.getSelected(null, function(tab) {
@@ -134,7 +135,7 @@ function endRecording(stream, recordedBlobs) {
     stream.getTracks().forEach(function(track) {
         track.stop();
     });
-    
+
     if (micable) {
         micstream.getTracks().forEach(function(track) {
             track.stop();
@@ -166,7 +167,7 @@ function getDesktop() {
             output.addTrack(destination.stream.getAudioTracks()[0]);
         }
         output.addTrack(stream.getVideoTracks()[0]);
-        
+
         // Set up media recorder & inject content
         newRecording(output);
 
@@ -193,7 +194,7 @@ function getDesktop() {
 
 // Start recording the current tab
 function getTab() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function getTab()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function getTab()');
 
     chrome.tabs.getSelected(null, function(tab) {
         console.log(tab)
@@ -212,7 +213,7 @@ function getTab() {
             },
         }, function(stream) {
             // Combine tab and microphone audio
-            console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'function(stream)--typeof(stream)',stream);
+            console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'function(stream)--typeof(stream)', stream);
 
             output = new MediaStream();
             syssource = audioCtx.createMediaStreamSource(stream);
@@ -222,12 +223,12 @@ function getTab() {
             syssource.connect(destination);
             output.addTrack(destination.stream.getAudioTracks()[0]);
             output.addTrack(stream.getVideoTracks()[0]);
-            
+
             // Keep playing tab audio
             this.context = new AudioContext();
             this.stream = this.context.createMediaStreamSource(stream);
             this.stream.connect(this.context.destination);
-            
+
             // Set up media recorder & inject content
             newRecording(output)
 
@@ -242,13 +243,13 @@ function getTab() {
 
             // When the recording is stopped
             mediaRecorder.onstop = () => {
-                console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function onstop');
+                console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function onstop');
                 endRecording(stream, recordedBlobs);
             }
-            
+
             // Stop recording if stream is ended when tab is closed
             stream.getVideoTracks()[0].onended = function() {
-                console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function onended');
+                console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function onended');
 
                 mediaRecorder.stop();
             }
@@ -259,7 +260,7 @@ function getTab() {
 
 // Inject content scripts to start recording
 function startRecording() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function startRecording()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function startRecording()');
 
     if (recording_type == "camera-only") {
         injectContent(true);
@@ -271,14 +272,14 @@ function startRecording() {
 
 // Get microphone audio and start recording video
 function record() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function record()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function record()');
 
     // Get window dimensions to record
-    chrome.windows.getCurrent(function(window){
+    chrome.windows.getCurrent(function(window) {
         width = window.width;
         height = window.height;
     })
-    
+
     var constraints;
     chrome.storage.sync.get(['fps'], function(result) {
         fps = result.fps;
@@ -322,7 +323,7 @@ function record() {
 
 // Switch microphone input
 function updateMicrophone(id, request) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function updateMicrophone(id, request)');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function updateMicrophone(id, request)');
 
     // Save user preference for microphone device
     chrome.storage.sync.set({
@@ -364,25 +365,25 @@ function updateMicrophone(id, request) {
 
 // Recording controls
 function pauseRecording() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function pauseRecording()');
-   
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function pauseRecording()');
+
     mediaRecorder.pause();
 }
 
 function resumeRecording() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function resumeRecording()');
-   
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function resumeRecording()');
+
     mediaRecorder.resume();
 }
 
 function stopRecording(save) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function stopRecording(save)');
-    
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function stopRecording(save)');
+
     tabid = 0;
-    
+
     // Show default icon
-    chrome.browserAction.setIcon({path: "../assets/extension-icons/logo-32.png"});
-    
+    chrome.browserAction.setIcon({ path: "../assets/extension-icons/logo-32.png" });
+
     chrome.tabs.getSelected(null, function(tab) {
         // Check if recording has to be saved or discarded
         if (save == "stop" || save == "stop-save") {
@@ -407,13 +408,13 @@ function stopRecording(save) {
             }
         }
 
-        
+
     });
 }
 
 // Get a list of the available audio devices
 function getDeviceId() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function getDeviceId()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function getDeviceId()');
 
     audiodevices = [];
     navigator.mediaDevices.enumerateDevices().then(function(devices) {
@@ -424,18 +425,18 @@ function getDeviceId() {
                     id: device.deviceId
                 });
 
-                console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> pushed audiodevice::',device.label);
+                console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> pushed audiodevice::', device.label);
 
             }
         });
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function getDeviceId()');
-        chrome.runtime.sendMessage({type: "audio-done", devices:audiodevices});
+        console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function getDeviceId()');
+        chrome.runtime.sendMessage({ type: "audio-done", devices: audiodevices });
     });
 }
 
 // Mute/unmute microphone and system audio
 function audioSwitch(source, enable) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function audioSwitch(source, enable)');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function audioSwitch(source, enable)');
 
     if (recording_type != "camera-only") {
         // Start a new microphone stream if one doesn't exist already
@@ -477,7 +478,7 @@ function audioSwitch(source, enable) {
 
 // Countdown is over / recording can start
 function countdownOver() {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function countdownOver()');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function countdownOver()');
 
     if (recording_type == "camera-only") {
         chrome.tabs.getSelected(null, function(tab) {
@@ -495,7 +496,7 @@ function countdownOver() {
 
 // Inject content when tab redirects while recording
 function pageUpdated(sender) {
-    console.log((new Date()).getHours() ,(new Date()).getMinutes() , (new Date()).getSeconds(), (new Date()).getMilliseconds(),'background.js--> function pageUpdated(sender) ');
+    console.log((new Date()).getHours(), (new Date()).getMinutes(), (new Date()).getSeconds(), (new Date()).getMilliseconds(), 'background.js--> function pageUpdated(sender) ');
 
     chrome.tabs.getSelected(null, function(tab) {
         if (sender.tab.id == tab.id) {
@@ -515,22 +516,22 @@ function pageUpdated(sender) {
 
 // Listen for messages from content / popup
 chrome.runtime.onMessage.addListener(
-    
+
     function(request, sender, sendResponse) {
         if (request.type == "record") {
             startRecording();
         } else if (request.type == "pause") {
             pauseRecording();
-            sendResponse({success: true});
+            sendResponse({ success: true });
         } else if (request.type == "resume") {
             resumeRecording();
-            sendResponse({success: true});
+            sendResponse({ success: true });
         } else if (request.type == "stop-save") {
             stopRecording(request.type);
         } else if (request.type == "stop-cancel") {
             stopRecording(request.type);
         } else if (request.type == "audio-request") {
-            sendResponse({devices: audiodevices});
+            sendResponse({ devices: audiodevices });
         } else if (request.type == "update-mic") {
             updateMicrophone(request.id, request);
         } else if (request.type == "update-camera") {
@@ -566,7 +567,7 @@ chrome.runtime.onMessage.addListener(
         } else if (request.type == "recording-type") {
             recording_type = request.recording;
         } else if (request.type == "record-request") {
-            sendResponse({recording: recording});
+            sendResponse({ recording: recording });
         } else if (request.type == "pause-camera") {
             chrome.tabs.getSelected(null, function(tab) {
                 chrome.tabs.sendMessage(tab.id, {

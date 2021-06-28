@@ -43,6 +43,7 @@ function convertStreams(videoBlob, setting) {
                 var blob = new File([result.data], 'test.mp4', {
                     type: 'video/mp4'
                 });
+                console.log("convert", blob);
                 PostBlob(blob);
             }
         }

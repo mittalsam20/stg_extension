@@ -14,6 +14,26 @@ const LogSign = () => {
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
 
+  const callSignPage = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/app/main", {
+        withCredentials: true,
+      });
+      const userdata = await res.data;
+      if (userdata) {
+        history.push("/user");
+      } else {
+      }
+    } catch (err) {
+      console.log("error i am finding", err);
+      history.push("/");
+    }
+  };
+
+  useEffect(() => {
+    callSignPage();
+  }, []);
+
   // -----------------------EMAIL VALIDATION------------------------
 
   //   const EmailApi = async (Email, pass) => {
@@ -124,7 +144,6 @@ const LogSign = () => {
                     e.preventDefault();
                     console.log("login clicked");
                     // EmailApi(InputEmail, InputPass);
-
                     const loginreg = {
                       logEmail: logEmail,
                       logPass: logPass,

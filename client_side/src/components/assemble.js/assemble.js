@@ -7,6 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
+// import ScriptTag from "react-script-tag";
+// import transfer from "../ext_files/js/videoeditor";
 // import FormLabel from "@material-ui/core/FormLabel";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import RadioGroup from "@material-ui/core/RadioGroup";
@@ -19,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     direction: "row",
     justifyContent: "safe space-between ",
     alignItems: "safe stretch",
+    flexWrap: "nowrap",
   },
   paper: {
     height: 140,
@@ -30,6 +34,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Assemble = () => {
+  const fetchvideo = async () => {
+    try {
+      // const vidblob = transfer();
+      const vidblob = "ok";
+      const vid = await axios.post("http://localhost:5000/app/upload", vidblob);
+      const temp = await vid.data;
+      console.log(temp);
+    } catch (err) {
+      console.log("video error", err);
+    }
+  };
+
   const [user, setUser] = useState({});
   const history = useHistory();
   const callMainPage = async () => {
@@ -52,6 +68,7 @@ const Assemble = () => {
 
   useEffect(() => {
     callMainPage();
+    fetchvideo();
   }, []);
 
   const classes = useStyles();
@@ -81,14 +98,17 @@ const Assemble = () => {
               }}
             >
               <Vplayer />
-            </Grid>{" "}
+            </Grid>
             <Grid item>
               <Notes />
             </Grid>
+            {/* </Grid> */}
           </Grid>
-          {/* </Grid> */}
         </Grid>
       </div>
+      <Helmet>
+        <script src="../ext_files/js/videoeditor.js" type="text/javascript" />
+      </Helmet>
     </>
   );
 };

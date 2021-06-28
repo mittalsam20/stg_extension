@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function sam() {
     var blobs = recordedBlobs;
     var player;
     var trimslider = document.getElementById('trimslider');
@@ -134,12 +134,13 @@ $(document).ready(function() {
             var superBuffer2 = new Blob(blobs, {
                 type: 'video/webm'
             });
+            console.log("video editor", superBuffer2);
             var url = window.URL.createObjectURL(superBuffer2);
             chrome.downloads.download({
                 url: url
             });
+            console.log("video ka url", url);
             $("#download-label").html(chrome.i18n.getMessage("download"))
-            return superBuffer2;
         } else if ($("#format-select").val() == "gif") {
             var superBuffer = new Blob(blobs, {
                 type: 'video/webm'
@@ -147,6 +148,26 @@ $(document).ready(function() {
             convertStreams(superBuffer, "gif");
         }
     }
+    // ------------------------------------------------our code---------------------------------//
+    function transfer() {
+        downloaded = true;
+        $("#download-label").html(chrome.i18n.getMessage("downloading"))
+
+        if ($("#format-select").val() == "webm") {
+            var superBuffer2 = new Blob(blobs, {
+                type: 'video/webm'
+            });
+            console.log("inside transfer editor", superBuffer2);
+            var url = window.URL.createObjectURL(superBuffer2);
+            chrome.downloads.download({
+                url: url
+            });
+            console.log("inside transfer video ka url", url);
+            $("#download-label").html(chrome.i18n.getMessage("download"))
+            return superBuffer2;
+        }
+    }
+    // ------------------------------------------------our code ends---------------------------------//
 
     // Save on Drive
     function saveDrive() {
@@ -236,6 +257,7 @@ $(document).ready(function() {
     // Download video
     $("#download").on("click", function() {
         download();
+        transfer();
     });
 
     // Save on Drive
