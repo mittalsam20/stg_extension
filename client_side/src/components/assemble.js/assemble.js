@@ -37,11 +37,8 @@ const Assemble = () => {
       const res = await axios.get("http://localhost:5000/app/main", {
         withCredentials: true,
       });
-      // const res=fetch
-
       userdata = await res.data;
       console.log(userdata);
-
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;

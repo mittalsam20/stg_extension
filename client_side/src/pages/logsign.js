@@ -116,11 +116,10 @@ const LogSign = () => {
                 <a href="" className="forgot">
                   Forgot password ?
                 </a>
-                {/* <Link to="/user"> */}
-                <button
-                  // type="submit"
+                <input
+                  type="submit"
                   className="btn"
-                  // value="Login"
+                  value="Login"
                   onClick={(e) => {
                     e.preventDefault();
                     console.log("login clicked");
@@ -135,13 +134,16 @@ const LogSign = () => {
                       .post("http://localhost:5000/app/login", loginreg, {
                         withCredentials: true,
                       })
-                      .then((res) => console.log("sam var", res.data));
-                    history.push("/user");
+                      .then((res) => {
+                        console.log("sam var", res.data);
+                        if (res.status === 200) {
+                          history.push("/user");
+                        }
+                      });
                   }}
-                >
-                  Login
-                </button>
-                {/* </Link> */}
+                />
+                {/* Login
+                </input> */}
                 <div className="not_mem">
                   <label for="signup">
                     Not a member ? <span> Signup now </span>{" "}

@@ -16,6 +16,7 @@ const recordingSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+
     date: { type: Date, default: Date.now }
 })
 

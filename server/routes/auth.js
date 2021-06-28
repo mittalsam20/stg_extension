@@ -20,21 +20,17 @@ router.post('/signup', async(req, res) => {
         if (!req.body.emailId || !req.body.password) {
             return res.status(400).json({ error: "Please Fill All The Details..!!" })
         }
-
         const salt = await bcrypt.genSalt(10)
         const hashedPass = await bcrypt.hash(req.body.password, salt)
         const userExist = await user.findOne({ emailId: req.body.emailId })
-
         if (userExist) {
             res.status().json({ message: "Email-Id Already Registered..!!" })
         }
-
         const newUser = new user({
             emailId: req.body.emailId,
             password: hashedPass
         })
         console.log(req.body.emailId)
-
         newUser.save().then(data => {
             res.status(200).json({
                 message: "User Registered Successfully",
@@ -42,7 +38,6 @@ router.post('/signup', async(req, res) => {
             });
             console.log(json(data));
         }).catch(error => { res.status(500).json(error) })
-
     } catch (err) {
         res.status(500).json(err)
     }
@@ -55,30 +50,27 @@ router.post("/login", async(req, res) => {
         if (!req.body.logEmail || !req.body.logPass) {
             return res.status(400).json({ error: "Please Fill All The Details..!!" });
         }
-
         const userLogin = await user.findOne({ emailId: req.body.logEmail });
-        console.log(userLogin);
-        if (!userLogin) {
-            res.status(400).json({ error: "Id Not Registered" })
-        }
-
-        const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
-
-        // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        // res.header('Access-Control-Allow-Credentials', true);
-
-
-        if (!userLogPass) {
-            res.status(400).json({ error: "InCorrect Password" })
-        } else if (userLogin || userLogPass) {
-            token = await userLogin.generateAuthToken();
-            console.log("i am getting token", token);
-            res.cookie("stgUserToken", token, {
-                expires: new Date(Date.now() + 25892000000),
-                httpOnly: true
-            });
-            res.json({ message: "Login SuccessFull..!!" })
+        console.log("mili ki nhi", userLogin);
+        if (userLogin === null) {
+            console.log("inside null")
+            res.status(400).json({ error: "Id Not Registered" });
+        } else {
+            const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
+                // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+                // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                // res.header('Access-Control-Allow-Credentials', true);
+            if (!userLogPass) {
+                res.status(400).json({ error: "InCorrect Password" })
+            } else if (userLogin || userLogPass) {
+                token = await userLogin.generateAuthToken();
+                console.log("i am getting token", token);
+                res.cookie("stgUserToken", token, {
+                    expires: new Date(Date.now() + 25892000000),
+                    httpOnly: true
+                });
+                res.status(200).json({ message: "Login SuccessFull..!!" })
+            }
         }
     } catch (err) {
         console.log(err);

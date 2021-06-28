@@ -25,6 +25,7 @@ const authRoute = require("./routes/auth");
 const recRoute = require("./routes/recordingurl")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json());
 
 //DB Connection
 dotenv.config();
