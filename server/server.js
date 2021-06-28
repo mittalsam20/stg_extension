@@ -2,30 +2,31 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-// const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const cookieParser = require('cookie-parser');
+
+
 //Intialization
 const app = express();
-
 var corsOptions = {
-    origin: true, //frontend url
-    credentials: true
-}
-
-
+        origin: true,
+        credentials: true
+    }
+    // Server Middlewares
 app.use(cors(corsOptions));
 app.use(cookieParser());
-// app.use(cors());
-const Port = process.env.Port || 5000;
-const authRoute = require("./routes/auth");
-const recRoute = require("./routes/recordingurl")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
+
+//Importing Routes
+const Port = process.env.Port || 5000;
+const authRoute = require("./routes/auth");
+const recRoute = require("./routes/recordingurl")
+const noteRoute = require("./routes/noteurl")
 
 //DB Connection
 dotenv.config();
@@ -53,6 +54,7 @@ const upload = multer({
         // limits: { fileSize: 1024 * 1024 * 5 }
 })
 
+// Upload API
 app.post("/app/upload", upload.single("recording"), (req, res) => {
     console.log(req.file);
     const recording_url = `http://localhost:5000/recording/${req.file.filename}`;
@@ -77,6 +79,7 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
 //Calling Of All Routes
 app.use("/app", authRoute);
 app.use("/app", recRoute);
+app.use("/app", noteRoute);
 app.use((req, res, next) => {
     res.status(404).json({
         success: false,

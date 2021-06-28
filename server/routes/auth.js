@@ -82,4 +82,11 @@ router.get("/main", AuthMid, (req, res) => {
     console.log("entered in about");
     res.status(200).send(req.rootUser)
 })
+
+
+router.get("/logout", (req, res) => {
+    console.log("loging out initiated");
+    res.clearCookie("stgUserToken", { path: "/" })
+    res.status(200).send("User LoggedOut")
+})
 module.exports = router;
