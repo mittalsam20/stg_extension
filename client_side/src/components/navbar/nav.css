@@ -2,6 +2,10 @@
     /* border: 40px solid red; */
 }
 
+html {
+    font-family: "Montserrat", sans-serif;
+}
+
 nav {
     position: fixed;
     top: 0px;

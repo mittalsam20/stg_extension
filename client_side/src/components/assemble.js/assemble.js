@@ -1,6 +1,6 @@
 import ListOfCalls from "../listofcalls/listofcalls";
 import Nav from "../navbar/nav";
-import Notes from "../notes/notes";
+import Notes from "../notes/notesheading";
 import Vplayer from "../vplayer/vplayer";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";

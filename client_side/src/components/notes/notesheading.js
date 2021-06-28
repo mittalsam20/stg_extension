@@ -1,11 +1,11 @@
 import "./notes.css";
-import Create from "./create";
+import MainNotes from "./mainnotes";
 const Notes = () => {
   return (
     <>
       <div className="notes">
         <h2>Take Notes</h2>
-        <Create />
+        <MainNotes />
       </div>
     </>
   );
