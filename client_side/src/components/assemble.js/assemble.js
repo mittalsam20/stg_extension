@@ -2,7 +2,7 @@ import ListOfCalls from "../listofcalls/listofcalls";
 import Nav from "../navbar/nav";
 import Notes from "../notes/notesheading";
 import Vplayer from "../vplayer/vplayer";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
@@ -30,15 +30,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Assemble = () => {
+  const [user, setUser] = useState({});
   const history = useHistory();
-  let userdata;
   const callMainPage = async () => {
     try {
       const res = await axios.get("http://localhost:5000/app/main", {
         withCredentials: true,
       });
-      userdata = await res.data;
-      console.log(userdata);
+      const userdata = await res.data;
+      console.log("assemble", userdata);
+      setUser(userdata);
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
