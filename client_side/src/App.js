@@ -12,9 +12,10 @@ import LogSign from "./pages/logsign";
 // import Footer from "./components/footer/footer";
 const recurldata = createContext();
 
-const App = () => {
+const App = (props) => {
   const [temp, setTemp] = useState([]);
   let recdata;
+  // console.log("chrome data " + props.name);
   const retUrl = async () => {
     const res = await axios.get("/app/getrecurl");
     const data = await res.data;

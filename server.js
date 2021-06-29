@@ -80,16 +80,20 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
 app.use("/app", authRoute);
 app.use("/app", recRoute);
 app.use("/app", noteRoute);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client_side/build"))
+    ap.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client_side", "build", "index.html"));
+    })
+}
+
 app.use((req, res, next) => {
     res.status(404).json({
         success: false,
         message: "Page Not Found"
     })
 })
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client_side/build"))
-}
 
 
 //Server Listening At This Port
