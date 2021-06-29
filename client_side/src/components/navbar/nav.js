@@ -98,7 +98,7 @@ const Nav = () => {
                   onClick={() => {
                     handleClose();
                     axios
-                      .get("http://localhost:5000/app/logout", {
+                      .get("/app/logout", {
                         withCredentials: true,
                       })
                       .then((res) => {

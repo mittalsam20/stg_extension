@@ -16,7 +16,7 @@ const LogSign = () => {
 
   const callSignPage = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/app/main", {
+      const res = await axios.get("/app/main", {
         withCredentials: true,
       });
       const userdata = await res.data;
@@ -32,7 +32,7 @@ const LogSign = () => {
 
   useEffect(() => {
     callSignPage();
-  });
+  }, []);
 
   // -----------------------EMAIL VALIDATION------------------------
 
@@ -150,7 +150,7 @@ const LogSign = () => {
                     };
                     console.log(loginreg);
                     axios
-                      .post("http://localhost:5000/app/login", loginreg, {
+                      .post("/app/login", loginreg, {
                         withCredentials: true,
                       })
                       .then((res) => {
@@ -224,7 +224,7 @@ const LogSign = () => {
                       };
                       console.log(reg);
                       axios
-                        .post("http://localhost:5000/app/signup", reg)
+                        .post("/app/signup", reg)
                         .then((res) => console.log(res.data));
                     }
                   }}

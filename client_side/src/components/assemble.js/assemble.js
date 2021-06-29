@@ -38,7 +38,7 @@ const Assemble = () => {
     try {
       // const vidblob = transfer();
       const vidblob = "ok";
-      const vid = await axios.post("http://localhost:5000/app/upload", vidblob);
+      const vid = await axios.post("/app/upload", vidblob);
       const temp = await vid.data;
       console.log(temp);
     } catch (err) {
@@ -50,7 +50,7 @@ const Assemble = () => {
   const history = useHistory();
   const callMainPage = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/app/main", {
+      const res = await axios.get("/app/main", {
         withCredentials: true,
       });
       const userdata = await res.data;
@@ -69,7 +69,7 @@ const Assemble = () => {
   useEffect(() => {
     callMainPage();
     fetchvideo();
-  });
+  }, []);
 
   const classes = useStyles();
 

@@ -57,7 +57,7 @@ const upload = multer({
 // Upload API
 app.post("/app/upload", upload.single("recording"), (req, res) => {
     console.log(req.file);
-    const recording_url = `http://localhost:5000/recording/${req.file.filename}`;
+    const recording_url = `/recording/${req.file.filename}`;
     const newrecording = new recording({
         recordingFileName: req.file.filename,
         recordingPath: req.file.path,

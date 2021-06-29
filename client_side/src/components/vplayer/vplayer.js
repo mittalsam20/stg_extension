@@ -320,12 +320,12 @@ const Vplayer = (props) => {
   const totalDuration = format(duration);
 
   const [currentUrl, setcurrentUrl] = useState(
-    "http://localhost:5000/recording/recording_1624542675237.webm"
+    "/recording/recording_1624542675237.webm"
   );
 
   //   const [fastLoad, setfastLoad] = useState(true);
   // const retUrl = async () => {
-  //   const res = await axios.get("http://localhost:5000/app/getrecurl");
+  //   const res = await axios.get("/app/getrecurl");
   //   const data = await res.data;
   //   // console.log(data);
   //   // console.log(data[1].recordingUrl);
