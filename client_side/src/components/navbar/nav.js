@@ -26,26 +26,24 @@ const Nav = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <img src="/logo_w.png" alt="" style={{ width: "8%" }} />
+            <img src="/logo_w.png" alt="" style={{ width: "8%" }} />{" "}
           </Typography>
-
           <NavLink
             exact
             className="navlink"
             activeClassName="selected"
             to="/home"
           >
-            Home
-          </NavLink>
+            Home{" "}
+          </NavLink>{" "}
           <NavLink
             className="navlink"
             activeClassName="selected"
-            exact
+            // exact
             to="/profile"
           >
-            Profile
+            Profile{" "}
           </NavLink>
-
           <Link
             className="navlink"
             onClick={() => {
@@ -65,10 +63,10 @@ const Nav = () => {
                 });
             }}
           >
-            Logout
-          </Link>
-        </Toolbar>
-      </AppBar>
+            Logout{" "}
+          </Link>{" "}
+        </Toolbar>{" "}
+      </AppBar>{" "}
     </div>
   );
 };

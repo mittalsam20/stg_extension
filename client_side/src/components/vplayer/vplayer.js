@@ -1,5 +1,5 @@
 import Vcontrols from "../vcontrols/vcontrols";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 // , useContext
 // import { findDOMNode } from "react-dom";
 // import axios from "axios";
@@ -19,6 +19,7 @@ import Paper from "@material-ui/core/Paper";
 // import FullScreen from "@material-ui/icons/Fullscreen";
 // import Popover from "@material-ui/core/Popover";
 import screenfull from "screenfull";
+import { recurldata } from "../../pages/homepage/homepage";
 
 const useStyles = makeStyles((theme) => ({
   playerWrapper: {
@@ -156,6 +157,8 @@ const format = (seconds) => {
 let count = 0;
 
 const Vplayer = (props) => {
+  const { temp, setTemp } = useContext(recurldata);
+
   // const urldata = useContext(recurldata);
 
   const classes = useStyles();
@@ -319,9 +322,9 @@ const Vplayer = (props) => {
 
   const totalDuration = format(duration);
 
-  const [currentUrl, setcurrentUrl] = useState(
-    "/recording/recording_1624542675237.webm"
-  );
+  // const [currentUrl, setcurrentUrl] = useState(
+  //   "/recording/recording_1624542675237.webm"
+  // );
 
   //   const [fastLoad, setfastLoad] = useState(true);
   // const retUrl = async () => {
@@ -359,7 +362,7 @@ const Vplayer = (props) => {
             ref={playerRef}
             width="100%"
             height="100%"
-            url={currentUrl}
+            url={temp}
             pip={pip}
             playing={playing}
             controls={false}

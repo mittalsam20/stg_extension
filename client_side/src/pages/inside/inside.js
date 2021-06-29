@@ -10,9 +10,9 @@ const Inside = () => {
         <Nav />
         <Switch>
           <Route path="/home" component={HomePage} exact></Route>
-          <Route path="/profile" component={AccountPage} exact></Route>
-        </Switch>
-      </BrowserRouter>
+          <Route path="/profile" component={AccountPage} exact></Route>{" "}
+        </Switch>{" "}
+      </BrowserRouter>{" "}
     </>
   );
 };
