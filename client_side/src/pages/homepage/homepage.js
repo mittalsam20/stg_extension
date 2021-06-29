@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     direction: "row",
-    justifyContent: "safe space-between ",
+    justifyContent: "space-between ",
     alignItems: "safe stretch",
+    display: "flex",
     flexWrap: "nowrap",
   },
   paper: {
@@ -74,39 +75,40 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="">
-        <Grid
-          container
-          className={classes.root}
-          spacing={0}
-          style={{ flexWrap: "nowrap" }}
-        >
-          {/* <Grid item xs={12}> */}{" "}
-          <Grid container justify="strecth" spacing={2}>
-            <Grid item>
-              <ListOfCalls />
-            </Grid>{" "}
-            <Grid
-              item
-              style={{
-                paddingLeft: "0",
-                paddingRight: "0",
-                maxWidth: "50%",
-                flexShrink: "3",
-              }}
-            >
-              <Vplayer />
-            </Grid>{" "}
-            <Grid item>
-              <Notes />
-            </Grid>{" "}
-            {/* </Grid> */}{" "}
-          </Grid>{" "}
+      <Grid
+        container
+        className={classes.root}
+        spacing={2}
+        style={{ flexWrap: "nowrap", maxWidth: "100%" }}
+      >
+        {/* <Grid container justify="strecth" spacing={2}> */}
+        <Grid item>
+          <ListOfCalls />
         </Grid>{" "}
-      </div>{" "}
-      <Helmet>
-        <script src="../ext_files/js/videoeditor.js" type="text/javascript" />
-      </Helmet>{" "}
+        <Grid
+          item
+          style={{
+            paddingLeft: "0",
+            paddingRight: "0",
+            maxWidth: "50%",
+            flexShrink: "3",
+          }}
+        >
+          <Vplayer />
+        </Grid>{" "}
+        <Grid
+          item
+          style={{
+            paddingLeft: "0",
+            paddingRight: "0",
+            maxWidth: "25%",
+            flexShrink: "3",
+          }}
+        >
+          <Notes />
+        </Grid>{" "}
+      </Grid>
+      {/* </Grid>{" "} */}
     </>
   );
 };

@@ -6,16 +6,12 @@ import Nav from "../../components/navbar/nav";
 const Inside = () => {
   return (
     <>
+      <Nav />
       <BrowserRouter>
-        <div>
-          <Nav />
-          <Switch>
-            {/* <popUp /> */}
-            <Route path="/user" component={HomePage} exact></Route>
-            <Route path="/user/account" component={AccountPage} exact></Route>
-          </Switch>
-          {/* <Footer /> */}
-        </div>
+        <Switch>
+          <Route path="/user" component={HomePage} exact></Route>
+          <Route path="/user/account" component={AccountPage} exact></Route>
+        </Switch>
       </BrowserRouter>
     </>
   );

@@ -432,7 +432,7 @@ const Vplayer = (props) => {
         </Grid>
         <canvas ref={canvasRef} />
       </Container>
-      <button
+      {/* <button
         onClick={() => {
           console.log("clicked");
           console.log(props.sendurl);
@@ -441,7 +441,7 @@ const Vplayer = (props) => {
         }}
       >
         hello
-      </button>
+      </button> */}
     </>
   );
 };

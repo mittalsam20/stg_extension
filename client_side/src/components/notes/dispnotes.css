@@ -1,0 +1,13 @@
+.dispnote {
+    /* background-color: grey; */
+    padding: 10px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    /* overflow-y: hidden; */
+}
+
+.dispnote::-webkit-scrollbar {
+    display: none;
+}

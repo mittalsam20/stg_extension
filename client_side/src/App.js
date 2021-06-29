@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import inside from "./pages/inside/inside";
 import LogSign from "./pages/loginpage/logsign";
+// "proxy": "https://stgtemp.herokuapp.com",
 
 // import Vplayer from "./components/vplayer/vplayer";
 // import PopUp from "./components/html/popup";
