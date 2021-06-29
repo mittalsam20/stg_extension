@@ -83,7 +83,7 @@ app.use("/app", noteRoute);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client_side/build"))
-    ap.get("*", (req, res) => {
+    app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client_side", "build", "index.html"));
     })
 }
