@@ -21,7 +21,7 @@ const LogSign = () => {
       });
       const userdata = await res.data;
       if (userdata) {
-        history.push("/user");
+        history.push("/home");
       } else {
       }
     } catch (err) {
@@ -156,7 +156,7 @@ const LogSign = () => {
                       .then((res) => {
                         console.log("sam var", res.data);
                         if (res.status === 200) {
-                          history.push("/user");
+                          history.push("/home");
                         }
                       });
                   }}

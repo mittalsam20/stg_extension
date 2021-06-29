@@ -6,7 +6,8 @@ body {
 .loc-container {
     /* background-color: green; */
     height: 550px;
-    overflow-y: scroll
+    overflow-y: scroll;
+    border-right: 1px solid grey
 }
 
 .loc-container::-webkit-scrollbar {

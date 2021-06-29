@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Nav from "../../components/navbar/nav";
 // import ScriptTag from "react-script-tag";
 // import transfer from "../ext_files/js/videoeditor";
 // import FormLabel from "@material-ui/core/FormLabel";
@@ -75,6 +76,8 @@ const HomePage = () => {
 
   return (
     <>
+      {/* <Nav /> */}
+
       <Grid
         container
         className={classes.root}
@@ -88,9 +91,9 @@ const HomePage = () => {
         <Grid
           item
           style={{
-            paddingLeft: "0",
-            paddingRight: "0",
-            maxWidth: "50%",
+            paddingLeft: "0px",
+            paddingRight: "8px",
+            maxWidth: "60%",
             flexShrink: "3",
           }}
         >

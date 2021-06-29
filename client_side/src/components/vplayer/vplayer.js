@@ -199,11 +199,11 @@ const Vplayer = (props) => {
   };
 
   const handleRewind = () => {
-    playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() - 15);
   };
 
   const handleFastForward = () => {
-    playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() + 15);
   };
 
   const handleProgress = (changeState) => {

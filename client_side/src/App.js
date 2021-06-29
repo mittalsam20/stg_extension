@@ -37,7 +37,7 @@ const App = (props) => {
             {/* <popUp /> */}
             <Route path="/" component={LogSign} exact></Route>
             <recurldata.Provider value={temp}>
-              <Route path="/user" component={inside} exact></Route>
+              <Route path="/home" component={inside} exact></Route>
             </recurldata.Provider>
           </Switch>
           {/* <Footer /> */}

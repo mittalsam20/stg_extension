@@ -4,8 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
-
+import { NavLink, Link, useHistory } from "react-router-dom";
+import "./nav.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -29,10 +29,25 @@ const Nav = () => {
             <img src="/logo_w.png" alt="" style={{ width: "8%" }} />
           </Typography>
 
-          <Link to="/user">Home</Link>
-          <Link to="/user/account">My account</Link>
+          <NavLink
+            exact
+            className="navlink"
+            activeClassName="selected"
+            to="/home"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="navlink"
+            activeClassName="selected"
+            exact
+            to="/profile"
+          >
+            Profile
+          </NavLink>
 
           <Link
+            className="navlink"
             onClick={() => {
               axios
                 .get("/app/logout", {

@@ -6,11 +6,11 @@ import Nav from "../../components/navbar/nav";
 const Inside = () => {
   return (
     <>
-      <Nav />
       <BrowserRouter>
+        <Nav />
         <Switch>
-          <Route path="/user" component={HomePage} exact></Route>
-          <Route path="/user/account" component={AccountPage} exact></Route>
+          <Route path="/home" component={HomePage} exact></Route>
+          <Route path="/profile" component={AccountPage} exact></Route>
         </Switch>
       </BrowserRouter>
     </>

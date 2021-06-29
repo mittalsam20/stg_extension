@@ -2,12 +2,16 @@ import MainNotes from "./mainnotes";
 const Notes = () => {
   return (
     <>
-      <div style={{}}>
+      <div style={{ borderLeft: "1px solid grey" }}>
         <h2
           style={{
-            margin: "0 10px 10px 0",
-            padding: "23px 8px 0 0px",
+            margin: "20px 10px 10px 10px",
+            padding: "5px 0px 5px 0px",
             textAlign: "center",
+            backgroundColor: "#3f51b5",
+            color: "#ffffff",
+            borderRadius: "10px",
+            cursor: "alias",
           }}
         >
           {" "}
@@ -18,5 +22,7 @@ const Notes = () => {
     </>
   );
 };
+
+// 3f51b5
 
 export default Notes;
