@@ -1,7 +1,0 @@
-POST http://localhost:5000/app/upload
-Content-Type: image/png
-
-
-{
-"recording":"./server/head.png"
-}

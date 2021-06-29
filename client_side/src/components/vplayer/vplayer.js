@@ -1,14 +1,16 @@
 import Vcontrols from "../vcontrols/vcontrols";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
+// , useContext
 // import { findDOMNode } from "react-dom";
 // import axios from "axios";
-import recurldata from "../../App";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+// import recurldata from "../../App";
+import { makeStyles } from "@material-ui/core/styles";
+// , withStyles
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import ReactPlayer from "react-player";
-import Slider from "@material-ui/core/Slider";
-import Tooltip from "@material-ui/core/Tooltip";
+// import Slider from "@material-ui/core/Slider";
+// import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 // import VolumeUp from "@material-ui/icons/VolumeUp";
@@ -98,44 +100,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PrettoSlider = withStyles({
-  root: {
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
-    marginTop: -8,
-    marginLeft: -12,
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)",
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider);
+// const PrettoSlider = withStyles({
+//   root: {
+//     height: 8,
+//   },
+//   thumb: {
+//     height: 24,
+//     width: 24,
+//     backgroundColor: "#fff",
+//     border: "2px solid currentColor",
+//     marginTop: -8,
+//     marginLeft: -12,
+//     "&:focus, &:hover, &$active": {
+//       boxShadow: "inherit",
+//     },
+//   },
+//   active: {},
+//   valueLabel: {
+//     left: "calc(-50% + 4px)",
+//   },
+//   track: {
+//     height: 8,
+//     borderRadius: 4,
+//   },
+//   rail: {
+//     height: 8,
+//     borderRadius: 4,
+//   },
+// })(Slider);
 
-function ValueLabelComponent(props) {
-  const { children, open, value } = props;
+// function ValueLabelComponent(props) {
+//   const { children, open, value } = props;
 
-  return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
-      {children}
-    </Tooltip>
-  );
-}
+//   return (
+//     <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+//       {children}
+//     </Tooltip>
+//   );
+// }
 
 const format = (seconds) => {
   if (isNaN(seconds)) {
@@ -154,12 +156,12 @@ const format = (seconds) => {
 let count = 0;
 
 const Vplayer = (props) => {
-  const urldata = useContext(recurldata);
+  // const urldata = useContext(recurldata);
 
   const classes = useStyles();
-  const [showControls, setShowControls] = useState(false);
+  // const [showControls, setShowControls] = useState(false);
   // const [count, setCount] = useState(0);
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
   const [timeDisplayFormat, setTimeDisplayFormat] = useState("normal");
   const [bookmarks, setBookmarks] = useState([]);
   const [state, setState] = useState({
@@ -188,7 +190,7 @@ const Vplayer = (props) => {
     playbackRate,
     pip,
     played,
-    seeking,
+    // seeking,
     volume,
   } = state;
 

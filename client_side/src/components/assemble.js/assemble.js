@@ -2,7 +2,7 @@ import ListOfCalls from "../listofcalls/listofcalls";
 import Nav from "../navbar/nav";
 import Notes from "../notes/notesheading";
 import Vplayer from "../vplayer/vplayer";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
@@ -46,7 +46,7 @@ const Assemble = () => {
     }
   };
 
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const history = useHistory();
   const callMainPage = async () => {
     try {
@@ -55,7 +55,7 @@ const Assemble = () => {
       });
       const userdata = await res.data;
       console.log("assemble", userdata);
-      setUser(userdata);
+      // setUser(userdata);
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
@@ -69,7 +69,7 @@ const Assemble = () => {
   useEffect(() => {
     callMainPage();
     fetchvideo();
-  }, []);
+  });
 
   const classes = useStyles();
 

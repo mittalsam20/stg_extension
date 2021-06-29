@@ -1,7 +1,7 @@
 import "./logsign.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
@@ -32,7 +32,7 @@ const LogSign = () => {
 
   useEffect(() => {
     callSignPage();
-  }, []);
+  });
 
   // -----------------------EMAIL VALIDATION------------------------
 
@@ -133,7 +133,7 @@ const LogSign = () => {
                     placeholder="Password"
                   />
                 </div>
-                <a href="" className="forgot">
+                <a href="gmail.com" className="forgot">
                   Forgot password ?
                 </a>
                 <input

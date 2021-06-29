@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { useContext } from "react";
+// import { useContext } from "react";
 import Card from "@material-ui/core/Card";
-import recurldata from "../../App";
+// import recurldata from "../../App";
 // import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -37,11 +37,11 @@ const useStyles = makeStyles({
 });
 
 const CallCard = (props) => {
-  const urldata = useContext(recurldata);
+  // const urldata = useContext(recurldata);
 
   const [urlstate, setUrlstate] = useState();
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  // const bull = <span className={classes.bullet}>•</span>;
   // console.log("url");
   return (
     <>
