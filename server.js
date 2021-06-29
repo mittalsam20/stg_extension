@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 //Importing Routes
-const Port = process.env.Port || 5000;
+const Port = process.env.PORT || 5000;
 const authRoute = require("./routes/auth");
 const recRoute = require("./routes/recordingurl")
 const noteRoute = require("./routes/noteurl")
