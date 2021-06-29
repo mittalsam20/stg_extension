@@ -13,7 +13,7 @@ import axios from "axios";
 // import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,7 +92,9 @@ const Nav = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <Link to="/user/account">
+                  <MenuItem>My account</MenuItem>
+                </Link>
 
                 <MenuItem
                   onClick={() => {

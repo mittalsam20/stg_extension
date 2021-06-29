@@ -1,7 +1,6 @@
-import ListOfCalls from "../listofcalls/listofcalls";
-import Nav from "../navbar/nav";
-import Notes from "../notes/notesheading";
-import Vplayer from "../vplayer/vplayer";
+import ListOfCalls from "../../components/listofcalls/listofcalls";
+import Notes from "../../components/notes/notesheading";
+import Vplayer from "../../components/vplayer/vplayer";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Assemble = () => {
+const HomePage = () => {
   const fetchvideo = async () => {
     try {
       // const vidblob = transfer();
@@ -75,7 +74,6 @@ const Assemble = () => {
 
   return (
     <>
-      <Nav />
       <div className="">
         <Grid
           container
@@ -83,11 +81,11 @@ const Assemble = () => {
           spacing={0}
           style={{ flexWrap: "nowrap" }}
         >
-          {/* <Grid item xs={12}> */}
+          {/* <Grid item xs={12}> */}{" "}
           <Grid container justify="strecth" spacing={2}>
             <Grid item>
               <ListOfCalls />
-            </Grid>
+            </Grid>{" "}
             <Grid
               item
               style={{
@@ -98,19 +96,19 @@ const Assemble = () => {
               }}
             >
               <Vplayer />
-            </Grid>
+            </Grid>{" "}
             <Grid item>
               <Notes />
-            </Grid>
-            {/* </Grid> */}
-          </Grid>
-        </Grid>
-      </div>
+            </Grid>{" "}
+            {/* </Grid> */}{" "}
+          </Grid>{" "}
+        </Grid>{" "}
+      </div>{" "}
       <Helmet>
         <script src="../ext_files/js/videoeditor.js" type="text/javascript" />
-      </Helmet>
+      </Helmet>{" "}
     </>
   );
 };
 
-export default Assemble;
+export default HomePage;
