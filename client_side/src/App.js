@@ -1,6 +1,8 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
-import inside from "./pages/inside/inside";
+import HomePage from "./pages/homepage/homepage";
+
+import AccountPage from "./pages/accountpage/accountpage";
 import LogSign from "./pages/loginpage/logsign";
 // "proxy": "https://stgtemp.herokuapp.com",
 
@@ -17,7 +19,8 @@ const App = () => {
         <div>
           <Switch>
             <Route path="/" component={LogSign} exact></Route>
-            <Route path="/home" component={inside} exact></Route>
+            <Route path="/home" component={HomePage} exact></Route>
+            <Route path="/profile" component={AccountPage} exact></Route>
           </Switch>
         </div>
       </BrowserRouter>

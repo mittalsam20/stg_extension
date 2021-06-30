@@ -17,23 +17,27 @@ router.post('/try', (req, res) => {
 
 router.post('/signup', async(req, res) => {
     try {
-        if (!req.body.emailId || !req.body.password) {
-            return res.status(400).json({ error: "Please Fill All The Details..!!" })
+        if (!req.body.emailId || !req.body.password || !req.body.firstName || !req.body.lastName) {
+            return res.status(400).json({ message: "Please Fill All The Details..!!" })
+        } else if (req.body.password.length < 8) {
+            return res.status(400).json({ message: "Minimum Password Length Is 8 Characters" })
         }
         const salt = await bcrypt.genSalt(10)
         const hashedPass = await bcrypt.hash(req.body.password, salt)
         const userExist = await user.findOne({ emailId: req.body.emailId })
         if (userExist) {
-            res.status().json({ message: "Email-Id Already Registered..!!" })
+            res.status(400).json({ message: "Email-Id Already Registered..!!" })
         }
         const newUser = new user({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             emailId: req.body.emailId,
             password: hashedPass
         })
         console.log(req.body.emailId)
         newUser.save().then(data => {
             res.status(200).json({
-                message: "User Registered Successfully",
+                message: "Registration Successfully..!!",
                 data
             });
             console.log(json(data));
@@ -48,13 +52,13 @@ router.post("/login", async(req, res) => {
     try {
         let token;
         if (!req.body.logEmail || !req.body.logPass) {
-            return res.status(400).json({ error: "Please Fill All The Details..!!" });
+            return res.status(400).json({ message: "Please Fill All The Details..!!" });
         }
         const userLogin = await user.findOne({ emailId: req.body.logEmail });
         console.log("mili ki nhi", userLogin);
         if (userLogin === null) {
             console.log("inside null")
-            res.status(400).json({ error: "Id Not Registered" });
+            res.status(400).json({ message: "Email-Id Not Recognized Please SignUp With Us" });
         } else {
             const userLogPass = await bcrypt.compare(req.body.logPass, userLogin.password)
                 // res.header('Access-Control-Allow-Origin', "http://localhost:3000");

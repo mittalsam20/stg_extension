@@ -154,20 +154,23 @@ const format = (seconds) => {
 
 let count = 0;
 
+//---------------------------------------------COMPONENT----------------------------------------------
+//---------------------------------------------COMPONENT----------------------------------------------
+//---------------------------------------------COMPONENT----------------------------------------------
+//---------------------------------------------COMPONENT----------------------------------------------
+
 const Vplayer = (props) => {
   const { temp, setTemp } = useContext(recurldata);
 
-  // const urldata = useContext(recurldata);
-
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [timeDisplayFormat, setTimeDisplayFormat] = useState("normal");
   const [bookmarks, setBookmarks] = useState([]);
   const [state, setState] = useState({
     pip: false,
-    playing: false,
+    playing: true,
     controls: false,
     light: false,
     muted: false,
@@ -185,6 +188,7 @@ const Vplayer = (props) => {
   const canvasRef = useRef(null);
   const {
     playing,
+    controls,
     light,
     muted,
     loop,
@@ -200,11 +204,11 @@ const Vplayer = (props) => {
   };
 
   const handleRewind = () => {
-    playerRef.current.seekTo(playerRef.current.getCurrentTime() - 15);
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
   };
 
   const handleFastForward = () => {
-    playerRef.current.seekTo(playerRef.current.getCurrentTime() + 15);
+    playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
   };
 
   const handleProgress = (changeState) => {
@@ -212,8 +216,8 @@ const Vplayer = (props) => {
       controlsRef.current.style.visibility = "hidden";
       count = 0;
     }
-    if (controlsRef.current.style.visibility === "visible") {
-      // count += 1;
+    if (controlsRef.current.style.visibility == "visible") {
+      count += 1;
     }
     if (!state.seeking) {
       setState({ ...state, ...changeState });
@@ -259,17 +263,17 @@ const Vplayer = (props) => {
   const handleMouseMove = () => {
     console.log("mousemove");
     controlsRef.current.style.visibility = "visible";
-    // count = 0;
+    count = 0;
   };
 
   const hanldeMouseLeave = () => {
     controlsRef.current.style.visibility = "hidden";
-    // count = 0;
+    count = 0;
   };
 
   const handleDisplayFormat = () => {
     setTimeDisplayFormat(
-      timeDisplayFormat === "normal" ? "remaining" : "normal"
+      timeDisplayFormat == "normal" ? "remaining" : "normal"
     );
   };
 
@@ -314,30 +318,11 @@ const Vplayer = (props) => {
   const duration =
     playerRef && playerRef.current ? playerRef.current.getDuration() : "00:00";
   const elapsedTime =
-    timeDisplayFormat === "normal"
+    timeDisplayFormat == "normal"
       ? format(currentTime)
       : `-${format(duration - currentTime)}`;
 
   const totalDuration = format(duration);
-
-  // const [currentUrl, setcurrentUrl] = useState(
-  //   "/recording/recording_1624542675237.webm"
-  // );
-
-  //   const [fastLoad, setfastLoad] = useState(true);
-  // const retUrl = async () => {
-  //   const res = await axios.get("/app/getrecurl");
-  //   const data = await res.data;
-  //   // console.log(data);
-  //   // console.log(data[1].recordingUrl);
-  //   console.log(props.sendurl);
-  //   setcurrentUrl(props.sendurl);
-  // };
-  // useEffect(() => {
-  //   if (validator === 0) {
-  //     setError("Please Use a Valid Email-Id");
-  //   }
-  // }, [currentUrl]);
 
   return (
     <>
@@ -364,7 +349,7 @@ const Vplayer = (props) => {
             pip={pip}
             playing={playing}
             controls={false}
-            light={light}
+            light={false}
             loop={loop}
             playbackRate={playbackRate}
             volume={volume}

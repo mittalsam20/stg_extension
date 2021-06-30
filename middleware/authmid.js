@@ -7,7 +7,7 @@ const AuthMid = async(req, res, next) => {
         console.log("reached");
         console.log(token);
         const verifyToken = jwt.verify(token, "illbethebestworkharder")
-        console.log("verify token ki value true ya falise", verifyToken)
+        console.log("verifying token true or not", verifyToken)
         const rootUser = await user.findOne({ _id: verifyToken._id, "tokens.token": token })
         if (!rootUser) { throw new Error("User Not Found..!!") }
         req.token = token;
