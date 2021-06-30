@@ -87,6 +87,7 @@ const CallCard = (props) => {
           color="primary"
           className={classes.btn}
           onClick={() => {
+            axios.delete(`app/delrecurl/${props.Key}`);
             console.log("ss");
           }}
         >
