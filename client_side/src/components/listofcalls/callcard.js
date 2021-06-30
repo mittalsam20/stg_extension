@@ -6,13 +6,17 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { useContext } from "react";
 import { recurldata } from "../../pages/homepage/homepage";
+import axios from "axios";
 const useStyles = makeStyles({
   root: {
-    minWidth: 300,
-    maxWidth: 325,
-    marginBottom: "0px",
+    minWidth: 290,
+    maxWidth: 300,
+    maxHeight: 100,
+    margin: "0 5px 4px 0",
+    boxShadow: "1px 1px 3px rgb(138, 137, 137)",
   },
   bullet: {
     display: "inline-block",
@@ -27,10 +31,25 @@ const useStyles = makeStyles({
     marginTop: 8,
   },
   btn: {
+    position: "relative",
+    bottom: "37px",
+    left: "10px",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    // justifyContent: "flex-end",
     alignItems: "center",
+    marginRight: "15px",
+    float: "right",
+    color: "#3f51b5",
+    border: "none",
+    borderRadius: "6px",
+    width: "15",
+    height: "36",
+    cursor: "pointer",
+    outline: "none",
+    "&:hover": {
+      backgroundColor: "rgb(200,200,200)",
+    },
   },
 });
 const CallCard = (props) => {
@@ -45,7 +64,11 @@ const CallCard = (props) => {
         <CardContent style={{ paddingBottom: "0", fontSize: "1px" }}>
           <Typography
             component="h2"
-            style={{ fontWeight: "900", fontSize: "16px" }}
+            style={{
+              fontWeight: "900",
+              fontSize: "16px",
+              marginBottom: "16px",
+            }}
           >
             {props.name}
           </Typography>
@@ -53,22 +76,22 @@ const CallCard = (props) => {
             {props.date}
           </Typography>
         </CardContent>
-        <CardActions className={classes.btn}>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => {
+        {/* onClick={() => {
               setTemp(props.url);
               console.log("why not", props.url);
               console.log("why not plzzzzzzz", temp);
             }}
-          >
-            Play
-          </Button>
-          <Button size="small" color="primary">
-            Delete
-          </Button>
-        </CardActions>
+           */}
+        <Button
+          size="small"
+          color="primary"
+          className={classes.btn}
+          onClick={() => {
+            console.log("ss");
+          }}
+        >
+          <DeleteIcon />
+        </Button>
       </Card>
     </>
   );

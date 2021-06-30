@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from "react";
-
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -99,7 +98,7 @@ function ValueLabelComponent(props) {
   );
 }
 
-const Vcontrols = forwardRef(
+const Controls = forwardRef(
   (
     {
       onSeek,
@@ -152,6 +151,7 @@ const Vcontrols = forwardRef(
             direction="row"
             alignItems="center"
             justify="space-between"
+            style
             style={{ padding: 16 }}
           >
             <Grid item>
@@ -337,7 +337,7 @@ const Vcontrols = forwardRef(
   }
 );
 
-Vcontrols.propTypes = {
+Controls.propTypes = {
   onSeek: PropTypes.func,
   onSeekMouseDown: PropTypes.func,
   onSeekMouseUp: PropTypes.func,
@@ -357,4 +357,4 @@ Vcontrols.propTypes = {
   muted: PropTypes.bool,
   playbackRate: PropTypes.number,
 };
-export default Vcontrols;
+export default Controls;

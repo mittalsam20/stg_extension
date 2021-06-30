@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const recordingSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true,
+        unique: true
+    },
     recordingFileName: {
         type: String,
         required: true,
@@ -16,7 +21,6 @@ const recordingSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-
     date: { type: Date, default: Date.now }
 })
 

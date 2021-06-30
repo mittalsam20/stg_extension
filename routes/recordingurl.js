@@ -13,5 +13,21 @@ router.get('/getrecurl', (req, res) => {
     }
 })
 
+router.delete("/delrecurl/:id", async(req, res) => {
+    try {
+        if (req.params.id) {
+            const result = await findByIdAndDelete(req.params.id);
+            console.log(result);
+            res.status(200).json({ message: "Recording Deleted..!!" });
+        } else if (result === null) {
+            res.status(404).json({ message: "No Such Recording Exist..!!" });
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
+
 
 module.exports = router;

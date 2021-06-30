@@ -42,7 +42,7 @@ const Nav = () => {
             // exact
             to="/profile"
           >
-            Profile{" "}
+            Account{" "}
           </NavLink>
           <Link
             className="navlink"
