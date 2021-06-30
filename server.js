@@ -12,10 +12,11 @@ const cookieParser = require('cookie-parser');
 //Intialization
 const app = express();
 var corsOptions = {
-        origin: true,
-        credentials: true
-    }
-    // Server Middlewares
+    origin: true,
+    Credentials: true
+}
+
+// Server Middlewares
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -59,7 +60,7 @@ const upload = multer({
 // Upload API
 app.post("/app/upload", upload.single("recording"), (req, res) => {
     console.log(req.file);
-    const recording_url = `http://localhost:5000/recording/${req.file.filename}`;
+    const recording_url = `/recording/${req.file.filename}`;
     const newrecording = new recording({
         userId: req.body.userId,
         recordingFileName: req.file.filename,

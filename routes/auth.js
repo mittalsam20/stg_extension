@@ -19,9 +19,9 @@ router.post('/signup', async(req, res) => {
     try {
         if (!req.body.emailId || !req.body.password || !req.body.firstName || !req.body.lastName) {
             return res.status(400).json({ message: "Please Fill All The Details..!!" })
-        } else if (req.body.password.length < 8) {
-            return res.status(400).json({ message: "Minimum Password Length Is 8 Characters" })
-        }
+        } //  else if (req.body.password.length < 8) {
+        //     return res.status(400).json({ message: "Minimum Password Length Is 8 Characters" })
+        // }
         const salt = await bcrypt.genSalt(10)
         const hashedPass = await bcrypt.hash(req.body.password, salt)
         const userExist = await user.findOne({ emailId: req.body.emailId })
