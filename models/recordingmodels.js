@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
+const date = new Date(Date.now());
+// console.log(date.toGMTString());
 const recordingSchema = new mongoose.Schema({
-    userId: {
+    user: {
         type: String,
         required: true,
     },
@@ -20,7 +22,7 @@ const recordingSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: date.toGMTString() }
 })
 
 module.exports = mongoose.model("recordingData", recordingSchema);

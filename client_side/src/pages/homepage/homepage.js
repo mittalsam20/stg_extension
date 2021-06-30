@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import Nav from "../../components/navbar/nav";
+import Nav from "../../components/navbar/nav";
 
 //-------------------------Theme
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +78,8 @@ const HomePage = () => {
   return (
     <recurldata.Provider value={value}>
       <>
-        {/* <Nav /> */}
+        {" "}
+        <Nav />
         <Grid
           container
           className={classes.root}
@@ -109,9 +110,9 @@ const HomePage = () => {
             }}
           >
             <Notes />
-          </Grid>
-        </Grid>
-      </>
+          </Grid>{" "}
+        </Grid>{" "}
+      </>{" "}
     </recurldata.Provider>
   );
 };

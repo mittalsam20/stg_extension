@@ -27,7 +27,7 @@ const Nav = () => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <img src="/logo_w.png" alt="" style={{ width: "8%" }} />{" "}
-          </Typography>
+          </Typography>{" "}
           <NavLink
             exact
             className="navlink"
@@ -43,7 +43,7 @@ const Nav = () => {
             to="/profile"
           >
             Account{" "}
-          </NavLink>
+          </NavLink>{" "}
           <Link
             className="navlink"
             onClick={() => {

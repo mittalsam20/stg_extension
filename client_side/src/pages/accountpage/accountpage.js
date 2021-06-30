@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-// import Nav from "../../components/navbar/nav";
+import Nav from "../../components/navbar/nav";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,8 +30,8 @@ const AccountPage = () => {
       const res = await axios.get("/app/main", {
         withCredentials: true,
       });
-      const userdata = await res.data;
-      console.log("assemble", userdata);
+      const userdata = res.data;
+      console.log("accpage", userdata);
       // setUser(userdata);
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -52,6 +52,7 @@ const AccountPage = () => {
   return (
     <>
       <div>
+        <Nav />
         <h1>Sam Account</h1>
         <Grid
           container

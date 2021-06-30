@@ -2,11 +2,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 // import recurldata from "../../App";
 // import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
+import DeleteIcon from "@material-ui/icons/Delete";
+// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import DeleteIcon from "@material-ui/icons/Delete";
 import { useContext } from "react";
 import { recurldata } from "../../pages/homepage/homepage";
 import axios from "axios";
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     minWidth: 290,
     maxWidth: 300,
     maxHeight: 100,
-    margin: "0 5px 4px 0",
+    margin: "0 5px 5px 5px",
     boxShadow: "1px 1px 3px rgb(138, 137, 137)",
   },
   bullet: {
@@ -70,30 +71,29 @@ const CallCard = (props) => {
               marginBottom: "16px",
             }}
           >
-            {props.name}
-          </Typography>
+            {" "}
+            {props.name}{" "}
+          </Typography>{" "}
           <Typography className={classes.pos} color="textSecondary">
-            {props.date}
-          </Typography>
-        </CardContent>
-        {/* onClick={() => {
-              setTemp(props.url);
-              console.log("why not", props.url);
-              console.log("why not plzzzzzzz", temp);
-            }}
-           */}
+            {" "}
+            {props.date}{" "}
+          </Typography>{" "}
+        </CardContent>{" "}
+        {/* onClick={() => {ssssssssssssssssssssssssssssssss
+                          setTemp(props.url);
+                          console.log(temp);
+                        }} */}{" "}
         <Button
           size="small"
           color="primary"
           className={classes.btn}
           onClick={() => {
-            // axios.delete(`app/delrecurl/${props.Key}`);
             console.log("ss");
           }}
         >
           <DeleteIcon />
-        </Button>
-      </Card>
+        </Button>{" "}
+      </Card>{" "}
     </>
   );
 };
