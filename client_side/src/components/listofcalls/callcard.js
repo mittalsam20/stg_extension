@@ -78,7 +78,7 @@ const CallCard = (props) => {
             {props.date}{" "}
           </Typography>{" "}
         </CardContent>{" "}
-        {/* onClick={() => {
+        {/* onClick={() => {ssssssssssssssssssssssssssssssss
               setTemp(props.url);
               console.log(temp);
             }} */}
