@@ -59,7 +59,8 @@ const CallCard = (props) => {
             color="primary"
             onClick={() => {
               setTemp(props.url);
-              console.log(temp);
+              console.log("why not", props.url);
+              console.log("why not plzzzzzzz", temp);
             }}
           >
             Play

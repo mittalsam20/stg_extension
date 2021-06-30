@@ -47,7 +47,7 @@ const HomePage = () => {
   // };
   // const [user, setUser] = useState({});
 
-  const [temp, setTemp] = useState([]);
+  const [temp, setTemp] = useState("");
   const value = { temp, setTemp };
 
   const history = useHistory();

@@ -54,6 +54,8 @@ const upload = multer({
         // limits: { fileSize: 1024 * 1024 * 5 }
 })
 
+
+// http://localhost:5000
 // Upload API
 app.post("/app/upload", upload.single("recording"), (req, res) => {
     console.log(req.file);
