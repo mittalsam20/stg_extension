@@ -11,13 +11,13 @@ const cookieParser = require('cookie-parser');
 
 //Intialization
 const app = express();
-var corsOptions = {
-    origin: true,
-    Credentials: true
-}
+// var corsOptions = {
+//     origin: true,
+//     Credentials: true
+// }
 
 // Server Middlewares
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,6 +39,12 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
 }, () => console.log("Database Connected successfully..!!"));
 const recording = require("./models/recordingmodels")
 
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
 
 //Multer Portion
 app.use("/recording", express.static("upload"));
@@ -57,7 +63,8 @@ const upload = multer({
 
 // Upload API
 app.post("/app/upload", upload.single("recording"), (req, res) => {
-    console.log(req.file);
+    console.log(req.body.logEmail);
+    console.log(req.body);
     const recording_url = `/recording/${req.file.filename}`;
     const newrecording = new recording({
         user: req.body.user,

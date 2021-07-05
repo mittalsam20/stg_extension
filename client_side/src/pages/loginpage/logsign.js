@@ -2,6 +2,7 @@ import "./logsign.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Car from "./car";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
@@ -87,153 +88,158 @@ const LogSign = () => {
 
   return (
     <>
-      <div>
-        <section className="main">
-          <div className="form_wrapper">
-            <input
-              type="radio"
-              className="radio"
-              name="radio"
-              id="login"
-              defaultChecked
-            />
-            <input type="radio" className="radio" name="radio" id="signup" />
-            <div className="tile">
-              <h3 className="login"> Login Form </h3>{" "}
-              <h3 className="signup"> Signup Form </h3>{" "}
-            </div>{" "}
-            <label className="tab login_tab" for="login">
-              Login{" "}
-            </label>{" "}
-            <label className="tab signup_tab" for="signup">
-              Signup{" "}
-            </label>{" "}
-            <span className="shape"> </span>{" "}
-            <div className="form_wrap">
-              <div className="form_fild login_form">
-                <div className="input_group">
+      <div className="main-container">
+        <div id="sign-up" className="left-container sign-up ">
+          <section className="main">
+            <div className="form_wrapper">
+              <input
+                type="radio"
+                className="radio"
+                name="radio"
+                id="login"
+                defaultChecked
+              />
+              <input type="radio" className="radio" name="radio" id="signup" />
+              <div className="tile">
+                <h3 className="login"> Login Form </h3>{" "}
+                <h3 className="signup"> Signup Form </h3>{" "}
+              </div>{" "}
+              <label className="tab login_tab" for="login">
+                Login{" "}
+              </label>{" "}
+              <label className="tab signup_tab" for="signup">
+                Signup{" "}
+              </label>{" "}
+              <span className="shape"> </span>{" "}
+              <div className="form_wrap">
+                <div className="form_fild login_form">
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setLogEmail(ev.target.value);
+                      }}
+                      value={logEmail}
+                      type="email"
+                      className="input"
+                      placeholder="Email Address"
+                    />
+                  </div>
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setLogPass(ev.target.value);
+                      }}
+                      value={logPass}
+                      type="password"
+                      className="input"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <a href="gmail.com" className="forgot">
+                    Forgot password ?
+                  </a>
                   <input
-                    onChange={(ev) => {
-                      setLogEmail(ev.target.value);
-                    }}
-                    value={logEmail}
-                    type="email"
-                    className="input"
-                    placeholder="Email Address"
-                  />
-                </div>
-                <div className="input_group">
-                  <input
-                    onChange={(ev) => {
-                      setLogPass(ev.target.value);
-                    }}
-                    value={logPass}
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                  />
-                </div>
-                <a href="gmail.com" className="forgot">
-                  Forgot password ?
-                </a>
-                <input
-                  type="submit"
-                  className="btn"
-                  value="Login"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log("login clicked");
-                    // EmailApi(InputEmail, InputPass);
-                    const loginreg = {
-                      logEmail: logEmail,
-                      logPass: logPass,
-                    };
-                    console.log(loginreg);
-                    axios
-                      .post("/app/login", loginreg, {
-                        withCredentials: true,
-                      })
-                      .then((res) => {
-                        console.log("sam var", res.data);
-                        if (res.status === 200) {
-                          history.push("/home");
-                        }
-                      });
-                  }}
-                />
-                {/* Login
-                </input> */}
-                <div className="not_mem">
-                  <label for="signup">
-                    Not a member ? <span> Signup now </span>{" "}
-                  </label>{" "}
-                </div>{" "}
-              </div>
-              <div className="form_fild signup_form">
-                <div className="input_group">
-                  <input
-                    onChange={(ev) => {
-                      setInputEmail(ev.target.value);
-                    }}
-                    value={InputEmail}
-                    type="email"
-                    className="input"
-                    placeholder="Email Address"
-                  />
-                </div>{" "}
-                <div className="input_group">
-                  <input
-                    onChange={(ev) => {
-                      setInputPass(ev.target.value);
-                      passwordChecker(InputPass, ev.target.value);
-                    }}
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                    value={InputPass}
-                  />{" "}
-                </div>
-                <div className="input_group">
-                  <input
-                    onChange={(ev) => {
-                      setInputConfirmPass(ev.target.value);
-                      passwordChecker(InputPass, ev.target.value);
-                    }}
-                    type="password"
-                    className="input"
-                    placeholder="Confirm Password"
-                    value={InputConfirmPass}
-                  />{" "}
-                </div>{" "}
-                <p> {error} </p>{" "}
-                <input
-                  type="submit"
-                  className="btn"
-                  value="Signup"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log("clicked");
-                    // EmailApi(InputEmail, InputPass);
-                    if (
-                      //   validator === 1 &&
-                      passwordChecker(InputPass, InputConfirmPass)
-                    ) {
-                      const reg = {
-                        emailId: InputEmail,
-                        password: InputPass,
+                    type="submit"
+                    className="btn"
+                    value="Login"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      console.log("login clicked");
+                      // EmailApi(InputEmail, InputPass);
+                      const loginreg = {
+                        logEmail: logEmail,
+                        logPass: logPass,
                       };
-                      console.log(reg);
+                      console.log(loginreg);
                       axios
-                        .post("/app/signup", reg)
-                        .then((res) => console.log(res.data));
-                    }
-                  }}
-                />{" "}
+                        .post("/app/login", loginreg, {
+                          withCredentials: true,
+                        })
+                        .then((res) => {
+                          console.log("sam var", res.data);
+                          if (res.status === 200) {
+                            history.push("/home");
+                          }
+                        });
+                    }}
+                  />
+                  {/* Login
+                </input> */}
+                  <div className="not_mem">
+                    <label for="signup">
+                      Not a member ? <span> Signup now </span>{" "}
+                    </label>{" "}
+                  </div>{" "}
+                </div>
+                <div className="form_fild signup_form">
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setInputEmail(ev.target.value);
+                      }}
+                      value={InputEmail}
+                      type="email"
+                      className="input"
+                      placeholder="Email Address"
+                    />
+                  </div>{" "}
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setInputPass(ev.target.value);
+                        passwordChecker(InputPass, ev.target.value);
+                      }}
+                      type="password"
+                      className="input"
+                      placeholder="Password"
+                      value={InputPass}
+                    />{" "}
+                  </div>
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setInputConfirmPass(ev.target.value);
+                        passwordChecker(InputPass, ev.target.value);
+                      }}
+                      type="password"
+                      className="input"
+                      placeholder="Confirm Password"
+                      value={InputConfirmPass}
+                    />{" "}
+                  </div>{" "}
+                  <p> {error} </p>{" "}
+                  <input
+                    type="submit"
+                    className="btn"
+                    value="Signup"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      console.log("clicked");
+                      // EmailApi(InputEmail, InputPass);
+                      if (
+                        //   validator === 1 &&
+                        passwordChecker(InputPass, InputConfirmPass)
+                      ) {
+                        const reg = {
+                          emailId: InputEmail,
+                          password: InputPass,
+                        };
+                        console.log(reg);
+                        axios
+                          .post("/app/signup", reg)
+                          .then((res) => console.log(res.data));
+                      }
+                    }}
+                  />{" "}
+                </div>{" "}
               </div>{" "}
             </div>{" "}
-          </div>{" "}
-        </section>{" "}
-      </div>{" "}
+          </section>{" "}
+        </div>
+        <div className="right-container">
+          <Car className="right-in" />
+        </div>
+      </div>
     </>
   );
 };

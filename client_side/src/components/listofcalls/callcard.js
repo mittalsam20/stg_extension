@@ -58,10 +58,16 @@ const CallCard = (props) => {
   console.log("inside callcard", temp);
 
   const classes = useStyles();
-
+  console.log("recirding ka name", props.name);
   return (
     <>
-      <Card className={classes.root}>
+      <Card
+        className={classes.root}
+        onClick={() => {
+          setTemp(props.url);
+          console.log(temp);
+        }}
+      >
         <CardContent style={{ paddingBottom: "0", fontSize: "1px" }}>
           <Typography
             component="h2"
@@ -72,17 +78,13 @@ const CallCard = (props) => {
             }}
           >
             {" "}
-            {props.name}{" "}
+            {props.name}
           </Typography>{" "}
           <Typography className={classes.pos} color="textSecondary">
             {" "}
             {props.date}{" "}
           </Typography>{" "}
         </CardContent>{" "}
-        {/* onClick={() => {ssssssssssssssssssssssssssssssss
-                          setTemp(props.url);
-                          console.log(temp);
-                        }} */}{" "}
         <Button
           size="small"
           color="primary"

@@ -1,0 +1,47 @@
+.first {
+    width: 100%;
+    /* background-color: blue; */
+    height: 100%;
+    background: rgba(0, 0, 0, .1)url(./images/1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.car-contain {
+    height: 100vh;
+}
+
+.sec {
+    width: 100%;
+    /* background-color: blue; */
+    height: 100%;
+    background: rgba(0, 0, 0, .4)url(./images/2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.third {
+    width: 100%;
+    /* background-color: blue; */
+    height: 100%;
+    background: rgba(0, 0, 0, .4)url(./images/3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.fourth {
+    width: 100%;
+    /* background-color: blue; */
+    height: 100%;
+    background: rgba(0, 0, 0, .4)url(./images/4.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
