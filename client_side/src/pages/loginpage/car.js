@@ -19,14 +19,21 @@ const Car = () => {
         className="car-contain"
       >
         <div className=" third">
-          <h1>RECORDING AUDIO AND VIDEO</h1>
+          <h1>
+            <span>Recording</span> Your Meetings Has Never Been So Easy
+          </h1>
         </div>
         <div className=" fourth">
-          <h1>Accurate Transcribed Notes Of the Audio In Your Hands</h1>
+          <h1>
+            Accurate <span>Transcription</span>
+            <br />
+            of Audio In Your Hands
+          </h1>
         </div>
         <div className=" first">
           <h1>
-            INCREASE EMPLOYEE ENGAGEMENT RATE WITHOUT SPENDING AN EXTRA BUCK.
+            <span>Increase</span> Employee Engagement Rate Without Spending An
+            Extra Buck
           </h1>
         </div>
         <div className=" sec">

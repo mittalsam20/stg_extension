@@ -2,11 +2,27 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .2)url(./images/2.jpg);
+    background: rgba(0, 0, 0, .4)url(./images/2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
+}
+
+.first h1 {
+    position: absolute;
+    top: 30px;
+    left: 150px;
+    margin: 0px;
+    font-weight: 700;
+    font-size: 40px;
+    color: white;
+}
+
+.first span {
+    font-weight: 900;
+    color: black;
+    font-size: 50px;
 }
 
 .car-contain {
@@ -43,22 +59,52 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .2)url(./images/3.jpg);
+    background: rgba(0, 0, 0, .3)url(./images/3.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
 }
 
+.third h1 {
+    position: absolute;
+    bottom: 150px;
+    left: 30px;
+    margin: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.third span {
+    font-weight: 900;
+    color: black;
+    font-size: 60px;
+}
+
 .fourth {
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .2)url(./images/4.jpg);
+    background: rgba(0, 0, 0, .4)url(./images/4.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
+}
+
+.fourth h1 {
+    position: absolute;
+    bottom: 80px;
+    left: 5px;
+    margin: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.fourth span {
+    font-weight: 900;
+    color: black;
+    font-size: 55px;
 }
 
 .fifth {

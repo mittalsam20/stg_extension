@@ -180,19 +180,8 @@ const LogSign = () => {
                       value={InputEmail}
                       type="text"
                       className="input"
-                      placeholder="First Name"
+                      placeholder="Full Name"
                     />
-                  </div>
-                  <div className="input_group">
-                    <input
-                      onChange={(ev) => {
-                        setInputEmail(ev.target.value);
-                      }}
-                      value={InputEmail}
-                      type="text"
-                      className="input"
-                      placeholder="Last Name "
-                    />{" "}
                   </div>
                   <div className="input_group">
                     <input
