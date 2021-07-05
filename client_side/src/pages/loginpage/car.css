@@ -2,7 +2,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .1)url(./images/1.jpg);
+    background: rgba(0, 0, 0, .2)url(./images/2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,18 +17,33 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/2.jpg);
+    background: rgba(0, 0, 0, .2)url(./images/5.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
 }
 
+.sec h1 {
+    margin: 40px;
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    font-weight: 700;
+    color: white;
+}
+
+.sec span {
+    font-weight: 900;
+    color: black;
+    font-size: 60px;
+}
+
 .third {
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/3.jpg);
+    background: rgba(0, 0, 0, .2)url(./images/3.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,9 +54,35 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/4.jpg);
+    background: rgba(0, 0, 0, .2)url(./images/4.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
+}
+
+.fifth {
+    width: 100%;
+    /* background-color: blue; */
+    height: 100%;
+    background: rgba(0, 0, 0, .2)url(./images/6.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.fifth h1 {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    margin: 40px;
+    font-weight: 700;
+    color: white;
+}
+
+.fifth span {
+    font-weight: 900;
+    color: palevioletred;
+    font-size: 65px;
 }

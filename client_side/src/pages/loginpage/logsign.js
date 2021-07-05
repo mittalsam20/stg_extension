@@ -178,6 +178,28 @@ const LogSign = () => {
                         setInputEmail(ev.target.value);
                       }}
                       value={InputEmail}
+                      type="text"
+                      className="input"
+                      placeholder="First Name"
+                    />
+                  </div>
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setInputEmail(ev.target.value);
+                      }}
+                      value={InputEmail}
+                      type="text"
+                      className="input"
+                      placeholder="Last Name "
+                    />{" "}
+                  </div>
+                  <div className="input_group">
+                    <input
+                      onChange={(ev) => {
+                        setInputEmail(ev.target.value);
+                      }}
+                      value={InputEmail}
                       type="email"
                       className="input"
                       placeholder="Email Address"
