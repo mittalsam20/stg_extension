@@ -12,21 +12,17 @@ import "./listofcalls.css";
 import axios from "axios";
 const ListOfCalls = () => {
   const [a, setA] = useState([]);
-  let recdata;
   const retUrl = async () => {
     const res = await axios.get("/app/getrecurl");
     const data = await res.data;
     setA(data);
-    console.log("in func", a);
-    recdata = data;
-    console.log(recdata);
   };
   useEffect(() => {
     retUrl();
   }, []);
 
-  console.log("just before map", a);
-  console.log(Array.isArray(a));
+  // console.log("just before map", a);
+  // console.log(Array.isArray(a));
   return (
     <div className="loc-container">
       <div className="loc">
@@ -37,7 +33,7 @@ const ListOfCalls = () => {
       {a.map((rec) => {
         return (
           <CallCard
-            Key={rec.id}
+            Key={rec._id}
             name={rec.recordingFileName}
             date={rec.date}
             url={rec.recordingUrl}
@@ -49,8 +45,8 @@ const ListOfCalls = () => {
           console.log("but", a);
         }}
       >
-        sssssssssssssssss
-      </button>
+        sssssssssssssssss{" "}
+      </button>{" "}
     </div>
   );
 };

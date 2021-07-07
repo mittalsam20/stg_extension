@@ -1,4 +1,6 @@
 //Packages
+// import { Decoder, Encoder, tools, Reader } from 'ts-ebml';
+
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -7,7 +9,44 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const cookieParser = require('cookie-parser');
+const meta = require("ts-ebml")
+    // const FileReader = require('filereader')
 
+
+function readAsArrayBuffer(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(blob);
+        reader.onloadend = () => { resolve(reader.result); };
+        reader.onerror = (ev) => { reject(ev.error); };
+    });
+}
+
+function injectMetadata(blob) {
+    const decoder = new meta.Decoder();
+    const reader = new meta.Reader();
+    reader.logging = false;
+    reader.drop_default_duration = false;
+
+    // load webm blob and inject metadata
+    readAsArrayBuffer(blob).then((buffer) => {
+        const elms = decoder.decode(buffer);
+        elms.forEach((elm) => { reader.read(elm); });
+        reader.stop();
+
+        let refinedMetadataBuf = meta.tools.makeMetadataSeekable(
+            reader.metadatas, reader.duration, reader.cues);
+        let body = buffer.slice(reader.metadataSize);
+        let result = new Blob([refinedMetadataBuf, body], { type: blob.type });
+
+        blob = result;
+
+        // the blob object contains the recorded data that
+        // can be downloaded by the user, stored on server etc.
+        console.log('finished recording:', blob);
+        return blob;
+    });
+}
 
 //Intialization
 const app = express();
@@ -19,9 +58,11 @@ const app = express();
 // Server Middlewares
 app.use(cors());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 //Importing Routes
 const Port = process.env.PORT || 5000;
@@ -62,15 +103,26 @@ const upload = multer({
 })
 
 // Upload API
+
+// app.post("/app/getblob", (bgreq, bgres) => {
+//     console.log(bgreq.body.user);
+//     console.log(bgreq.body.recording);
+//     bgres.status(200).json({ message: "hello" });
+//     injectMetadata(bgreq.body.recording);
+//     console.log("reached above main")
+
+
 app.post("/app/upload", upload.single("recording"), (req, res) => {
-    console.log(req.body.logEmail);
-    console.log(req.body);
+    console.log(req.body.user);
+    console.log(req.body.duration);
     const recording_url = `/recording/${req.file.filename}`;
+
     const newrecording = new recording({
         user: req.body.user,
         recordingFileName: req.file.filename,
         recordingPath: req.file.path,
-        recordingUrl: recording_url
+        recordingUrl: recording_url,
+        duration: req.body.duration,
     })
     console.log(req.file.path);
     console.log(recording_url);
@@ -84,6 +136,10 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
         //     recodring_path:req.file.path
         // })
 })
+
+
+// })
+
 
 //Calling Of All Routes
 app.use("/app", authRoute);

@@ -24,7 +24,8 @@ router.post("/signup", async(req, res) => {
     try {
 
         if (!req.body.emailId ||
-            !req.body.password
+            !req.body.password ||
+            !req.body.fullName
         ) {
             return res
                 .status(400)
@@ -45,8 +46,7 @@ router.post("/signup", async(req, res) => {
             res.status(400).json({ message: "Email-Id Already Registered..!!" });
         }
         const newUser = new user({
-            // firstName: req.body.firstName,
-            // lastName: req.body.lastName,
+            fullName: req.body.fullName,
             emailId: req.body.emailId,
             password: hashedPass,
         });
@@ -72,6 +72,7 @@ router.post("/signup", async(req, res) => {
 router.post("/login", async(req, res) => {
     try {
         let token;
+        // console.log(req.data)
         console.log(req.body);
         console.log(req.body.logEmail);
         console.log(req.body.logPass);
@@ -81,13 +82,13 @@ router.post("/login", async(req, res) => {
                 .json({ message: "Please Fill All The Details..!!" });
         }
         const userLogin = await user.findOne({ emailId: req.body.logEmail });
-        console.log("mili ki nhi", userLogin.emailId);
         if (userLogin === null) {
             console.log("inside null");
             res
                 .status(400)
                 .json({ message: "Email-Id Not Recognized Please SignUp With Us" });
         } else {
+            console.log("User Does Exist..!!", userLogin.emailId);
             const userLogPass = await bcrypt.compare(
                 req.body.logPass,
                 userLogin.password
@@ -107,7 +108,7 @@ router.post("/login", async(req, res) => {
                 res.status(200).json({ message: "Login SuccessFull..!!" });
 
             } else {
-                console.log("verify pass", userLogPass);
+                console.log("verifying PassWord", userLogPass);
                 return res.status(400).json({ error: "InCorrect Password" });
             }
         }

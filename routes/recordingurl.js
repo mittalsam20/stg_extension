@@ -16,10 +16,10 @@ router.get('/getrecurl', (req, res) => {
 router.delete("/delrecurl/:id", async(req, res) => {
     try {
         const temp = req.params.id;
-        if (temp) {
+        if (temp !== null) {
             console.log("atleaast inside")
             console.log(temp)
-            const result = await findByIdAndDelete(temp);
+            const result = await recordings.findByIdAndDelete(temp);
             console.log(result);
             res.status(200).json({ message: "Recording Deleted..!!" });
         } else {

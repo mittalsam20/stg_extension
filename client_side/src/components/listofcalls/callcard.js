@@ -58,7 +58,7 @@ const CallCard = (props) => {
   console.log("inside callcard", temp);
 
   const classes = useStyles();
-  console.log("recirding ka name", props.name);
+  // console.log("recirding ka name", props.name);
   return (
     <>
       <Card
@@ -90,6 +90,15 @@ const CallCard = (props) => {
           color="primary"
           className={classes.btn}
           onClick={() => {
+            console.log("ida ida", props.Key);
+            axios
+              .delete(`app/delrecurl/${props.Key}`)
+              .then((res) => {
+                console.log(JSON.stringify(res.data));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
             console.log("ss");
           }}
         >

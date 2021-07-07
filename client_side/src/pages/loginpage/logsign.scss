@@ -24,9 +24,8 @@ body {
 }
 
 .main {
-    width: 85%;
+    width: 80%;
     height: 500px;
-    background: red;
     border-radius: 3px;
     padding: 30px;
     position: relative;
@@ -57,11 +56,11 @@ body {
             width: 50%;
             border: solid 2px #f1f1f1;
             height: 40px;
-            border-radius: 5px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 20px;
             margin-bottom: 20px;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -81,9 +80,9 @@ body {
             background: linear-gradient(45deg, #a547b1, #f84298) no-repeat center;
             width: 50%;
             height: calc(40px - 1px);
-            border-radius: 5px;
+            border-radius: 50px;
             position: absolute;
-            top: 55px;
+            top: 52px;
             left: 0px;
             opacity: 0.9;
             transition: all 0.4s ease;
@@ -156,7 +155,7 @@ body {
                 transition: all 0.5s ease;
                 .input_group {
                     width: 100%;
-                    margin-bottom: 12px;
+                    margin-bottom: 20px;
                     .input {
                         border: solid #f1f1f1 2px;
                         border-radius: 5px;
@@ -168,7 +167,7 @@ body {
                         outline: none;
                         transition: all 0.3s linear;
                         &::placeholder {
-                            color: rgb(173, 173, 173);
+                            color: rgb(120, 120, 120);
                         }
                         &:hover {
                             border-color: rgba(248, 66, 151, 0.3);

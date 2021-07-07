@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const date = new Date(Date.now());
-// console.log(date.toGMTString());
+disp_date = date.toGMTString().slice(0, 22)
+    // disp_time = date.toGMTString().slice(17, 22)
+    // console.log(disp_date);
+    // console.log(disp_time);
 const recordingSchema = new mongoose.Schema({
     user: {
         type: String,
@@ -22,7 +25,14 @@ const recordingSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    date: { type: Date, default: date.toGMTString() }
+    duration: {
+        type: Number,
+        required: true,
+    },
+    // pdf
+    // transciption
+    //summary
+    date: { type: String, default: disp_date }
 })
 
 module.exports = mongoose.model("recordingData", recordingSchema);

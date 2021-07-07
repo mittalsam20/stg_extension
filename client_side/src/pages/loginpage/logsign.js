@@ -14,6 +14,7 @@ const LogSign = () => {
   const [error, setError] = useState("");
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
+  const [fullName, setFullName] = useState("");
 
   const callSignPage = async () => {
     try {
@@ -100,10 +101,7 @@ const LogSign = () => {
                 defaultChecked
               />
               <input type="radio" className="radio" name="radio" id="signup" />
-              <div className="tile">
-                <h3 className="login"> Login Form </h3>{" "}
-                <h3 className="signup"> Signup Form </h3>{" "}
-              </div>{" "}
+              <div className="tile">{/* sssssssssssss */}</div>{" "}
               <label className="tab login_tab" for="login">
                 Login{" "}
               </label>{" "}
@@ -175,9 +173,9 @@ const LogSign = () => {
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
-                        setInputEmail(ev.target.value);
+                        setFullName(ev.target.value);
                       }}
-                      value={InputEmail}
+                      value={fullName}
                       type="text"
                       className="input"
                       placeholder="Full Name"
@@ -234,11 +232,14 @@ const LogSign = () => {
                         const reg = {
                           emailId: InputEmail,
                           password: InputPass,
+                          fullName: fullName,
                         };
                         console.log(reg);
                         axios
                           .post("/app/signup", reg)
                           .then((res) => console.log(res.data));
+                      } else {
+                        // snackb
                       }
                     }}
                   />{" "}
