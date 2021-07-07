@@ -133,7 +133,7 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
 
             console.log('newRecordingID: ' , data.id)
 
-            fetch(`/ml/process/${data.id}`)
+            fetch(`http://127.0.0.1:8080/ml/process/${data.id}`)
             .then(res => res.text())
 
         }).catch(error => { res.status(500).json(error) })
