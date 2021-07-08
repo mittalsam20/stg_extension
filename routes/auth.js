@@ -8,17 +8,10 @@ const AuthMid = require("../middleware/authmid");
 router.use(bodyParser.urlencoded({ extended: true }));
 const cors = require("cors");
 
-
 // || !req.body.firstName ||  !req.body.lastName
 
 router.use(cors());
 
-router.post("/try", (req, res) => {
-    res.json({
-        success: true,
-        meesage: "Register Route",
-    });
-});
 
 router.post("/signup", async(req, res) => {
     try {
@@ -58,7 +51,6 @@ router.post("/signup", async(req, res) => {
                     message: "Registration Successfully..!!",
                     data,
                 });
-                console.log(json(data));
             })
             .catch((error) => {
                 res.status(500).json(error);
@@ -98,17 +90,17 @@ router.post("/login", async(req, res) => {
             // res.header('Access-Control-Allow-Credentials', true);
             if (userLogin && userLogPass) {
                 token = await userLogin.generateAuthToken();
-                console.log("i am getting token", token);
+                console.log("Server is getting token", token);
                 res.cookie("stgUserToken", token, {
                     expires: new Date(Date.now() + 25892000000),
                     httpOnly: true,
                 });
-                console.log("stored i guess");
-                console.log("user ki id", userLogin._id);
+                console.log("Token Stored As Cookie");
+                console.log("user's Id", userLogin._id);
                 res.status(200).json({ message: "Login SuccessFull..!!" });
 
             } else {
-                console.log("verifying PassWord", userLogPass);
+                console.log("PassWord Entered is", userLogPass);
                 return res.status(400).json({ error: "InCorrect Password" });
             }
         }

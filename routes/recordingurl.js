@@ -13,6 +13,15 @@ router.get('/getrecurl', (req, res) => {
     }
 })
 
+router.get('/getallrec', (req, res) => {
+    try {
+        recordings.find().then(foundrec => res.json(foundrec))
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
 router.delete("/delrecurl/:id", async(req, res) => {
     try {
         const temp = req.params.id;

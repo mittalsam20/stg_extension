@@ -1,0 +1,89 @@
+.header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /* height: 40%; */
+    height: 623px;
+    /* height: 99.7vh; */
+    background: rgba(0, 0, 0, .4)url(./head.png);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+    text-align: center;
+}
+
+.header button {
+    position: absolute;
+    top: 320px;
+    left: 535px;
+    background-color: transparent;
+    border: solid 3px white;
+    border-radius: 10px;
+    padding: 10px;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 15px;
+    transition: all 0.5s;
+    overflow: hidden;
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+    animation: float 4s ease-in-out infinite;
+}
+
+.header button:hover {
+    color: black;
+    border-color: white;
+    background-color: #FFFFFF;
+}
+
+.header h1 {
+    font-weight: 900;
+    font-size: 70px;
+    position: absolute;
+    /* top: 17%; */
+    transform: translate(142%, 65%);
+    margin: 0 auto 0 auto;
+    color: white;
+}
+
+@keyframes float {
+    0% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+    50% {
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+        transform: translatey(-10px);
+    }
+    100% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+}
+
+.auto-div {
+    position: absolute;
+    top: 70%;
+    transform: translate(45%, 0);
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.txt-rotate {
+    /* position: absolute; */
+    font-size: 50px;
+    font-weight: 900;
+    color: #FFFFFF;
+    /* color: white; */
+    margin: 0px;
+}
+
+.slogan {
+    position: relative;
+    right: 15px;
+}

@@ -157,10 +157,9 @@ let count = 0;
 //---------------------------------------------COMPONENT----------------------------------------------
 //---------------------------------------------COMPONENT----------------------------------------------
 //---------------------------------------------COMPONENT----------------------------------------------
-//---------------------------------------------COMPONENT----------------------------------------------
 
-const Vplayer = (props) => {
-  const { temp, setTemp } = useContext(recurldata);
+const Vplayer = () => {
+  const { temp } = useContext(recurldata);
 
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
@@ -216,7 +215,7 @@ const Vplayer = (props) => {
       controlsRef.current.style.visibility = "hidden";
       count = 0;
     }
-    if (controlsRef.current.style.visibility == "visible") {
+    if (controlsRef.current.style.visibility === "visible") {
       count += 1;
     }
     if (!state.seeking) {
@@ -273,7 +272,7 @@ const Vplayer = (props) => {
 
   const handleDisplayFormat = () => {
     setTimeDisplayFormat(
-      timeDisplayFormat == "normal" ? "remaining" : "normal"
+      timeDisplayFormat === "normal" ? "remaining" : "normal"
     );
   };
 
@@ -318,7 +317,7 @@ const Vplayer = (props) => {
   const duration =
     playerRef && playerRef.current ? playerRef.current.getDuration() : "00:00";
   const elapsedTime =
-    timeDisplayFormat == "normal"
+    timeDisplayFormat === "normal"
       ? format(currentTime)
       : `-${format(duration - currentTime)}`;
 
@@ -418,16 +417,6 @@ const Vplayer = (props) => {
         </Grid>
         <canvas ref={canvasRef} />
       </Container>
-      {/* <button
-        onClick={() => {
-          console.log("clicked");
-          console.log(props.sendurl);
-          setcurrentUrl(props.sendurl);
-          console.log(currentUrl);
-        }}
-      >
-        hello
-      </button> */}
     </>
   );
 };

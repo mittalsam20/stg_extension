@@ -1,0 +1,31 @@
+.journey {
+    position: absolute;
+    /* top: 1100px; */
+    /* clip-path: polygon(0% 0%, 100% 32.5%, 100% 100%, 0% 100%); */
+    top: 1370px;
+    height: 500px;
+    width: 100%;
+    background-color: whitesmoke;
+    z-index: 10;
+    /* color: #1b2631; */
+    /* color: #1f1f1f; */
+}
+
+.journey h2 {
+    position: absolute;
+    top: 40px;
+    left: 70px;
+    font-size: 40px;
+}
+
+.journey ul {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+}
+
+.journey li {
+    color: #000000;
+    /* list-style: none; */
+    margin: 5px 0 40px 0;
+}

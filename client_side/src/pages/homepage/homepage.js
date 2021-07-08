@@ -1,12 +1,13 @@
+import { createContext, useState, useEffect } from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+
 import ListOfCalls from "../../components/listofcalls/listofcalls";
+import Nav from "../../components/navbar/nav";
 import Notes from "../../components/notes/notesheading";
 import Vplayer from "../../components/vplayer/vplayer";
-import { createContext, useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import Nav from "../../components/navbar/nav";
 
 //-------------------------Theme
 const useStyles = makeStyles((theme) => ({
@@ -29,56 +30,19 @@ const useStyles = makeStyles((theme) => ({
 
 //--------------------Creating Context API
 const recurldata = createContext({
-  temp: ["sasas"],
+  temp: ["https://www.youtube.com/watch?v=MzHCsji0LNc"],
   setTemp: () => {},
 });
 //-----------------------------HOMEPAGE RAFCE
 const HomePage = () => {
-  // const fetchvideo = async () => {
-  //   try {
-  //     // const vidblob = transfer();
-  //     const vidblob = "ok";
-  //     const vid = await axios.post("/app/upload", vidblob);
-  //     const temp = await vid.data;
-  //     console.log(temp);
-  //   } catch (err) {
-  //     console.log("video error", err);
-  //   }
-  // };
-  // const [user, setUser] = useState({});
-
   const [temp, setTemp] = useState("");
   const value = { temp, setTemp };
-
-  const history = useHistory();
-  const callMainPage = async () => {
-    try {
-      const res = await axios.get("/app/main", {
-        withCredentials: true,
-      });
-      const userdata = await res.data;
-      console.log("assemble", userdata);
-      // setUser(userdata);
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-    } catch (err) {
-      console.log("error i am finding", err);
-      history.push("/");
-    }
-  };
-
-  useEffect(() => {
-    callMainPage();
-  }, []);
 
   const classes = useStyles();
 
   return (
     <recurldata.Provider value={value}>
       <>
-        {" "}
         <Nav />
         <Grid
           container
@@ -99,7 +63,7 @@ const HomePage = () => {
             }}
           >
             <Vplayer />
-          </Grid>{" "}
+          </Grid>
           <Grid
             item
             style={{

@@ -3,15 +3,7 @@ import HomePage from "../homepage/homepage";
 import AccountPage from "../accountpage/accountpage";
 import Nav from "../../components/navbar/nav";
 import axios from "axios";
-import { useEffect } from "react";
-
-// const fetchrec = () => {
-const blobdata = { id: "userkiid", vid: "get" };
-//   axios.post("/app/upload/",blobdata);
-// };
-// useEffect(()=>{
-// fetchrec();
-// },[])
+import { useEffect, useHistory, useState } from "react";
 
 const Inside = () => {
   return (
@@ -19,8 +11,16 @@ const Inside = () => {
       <BrowserRouter>
         <Nav />
         <Switch>
-          <Route path="/home" component={HomePage} exact></Route>
-          <Route path="/profile" component={AccountPage} exact></Route>{" "}
+          <Route
+            path={`/home/${rootUser._id}`}
+            component={HomePage}
+            exact
+          ></Route>
+          <Route
+            path={`/profile/${rootUser._id}`}
+            component={AccountPage}
+            exact
+          ></Route>{" "}
         </Switch>{" "}
       </BrowserRouter>{" "}
     </>

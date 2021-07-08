@@ -1,0 +1,56 @@
+.EmailFormDiv {
+    margin: 5px 0;
+    padding: 50px 0;
+}
+
+.innerEmailDiv {
+    width: 100%;
+    z-index: 9999999999999999999999;
+}
+
+.EmailFormDiv input {
+    margin: 0 50px 20px 20px;
+    width: 400px;
+    height: 40px;
+    padding: 5px 0;
+    resize: none;
+    font-size: 26px;
+    font-weight: 300;
+    color: #333;
+    border: none;
+    border-bottom: 1px solid #777;
+    border-radius: 10px 10px 1px 1px;
+    outline: none;
+}
+
+.EmailFormDiv button {
+    background-color: transparent;
+    border: solid 3px #252826;
+    border-radius: 8px;
+    padding: 7px;
+    color: #252826;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 20px 0 8px 0;
+    cursor: pointer;
+    padding: 6px;
+    /* padding: 10px; */
+    /* overflow: hidden; */
+    /* box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6); */
+    outline: none;
+}
+
+.EmailFormDiv button:hover {
+    color: white;
+    border-color: #252826;
+    background-color: #252826;
+}
+
+.EmailFormDiv h2 {
+    margin-top: 0;
+}
+
+.innerEmailDiv p {
+    margin: 0 auto 0 auto;
+    font-size: 20px;
+}

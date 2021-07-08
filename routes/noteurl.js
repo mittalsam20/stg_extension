@@ -5,6 +5,7 @@ const note = require("../models/notemodels")
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
+
 router.get("/notes/:id", (req, res) => {
     try {
         note.findById(req.params.id)

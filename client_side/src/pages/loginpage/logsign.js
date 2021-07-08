@@ -1,13 +1,44 @@
 import "./logsign.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Car from "./car";
+import { userData } from "../../context";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
+  const { rootUser, setRootUser } = useContext(userData);
+  console.log("inside login page", rootUser);
+
   const history = useHistory();
+  // const callMainPage = async () => {
+  //   try {
+  //     const res = await axios.get("/app/main", {
+  //       withCredentials: true,
+  //     });
+  //     const userdata = await res.data;
+  //     setRootUser(userdata);
+  //     console.log("Root User", rootUser);
+  //     // setUser(userdata);
+  //     if (!res.status === 200) {
+  //       const error = new Error(res.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.log(
+  //       "Authentication Error..!! Please Login With Correct Credentials..!! ",
+  //       err
+  //     );
+  //     history.push("/");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   callMainPage();
+  // }, []);
+
   //   const [validator, setValidator] = useState();
+
   const [InputEmail, setInputEmail] = useState("");
   const [InputPass, setInputPass] = useState("");
   const [InputConfirmPass, setInputConfirmPass] = useState("");
@@ -22,9 +53,12 @@ const LogSign = () => {
         withCredentials: true,
       });
       const userdata = await res.data;
+      setRootUser(userdata);
+      // console.log("Root User", rootUser);
       if (userdata) {
-        history.push("/home");
+        history.push(`/home/${rootUser._id}`);
       } else {
+        history.push("/");
       }
     } catch (err) {
       console.log("error i am finding", err);
@@ -156,7 +190,8 @@ const LogSign = () => {
                         .then((res) => {
                           console.log("sam var", res.data);
                           if (res.status === 200) {
-                            history.push("/home");
+                            callSignPage();
+                            history.push(`/home/${rootUser._id}`);
                           }
                         });
                     }}

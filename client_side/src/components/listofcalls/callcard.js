@@ -1,23 +1,29 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-// import recurldata from "../../App";
-// import CardActionArea from "@material-ui/core/CardActionArea";
 import DeleteIcon from "@material-ui/icons/Delete";
-// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-// import DeleteIcon from "@material-ui/icons/Delete";
-import { useContext } from "react";
 import { recurldata } from "../../pages/homepage/homepage";
+import { useContext } from "react";
 import axios from "axios";
+
+// import CardActionArea from "@material-ui/core/CardActionArea";
+// import CardActions from "@material-ui/core/CardActions";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 290,
     maxWidth: 300,
     maxHeight: 100,
-    margin: "0 5px 5px 5px",
+    margin: "0 8px 8px 8px",
     boxShadow: "1px 1px 3px rgb(138, 137, 137)",
+    transition: "transform .05s",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "rgb(240,240,240)",
+      transform: "scale(1.04)",
+    },
   },
   bullet: {
     display: "inline-block",
@@ -37,7 +43,6 @@ const useStyles = makeStyles({
     left: "10px",
     display: "flex",
     flexDirection: "row",
-    // justifyContent: "flex-end",
     alignItems: "center",
     marginRight: "15px",
     float: "right",
@@ -48,6 +53,7 @@ const useStyles = makeStyles({
     height: "36",
     cursor: "pointer",
     outline: "none",
+    zIndex: "10",
     "&:hover": {
       backgroundColor: "rgb(200,200,200)",
     },

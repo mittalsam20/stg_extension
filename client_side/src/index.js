@@ -1,9 +1,12 @@
-/*global chrome*/
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { UserProvider } from "./context";
 
-// chrome.localStorage.getItem((dataExt) => {
-ReactDOM.render(<App />, document.getElementById("root"));
-// });
+ReactDOM.render(
+  <UserProvider>
+    <App />
+  </UserProvider>,
+  document.getElementById("root")
+);

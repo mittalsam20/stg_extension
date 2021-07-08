@@ -40,13 +40,6 @@ const ListOfCalls = () => {
           />
         );
       })}{" "}
-      <button
-        onClick={() => {
-          console.log("but", a);
-        }}
-      >
-        sssssssssssssssss{" "}
-      </button>{" "}
     </div>
   );
 };

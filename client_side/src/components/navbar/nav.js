@@ -6,6 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import "./nav.css";
+
+import { useContext } from "react";
+import { userData } from "../../context";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,8 +23,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Nav = () => {
+  const { rootUser } = useContext(userData);
   const history = useHistory();
   const classes = useStyles();
+  console.log("navbarrrrrrrrrrrrrrrr", rootUser._id);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -32,15 +39,16 @@ const Nav = () => {
             exact
             className="navlink"
             activeClassName="selected"
-            to="/home"
+            exact
+            to={`/home/${rootUser._id}`}
           >
             Home{" "}
           </NavLink>{" "}
           <NavLink
             className="navlink"
             activeClassName="selected"
-            // exact
-            to="/profile"
+            exact
+            to={`/account/${rootUser._id}`}
           >
             Account{" "}
           </NavLink>{" "}
