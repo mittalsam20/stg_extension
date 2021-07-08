@@ -60,7 +60,7 @@ const Nav = () => {
                   withCredentials: true,
                 })
                 .then((res) => {
-                  history.push("/", { replace: true });
+                  history.push("/login", { replace: true });
                   if (res.status !== 200) {
                     const error = new Error(res.error);
                     throw error;

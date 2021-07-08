@@ -47,28 +47,50 @@ const LogSign = () => {
   const [logPass, setLogPass] = useState("");
   const [fullName, setFullName] = useState("");
 
-  const callSignPage = async () => {
-    try {
-      const res = await axios.get("/app/main", {
-        withCredentials: true,
-      });
-      const userdata = await res.data;
-      setRootUser(userdata);
-      // console.log("Root User", rootUser);
-      if (userdata) {
-        history.push("/home");
-      } else {
-        history.push("/");
-      }
-    } catch (err) {
-      console.log("error i am finding", err);
-      history.push("/");
-    }
-  };
+  // const callMainPage = async () => {
+  //   try {
+  //     const res = await axios.get("/app/main", {
+  //       withCredentials: true,
+  //     });
+  //     const userdata = res.data;
+  //     console.log("accpage", userdata);
+  //     // setUser(userdata);
+  //     if (!res.status === 200) {
+  //       const error = new Error(res.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.log("error i am finding", err);
+  //     history.push("/login");
+  //   }
+  // };
 
-  useEffect(() => {
-    callSignPage();
-  }, []);
+  // useEffect(() => {
+  //   callMainPage();
+  // }, []);
+
+  // const callSignPage = async () => {
+  //   try {
+  //     const res = await axios.get("/app/main", {
+  //       withCredentials: true,
+  //     });
+  //     const userdata = await res.data;
+  //     // setRootUser(userdata);
+  //     // console.log("Root User", rootUser);
+  //     if (userdata) {
+  //       console.log("userdata is there..!!");
+  //       history.push("/home");
+  //     } else {
+  //     }
+  //   } catch (err) {
+  //     console.log("error i am finding", err);
+  //     history.push("/login");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   callSignPage();
+  // }, []);
 
   // -----------------------EMAIL VALIDATION------------------------
 
@@ -190,14 +212,12 @@ const LogSign = () => {
                         .then((res) => {
                           console.log("sam var", res.data);
                           if (res.status === 200) {
-                            callSignPage();
+                            // callSignPage();
                             history.push("/home");
                           }
                         });
                     }}
-                  />{" "}
-                  {/* Login
-                            </input> */}{" "}
+                  />
                   <div className="not_mem">
                     <label for="signup">
                       Not a member ? <span> Signup now </span>{" "}
@@ -273,8 +293,6 @@ const LogSign = () => {
                         axios
                           .post("/app/signup", reg)
                           .then((res) => console.log(res.data));
-                      } else {
-                        // snackb
                       }
                     }}
                   />{" "}

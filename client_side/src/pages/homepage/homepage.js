@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
+import { useHistory } from "react-router";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ListOfCalls from "../../components/listofcalls/listofcalls";
@@ -38,8 +40,30 @@ const HomePage = () => {
   const [temp, setTemp] = useState("");
   const value = { temp, setTemp };
 
-  const classes = useStyles();
+  const history = useHistory();
+  const callMainPage = async () => {
+    try {
+      const res = await axios.get("/app/main", {
+        withCredentials: true,
+      });
+      const userdata = res.data;
+      console.log("accpage", userdata);
+      // setUser(userdata);
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log("error i am finding", err);
+      history.push("/login");
+    }
+  };
 
+  useEffect(() => {
+    callMainPage();
+  }, []);
+
+  const classes = useStyles();
   return (
     <recurldata.Provider value={value}>
       <>

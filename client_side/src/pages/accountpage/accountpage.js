@@ -39,7 +39,7 @@ const AccountPage = () => {
       }
     } catch (err) {
       console.log("error i am finding", err);
-      history.push("/");
+      history.push("/login");
     }
   };
 
