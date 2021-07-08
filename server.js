@@ -10,6 +10,7 @@ const multer = require("multer");
 const path = require("path");
 const cookieParser = require('cookie-parser');
 const meta = require("ts-ebml")
+const fetch = require('node-fetch');
     // const FileReader = require('filereader')
 
 
@@ -88,7 +89,7 @@ const recording = require("./models/recordingmodels")
 
 
 //Multer Portion
-app.use("/recording", express.static("upload"));
+app.use("/app/recording", express.static("upload"));
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "./upload")
@@ -129,6 +130,12 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
     newrecording.save().then(data => {
             res.status(200).json(data);
             // console.log(json(data));
+
+            console.log('newRecordingID: ' , data.id)
+
+            fetch(`http://127.0.0.1:8080/ml/process/${data.id}`)
+            .then(res => res.text())
+
         }).catch(error => { res.status(500).json(error) })
         // res.status(200).json({
         //     success: 1,
