@@ -69,28 +69,30 @@ const LogSign = () => {
   //   callMainPage();
   // }, []);
 
-  // const callSignPage = async () => {
-  //   try {
-  //     const res = await axios.get("/app/main", {
-  //       withCredentials: true,
-  //     });
-  //     const userdata = await res.data;
-  //     // setRootUser(userdata);
-  //     // console.log("Root User", rootUser);
-  //     if (userdata) {
-  //       console.log("userdata is there..!!");
-  //       history.push("/home");
-  //     } else {
-  //     }
-  //   } catch (err) {
-  //     console.log("error i am finding", err);
-  //     history.push("/login");
-  //   }
-  // };
+  const callSignPage = async () => {
+    try {
+      const res = await axios.get("/app/main", {
+        withCredentials: true,
+      });
+      const userdata = await res.data;
+      // setRootUser(userdata);
+      // console.log("Root User", rootUser);
+      if (userdata) {
+        console.log("userdata is there..!!");
+        history.push("/home");
+      }
 
-  // useEffect(() => {
-  //   callSignPage();
-  // }, []);
+      // else {
+      // }
+    } catch (err) {
+      console.log("error i am finding", err);
+      history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    callSignPage();
+  }, []);
 
   // -----------------------EMAIL VALIDATION------------------------
 
