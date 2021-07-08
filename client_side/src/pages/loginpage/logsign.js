@@ -75,8 +75,8 @@ const LogSign = () => {
         withCredentials: true,
       });
       const userdata = await res.data;
-      // setRootUser(userdata);
-      // console.log("Root User", rootUser);
+      setRootUser(userdata);
+      console.log("LOGIN KE ANDAR", rootUser);
       if (userdata) {
         console.log("userdata is there..!!");
         history.push("/home");

@@ -5,21 +5,52 @@
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
 // import { useState } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import CallCard from "./callcard";
 import "./listofcalls.css";
-
+// import { userData } from "../../context";
 import axios from "axios";
+
 const ListOfCalls = () => {
+  const [root, setRoot] = useState({});
+  const [filrecs, setFilRecs] = useState([]);
   const [a, setA] = useState([]);
+
+  const callSignPage = async () => {
+    try {
+      const res = await axios.get("/app/main", {
+        withCredentials: true,
+      });
+      const userdata = await res.data;
+      console.log("userdata listofcalls", userdata);
+      setRoot(userdata);
+      if (userdata) {
+        console.log("userdata is there in list of calls..!!");
+      } else {
+        console.log("NO USER FOUND..!!");
+      }
+    } catch (err) {
+      console.log("error i am finding", err);
+    }
+  };
+
   const retUrl = async () => {
     const res = await axios.get("/app/getrecurl");
     const data = await res.data;
     setA(data);
   };
   useEffect(() => {
+    callSignPage();
     retUrl();
   }, []);
+
+  useEffect(() => {
+    console.log("filtered se pehle all recs", a);
+    console.log("filtered se pehle root user", root);
+    const userRecs = a.filter((rec) => rec.user === root._id);
+    console.log("fitlered id recs", userRecs);
+    setFilRecs(userRecs);
+  }, [a, root]);
 
   // console.log("just before map", a);
   // console.log(Array.isArray(a));
@@ -27,10 +58,11 @@ const ListOfCalls = () => {
     <div className="loc-container">
       <div className="loc">
         <h3 style={{ margin: "0 10px 0px 0", padding: "30px 10px 0 10px" }}>
-          All Recording 's{" "}
-        </h3>{" "}
-      </div>{" "}
-      {a.map((rec) => {
+          All Recording 's
+        </h3>
+      </div>
+
+      {filrecs.map((rec) => {
         return (
           <CallCard
             Key={rec._id}
@@ -39,7 +71,7 @@ const ListOfCalls = () => {
             url={rec.recordingUrl}
           />
         );
-      })}{" "}
+      })}
     </div>
   );
 };
