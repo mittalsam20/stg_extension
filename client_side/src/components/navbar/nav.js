@@ -40,7 +40,7 @@ const Nav = () => {
             className="navlink"
             activeClassName="selected"
             exact
-            to={`/home/${rootUser._id}`}
+            to="/home"
           >
             Home{" "}
           </NavLink>{" "}
@@ -48,7 +48,7 @@ const Nav = () => {
             className="navlink"
             activeClassName="selected"
             exact
-            to={`/account/${rootUser._id}`}
+            to="/account"
           >
             Account{" "}
           </NavLink>{" "}

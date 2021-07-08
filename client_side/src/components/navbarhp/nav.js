@@ -8,31 +8,31 @@ const Nav = () => {
       <nav>
         <a href="#top">
           <img className="nav_logo" src="/images/logo_t.png" alt="ST_LOGO" />
-        </a>{" "}
+        </a>
         <ul>
           <li>
             <a href="#top" className="navlink">
-              Home{" "}
-            </a>{" "}
-          </li>{" "}
+              Home
+            </a>
+          </li>
           <li>
             <a href="#services" className="navlink">
-              Services{" "}
-            </a>{" "}
-          </li>{" "}
+              Services
+            </a>
+          </li>
           <li>
             <a href="#footer" className="navlink">
-              Contact Us{" "}
-            </a>{" "}
-          </li>{" "}
-        </ul>{" "}
-      </nav>{" "}
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 };
 
 <script>
-  $(document).ready(function(){" "}
+  $(document).ready(function()
   {$(window).scroll(function () {
     if ($(this).scrollTop() > 530) {
       $("nav").addClass("solid");
@@ -44,7 +44,7 @@ const Nav = () => {
       $("nav img").attr("src", "/images/logo_t.png");
     }
   })}
-  );{" "}
+  );
 </script>;
 
 export default Nav;

@@ -56,7 +56,7 @@ const LogSign = () => {
       setRootUser(userdata);
       // console.log("Root User", rootUser);
       if (userdata) {
-        history.push(`/home/${rootUser._id}`);
+        history.push("/home");
       } else {
         history.push("/");
       }
@@ -135,7 +135,7 @@ const LogSign = () => {
                 defaultChecked
               />
               <input type="radio" className="radio" name="radio" id="signup" />
-              <div className="tile">{/* sssssssssssss */}</div>{" "}
+              <div className="tile"> {/* sssssssssssss */} </div>{" "}
               <label className="tab login_tab" for="login">
                 Login{" "}
               </label>{" "}
@@ -155,7 +155,7 @@ const LogSign = () => {
                       className="input"
                       placeholder="Email Address"
                     />
-                  </div>
+                  </div>{" "}
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -166,10 +166,10 @@ const LogSign = () => {
                       className="input"
                       placeholder="Password"
                     />
-                  </div>
+                  </div>{" "}
                   <a href="gmail.com" className="forgot">
                     Forgot password ?
-                  </a>
+                  </a>{" "}
                   <input
                     type="submit"
                     className="btn"
@@ -191,19 +191,19 @@ const LogSign = () => {
                           console.log("sam var", res.data);
                           if (res.status === 200) {
                             callSignPage();
-                            history.push(`/home/${rootUser._id}`);
+                            history.push("/home");
                           }
                         });
                     }}
-                  />
+                  />{" "}
                   {/* Login
-                </input> */}
+                            </input> */}{" "}
                   <div className="not_mem">
                     <label for="signup">
                       Not a member ? <span> Signup now </span>{" "}
                     </label>{" "}
                   </div>{" "}
-                </div>
+                </div>{" "}
                 <div className="form_fild signup_form">
                   <div className="input_group">
                     <input
@@ -215,7 +215,7 @@ const LogSign = () => {
                       className="input"
                       placeholder="Full Name"
                     />
-                  </div>
+                  </div>{" "}
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -238,7 +238,7 @@ const LogSign = () => {
                       placeholder="Password"
                       value={InputPass}
                     />{" "}
-                  </div>
+                  </div>{" "}
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -282,11 +282,11 @@ const LogSign = () => {
               </div>{" "}
             </div>{" "}
           </section>{" "}
-        </div>
+        </div>{" "}
         <div className="right-container">
           <Car className="right-in" />
-        </div>
-      </div>
+        </div>{" "}
+      </div>{" "}
     </>
   );
 };

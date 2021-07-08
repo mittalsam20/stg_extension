@@ -3,7 +3,7 @@ import Services from "../components/ourservice/services";
 import Journey from "../components/journey/journey";
 import Backchum from "../components/whyus/backchum";
 import Pricing from "../components/pricing/pricing";
-const home = () => {
+const Home = () => {
   return (
     <>
       <Header />
@@ -15,4 +15,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

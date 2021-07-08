@@ -7,14 +7,9 @@ import LogSign from "./pages/loginpage/logsign";
 
 import { useContext } from "react";
 import { userData } from "./context";
+import Home from "./pages/home";
 // "proxy": "https://stgtemp.herokuapp.com",
 // "proxy": "https://localhost:5000",
-
-// import Vplayer from "./components/vplayer/vplayer";
-// import PopUp from "./components/html/popup";
-// import Home from "./pages/home";
-// import Nav from "./components/navbar/nav";
-// import Footer from "./components/footer/footer";
 
 const App = () => {
   const { rootUser } = useContext(userData);
@@ -25,17 +20,10 @@ const App = () => {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/" component={LogSign} exact></Route>
-            <Route
-              path={`/home/${rootUser._id}`}
-              component={HomePage}
-              exact
-            ></Route>
-            <Route
-              path={`/account/${rootUser._id}`}
-              component={AccountPage}
-              exact
-            ></Route>
+            <Route path="/" component={Home} exact></Route>
+            <Route path="/login" component={LogSign} exact></Route>
+            <Route path="/home" component={HomePage} exact></Route>
+            <Route path="/account" component={AccountPage} exact></Route>
           </Switch>
         </div>
       </BrowserRouter>
