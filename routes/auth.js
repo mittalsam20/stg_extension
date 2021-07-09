@@ -78,7 +78,7 @@ router.post("/login", async(req, res) => {
             console.log("inside null");
             res
                 .status(400)
-                .json({ message: "Email-Id Not Recognized Please SignUp With Us" });
+                .json({ error: "Email-Id Not Recognized Please SignUp With Us" });
         } else {
             console.log("User Does Exist..!!", userLogin.emailId);
             const userLogPass = await bcrypt.compare(
@@ -101,7 +101,7 @@ router.post("/login", async(req, res) => {
 
             } else {
                 console.log("PassWord Entered is", userLogPass);
-                return res.status(400).json({ error: "InCorrect Password" });
+                return res.status(400).json({ "message": "InCorrect Password" });
             }
         }
     } catch (err) {

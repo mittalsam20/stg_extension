@@ -15,8 +15,8 @@ const EmailForm = () => {
 
   const EmailApi = async (Email) => {
     const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc";
-    const url = `https://ipqualityscore.com/api/json/email/${Key}/${Email}`;
-    // const url = `/api/json/email/${Key}/${Email}`;
+    // const url = `https://ipqualityscore.com/api/json/email/${Key}/${Email}`;
+    const url = `/api/json/email/${Key}/${Email}`;
     const res = await axios.get(url, {
       withCredentials: true,
     });

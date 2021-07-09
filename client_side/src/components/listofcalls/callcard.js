@@ -114,14 +114,14 @@ const CallCard = (props) => {
                 marginBottom: "16px",
               }}
             >
-              {props.name}
-            </Typography>
+              {props.name}{" "}
+            </Typography>{" "}
             <Typography className={classes.pos} color="textSecondary">
-              {props.date}
-            </Typography>
-          </CardContent>
+              {" "}
+              {props.date}{" "}
+            </Typography>{" "}
+          </CardContent>{" "}
         </Button>
-
         <Button
           size="small"
           color="primary"
@@ -140,7 +140,7 @@ const CallCard = (props) => {
           }}
         >
           <DeleteIcon />
-        </Button>
+        </Button>{" "}
         <Button
           size="small"
           color="primary"

@@ -11,7 +11,7 @@ const path = require("path");
 const cookieParser = require('cookie-parser');
 const meta = require("ts-ebml")
 const fetch = require('node-fetch');
-    // const FileReader = require('filereader')
+// const FileReader = require('filereader')
 
 
 function readAsArrayBuffer(blob) {
@@ -70,6 +70,7 @@ const Port = process.env.PORT || 5000;
 const authRoute = require("./routes/auth");
 const recRoute = require("./routes/recordingurl")
 const noteRoute = require("./routes/noteurl")
+const routerUrls = require("./routes/routes");
 
 //DB Connection
 dotenv.config();
@@ -131,10 +132,10 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
             res.status(200).json(data);
             // console.log(json(data));
 
-            console.log('newRecordingID: ' , data.id)
+            console.log('newRecordingID: ', data.id)
 
             fetch(`http://127.0.0.1:8080/ml/process/${data.id}`)
-            .then(res => res.text())
+                .then(res => res.text())
 
         }).catch(error => { res.status(500).json(error) })
         // res.status(200).json({
@@ -149,6 +150,7 @@ app.post("/app/upload", upload.single("recording"), (req, res) => {
 
 
 //Calling Of All Routes
+app.use("/app", routerUrls);
 app.use("/app", authRoute);
 app.use("/app", recRoute);
 app.use("/app", noteRoute);

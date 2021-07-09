@@ -2,39 +2,31 @@ import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
+import axios from "axios";
 import "./create.css";
 
 function Create(props) {
   const [isExpanded, setExpanded] = useState(false);
-
   const [note, setNote] = useState({
+    rec: "hellow",
     title: "",
     content: "",
   });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setNote((prevNote) => {
-      return {
-        ...prevNote,
-        [name]: value,
-      };
-    });
-  }
-
-  function submitNote(event) {
+  const submitNote = async (event) => {
+    event.preventDefault();
     props.onAdd(note);
+    const res = await axios.post("/notes", note);
+    console.log(res);
     setNote({
       title: "",
       content: "",
     });
-    event.preventDefault();
-  }
+  };
 
-  function expand() {
+  const expand = () => {
     setExpanded(true);
-  }
+  };
 
   return (
     <div>
@@ -42,7 +34,10 @@ function Create(props) {
         {isExpanded && (
           <input
             name="title"
-            onChange={handleChange}
+            onChange={(e) => {
+              e.preventDefault();
+              setNote({ title: e.target.value });
+            }}
             value={note.title}
             placeholder="Title"
             autoComplete="off"
@@ -52,7 +47,10 @@ function Create(props) {
         <textarea
           name="content"
           onClick={expand}
-          onChange={handleChange}
+          onChange={(e) => {
+            e.preventDefault();
+            setNote({ content: e.target.value });
+          }}
           value={note.content}
           placeholder="Take a note..."
           rows={isExpanded ? 3 : 1}

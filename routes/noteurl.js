@@ -16,7 +16,7 @@ router.get("/note/:id", (req, res) => {
     }
 })
 
-router.delete("/notes/:id", async(req, res) => {
+router.delete("/note/:id", async(req, res) => {
     try {
         const temp = req.params.id;
         if (temp !== null) {
@@ -46,11 +46,15 @@ router.route("/notes")
     })
     .post(async(req, res) => {
         try {
-            if (!req.body.title || !req.body.content || !req.body.recId) {
+            console.log(req.body.title)
+            console.log(req.body.rec)
+            console.log(req.body.content)
+
+            if (!req.body.title || !req.body.content || !req.body.rec) {
                 return res.status(400).json({ error: "Title/Content Missing..!!" })
             }
             const newNote = new note({
-                recId: req.body.recId,
+                rec: req.body.rec,
                 title: req.body.title,
                 content: req.body.content
             })
