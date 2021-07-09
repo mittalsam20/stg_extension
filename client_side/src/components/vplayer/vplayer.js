@@ -160,7 +160,7 @@ let count = 0;
 
 const Vplayer = () => {
   const { temp } = useContext(recurldata);
-
+  console.log("inside vplayer value of url", temp);
   const classes = useStyles();
   const [showControls, setShowControls] = useState(false);
   // const [count, setCount] = useState(0);

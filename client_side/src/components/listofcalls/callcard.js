@@ -70,7 +70,7 @@ const CallCard = (props) => {
       <Card
         className={classes.root}
         onClick={() => {
-          setTemp(props.url);
+          setTemp(`http://localhost:5000/app${props.url}`);
           console.log(temp);
         }}
       >

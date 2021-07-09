@@ -44,10 +44,11 @@ router.route("/notes")
     })
     .post(async(req, res) => {
         try {
-            if (!req.body.title || !req.body.content) {
+            if (!req.body.title || !req.body.content || !req.body.recId) {
                 return res.status(400).json({ error: "Title/Content Missing..!!" })
             }
             const newNote = new note({
+                recId: req.body.recId,
                 title: req.body.title,
                 content: req.body.content
             })
@@ -57,7 +58,7 @@ router.route("/notes")
                     message: "Note saved successfully",
                     data
                 });
-                console.log(json(data));
+                // console.log(json(data));
             }).catch(error => { res.status(500).json(error) })
         } catch (err) {
             res.status(500).json(err);
