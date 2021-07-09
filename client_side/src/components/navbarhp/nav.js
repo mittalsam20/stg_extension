@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import $ from "jquery";
 import "./nav.css";
 
@@ -24,6 +24,11 @@ const Nav = () => {
             <a href="#footer" className="navlink">
               Contact Us
             </a>
+          </li>
+          <li>
+            <Link to="/login" className="navlink">
+              Login/Signup
+            </Link>
           </li>
         </ul>
       </nav>
