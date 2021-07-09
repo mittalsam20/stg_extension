@@ -97,7 +97,7 @@ router.post("/login", async(req, res) => {
                 });
                 console.log("Token Stored As Cookie");
                 console.log("user's Id", userLogin._id);
-                res.status(200).json({ message: "Login SuccessFull..!!" });
+                res.status(200).json({ message: "Login SuccessFull..!!", id: userLogin._id });
 
             } else {
                 console.log("PassWord Entered is", userLogPass);
