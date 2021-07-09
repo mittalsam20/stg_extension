@@ -33,7 +33,7 @@ function MainNotes() {
               onDelete={deleteNote}
             />
           );
-        })}{" "}
+        })}
       </div>
     </>
   );

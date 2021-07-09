@@ -32,14 +32,20 @@ const useStyles = makeStyles((theme) => ({
 
 //--------------------Creating Context API
 const recurldata = createContext({
+  curRec: "",
+  setCurRec: () => {},
+});
+const recContext = createContext({
   temp: "",
   setTemp: () => {},
 });
 //-----------------------------HOMEPAGE RAFCE
 const HomePage = () => {
   const [temp, setTemp] = useState("");
-  const value = { temp, setTemp };
+  const [curRec, setCurRec] = useState("");
 
+  const value = { temp, setTemp };
+  const nvalue = { curRec, setCurRec };
   const history = useHistory();
   const callMainPage = async () => {
     try {
@@ -66,46 +72,49 @@ const HomePage = () => {
   const classes = useStyles();
   return (
     <recurldata.Provider value={value}>
-      <>
-        <Nav />
-        <Grid
-          container
-          className={classes.root}
-          spacing={2}
-          style={{ flexWrap: "nowrap", maxWidth: "100%" }}
-        >
-          <Grid item>
-            <ListOfCalls />
-          </Grid>
-
+      <recContext.Provider value={nvalue}>
+        <>
+          <Nav />
           <Grid
-            item
-            style={{
-              paddingLeft: "0px",
-              paddingRight: "8px",
-              maxWidth: "60%",
-              flexShrink: "3",
-            }}
+            container
+            className={classes.root}
+            spacing={2}
+            style={{ flexWrap: "nowrap", maxWidth: "100%" }}
           >
-            <Vplayer />
-          </Grid>
+            <Grid item>
+              <ListOfCalls />
+            </Grid>
 
-          <Grid
-            item
-            style={{
-              paddingLeft: "0",
-              paddingRight: "0",
-              maxWidth: "25%",
-              flexShrink: "3",
-            }}
-          >
-            <Notes />
+            <Grid
+              item
+              style={{
+                paddingLeft: "0px",
+                paddingRight: "8px",
+                maxWidth: "60%",
+                flexShrink: "3",
+              }}
+            >
+              <Vplayer />
+            </Grid>
+
+            <Grid
+              item
+              style={{
+                paddingLeft: "0",
+                paddingRight: "0",
+                maxWidth: "25%",
+                flexShrink: "3",
+              }}
+            >
+              <Notes />
+            </Grid>
           </Grid>
-        </Grid>
-      </>
+        </>
+      </recContext.Provider>
     </recurldata.Provider>
   );
 };
 
 export { recurldata };
+export { recContext };
 export default HomePage;

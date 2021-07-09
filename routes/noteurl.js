@@ -6,11 +6,11 @@ const note = require("../models/notemodels")
 router.use(bodyParser.urlencoded({ extended: true }));
 
 
-router.get("/notes/:id", (req, res) => {
+router.get("/note/:id", (req, res) => {
     try {
         note.findById(req.params.id)
             .then(foundnote => res.json(foundnote))
-            .catch(res.json({ message: "No Notes Yet..!!" }))
+            // .catch(res.json({ message: "No Notes Yet..!!" }))
     } catch (err) {
         res.status(500).json(err);
     }
@@ -18,13 +18,15 @@ router.get("/notes/:id", (req, res) => {
 
 router.delete("/notes/:id", async(req, res) => {
     try {
-        const temp = await note.findById(req.params.id);
-        if (temp) {
-            await note.remove();
-            res.json({ message: "Note Removed" });
+        const temp = req.params.id;
+        if (temp !== null) {
+            console.log("atleaast inside")
+            console.log(temp)
+            const result = await note.findByIdAndDelete(temp);
+            console.log(result);
+            res.status(200).json({ message: "Note Removed" });
         } else {
-            res.status(404);
-            throw new Error("Note not Found");
+            res.status(404).json({ message: "Note not Found" });
         }
     } catch (err) {
         res.status(500).json(err);

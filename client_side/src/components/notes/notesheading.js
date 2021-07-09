@@ -14,8 +14,7 @@ const Notes = () => {
             cursor: "alias",
           }}
         >
-          {" "}
-          Take Notes{" "}
+          Take Notes
         </h2>
         <MainNotes />
       </div>

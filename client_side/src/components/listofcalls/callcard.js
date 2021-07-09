@@ -4,7 +4,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { recurldata } from "../../pages/homepage/homepage";
+import { recContext, recurldata } from "../../pages/homepage/homepage";
 import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 import { useContext } from "react";
 import axios from "axios";
@@ -83,6 +83,8 @@ const useStyles = makeStyles({
 });
 const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata);
+  const { curRec, setCurRec } = useContext(recContext);
+
   console.log("inside callcard", temp);
 
   const classes = useStyles();
@@ -93,6 +95,7 @@ const CallCard = (props) => {
         <Button
           onClick={() => {
             setTemp(`http://localhost:5000/app${props.url}`);
+            setCurRec(props.Key);
             console.log(temp);
           }}
         >
