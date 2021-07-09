@@ -7,7 +7,7 @@ const Footer = () => {
           <a href="#top">
             <img src="/images/logo_w.png" alt="logo" />
           </a>
-          <h3> Made With❤ in INDIA. </h3> <h3> FOLLOW US ON </h3>
+          <h3> Made With ❤ in INDIA. </h3> <h3> FOLLOW US ON </h3>
         </div>
         <div class="social-buttons">
           <a href="facebook.com">

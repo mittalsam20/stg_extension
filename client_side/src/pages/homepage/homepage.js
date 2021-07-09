@@ -76,7 +76,8 @@ const HomePage = () => {
         >
           <Grid item>
             <ListOfCalls />
-          </Grid>{" "}
+          </Grid>
+
           <Grid
             item
             style={{
@@ -88,6 +89,7 @@ const HomePage = () => {
           >
             <Vplayer />
           </Grid>
+
           <Grid
             item
             style={{
@@ -98,9 +100,9 @@ const HomePage = () => {
             }}
           >
             <Notes />
-          </Grid>{" "}
-        </Grid>{" "}
-      </>{" "}
+          </Grid>
+        </Grid>
+      </>
     </recurldata.Provider>
   );
 };

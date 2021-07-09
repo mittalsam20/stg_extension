@@ -78,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
   },
   controlIcons: {
     color: "#777",
-
     fontSize: 50,
     transform: "scale(0.9)",
     "&:hover": {
@@ -385,10 +384,11 @@ const Vplayer = () => {
             onPlaybackRateChange={handlePlaybackRate}
             onToggleFullScreen={toggleFullScreen}
             volume={volume}
-            onBookmark={addBookmark}
+            // onBookmark={addBookmark}
           />
         </div>
 
+        {/* 
         <Grid container style={{ marginTop: 20 }} spacing={3}>
           {bookmarks.map((bookmark, index) => (
             <Grid key={index} item>
@@ -414,8 +414,8 @@ const Vplayer = () => {
               </Paper>
             </Grid>
           ))}
-        </Grid>
-        <canvas ref={canvasRef} />
+        </Grid> */}
+        {/* <canvas ref={canvasRef} /> */}
       </Container>
     </>
   );

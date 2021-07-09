@@ -69,6 +69,7 @@ const ListOfCalls = () => {
             name={rec.recordingFileName}
             date={rec.date}
             url={rec.recordingUrl}
+            path={rec.recordingPath}
           />
         );
       })}

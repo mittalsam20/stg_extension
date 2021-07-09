@@ -5,9 +5,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { recurldata } from "../../pages/homepage/homepage";
+import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 import { useContext } from "react";
 import axios from "axios";
-
+import { saveAs } from "file-saver";
 // import CardActionArea from "@material-ui/core/CardActionArea";
 // import CardActions from "@material-ui/core/CardActions";
 
@@ -39,8 +40,8 @@ const useStyles = makeStyles({
   },
   btn: {
     position: "relative",
-    bottom: "37px",
-    left: "10px",
+    bottom: "54px",
+    left: "12px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -49,7 +50,28 @@ const useStyles = makeStyles({
     color: "#3f51b5",
     border: "none",
     borderRadius: "6px",
-    width: "15",
+    width: "10px",
+    height: "36",
+    cursor: "pointer",
+    outline: "none",
+    zIndex: "10",
+    "&:hover": {
+      backgroundColor: "rgb(200,200,200)",
+    },
+  },
+  dbtn: {
+    position: "relative",
+    bottom: "53px",
+    left: "23px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    // marginRight: "10px",
+    float: "right",
+    color: "#3f51b5",
+    border: "none",
+    borderRadius: "6px",
+    width: "10px",
     height: "36",
     cursor: "pointer",
     outline: "none",
@@ -67,30 +89,36 @@ const CallCard = (props) => {
   // console.log("recirding ka name", props.name);
   return (
     <>
-      <Card
-        className={classes.root}
-        onClick={() => {
-          setTemp(`http://localhost:5000/app${props.url}`);
-          console.log(temp);
-        }}
-      >
-        <CardContent style={{ paddingBottom: "0", fontSize: "1px" }}>
-          <Typography
-            component="h2"
+      <Card className={classes.root}>
+        <Button
+          onClick={() => {
+            setTemp(`http://localhost:5000/app${props.url}`);
+            console.log(temp);
+          }}
+        >
+          <CardContent
             style={{
-              fontWeight: "900",
-              fontSize: "16px",
-              marginBottom: "16px",
+              padding: "10px 10px 10px 0",
+              fontSize: "1px",
+              textAlign: "left",
             }}
           >
-            {" "}
-            {props.name}
-          </Typography>{" "}
-          <Typography className={classes.pos} color="textSecondary">
-            {" "}
-            {props.date}{" "}
-          </Typography>{" "}
-        </CardContent>{" "}
+            <Typography
+              component="h2"
+              style={{
+                fontWeight: "900",
+                fontSize: "16px",
+                marginBottom: "16px",
+              }}
+            >
+              {props.name}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              {props.date}
+            </Typography>
+          </CardContent>
+        </Button>
+
         <Button
           size="small"
           color="primary"
@@ -109,8 +137,18 @@ const CallCard = (props) => {
           }}
         >
           <DeleteIcon />
-        </Button>{" "}
-      </Card>{" "}
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          className={classes.dbtn}
+          onClick={() => {
+            saveAs(`http://localhost:5000/app${props.url}`, props.name);
+          }}
+        >
+          <GetAppRoundedIcon />
+        </Button>
+      </Card>
     </>
   );
 };
