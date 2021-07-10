@@ -14,31 +14,25 @@ const EmailForm = () => {
   );
 
   const EmailApi = async (Email) => {
-    const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc";
+    // const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc";
     // const url = `https://ipqualityscore.com/api/json/email/${Key}/${Email}`;
-    const url = `/api/json/email/${Key}/${Email}`;
-    const res = await axios.get(url, {
-      withCredentials: true,
-    });
+    // const url = `/api/json/email/${Key}/${Email}`;
+    const res = await axios.post(`/app/selfproxy/${Email}`);
+    console.log("ressssss", res.data);
+    // console.log("status", res.status);
     const data = await res.data;
-    // console.log(data);
-    if (
-      data.valid &&
-      data.overall_score > 2 &&
-      data.smtp_score > 1 &&
-      !data.disposable &&
-      data.dns_valid &&
-      !data.honeypot
-    ) {
+    console.log("parser", data.message);
+    if (data.message === "Email is Correct") {
       console.log(Email);
       reg.emailId = Email;
       setValidator(1);
       axios.post("/app/email", reg).then((res) => console.log(res.data));
-      console.log(data.sanitized_email);
+      // console.log(data.sanitized_email);
       setInputEmail("");
       // console.log(validator);
     } else {
       setValidator(0);
+      console.log("set 0");
       // console.log("Please Enter An Valid Email..!!");
       // console.log(validator);
     }
@@ -70,7 +64,7 @@ const EmailForm = () => {
   return (
     <>
       <div className="EmailFormDiv">
-        <h2> You Are One Step Away From By - Hearting Your Meetings..!! </h2>{" "}
+        <h2> You Are One Step Away From By - Hearting Your Meetings..!! </h2>
         <div className="innerEmailDiv">
           <form action="" method="" id="emailform">
             <input
@@ -79,12 +73,12 @@ const EmailForm = () => {
               name="emailEntry"
               placeHolder="Email"
               value={InputEmail}
-            />{" "}
-            <button onClick={handleClick}> Download </button>{" "}
-          </form>{" "}
-          <p> {EmailChecker} </p>{" "}
-        </div>{" "}
-      </div>{" "}
+            />
+            <button onClick={handleClick}> Download </button>
+          </form>
+          <p> {EmailChecker} </p>
+        </div>
+      </div>
     </>
   );
 };

@@ -29,9 +29,8 @@ router.post("/selfproxy/:Email", (req, res) => {
                 ) {
                     res.status(200).json({ message: "Email is Correct" })
                 } else {
-                    res.status(400).json({ message: "Invalid Email..!!" })
+                    res.json({ message: "Invalid Email..!!" })
                 }
-
             })
             .catch(error => console.log('error', error));
     } catch (err) {
