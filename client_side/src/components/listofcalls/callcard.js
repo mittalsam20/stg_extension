@@ -85,6 +85,17 @@ const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata);
   const { curRec, setCurRec } = useContext(recContext);
 
+  const summary = (filepath) => {
+    const reader = new FileReader();
+    reader.readAsText(filepath);
+    reader.onload = () => {
+      console.log("text file", reader.result);
+    };
+    reader.onerror = () => {
+      console.log("text error", reader.error);
+    };
+  };
+
   console.log("inside callcard", temp);
 
   const classes = useStyles();
@@ -97,6 +108,7 @@ const CallCard = (props) => {
             setTemp(`http://localhost:5000/app${props.url}`);
             setCurRec(props.Key);
             console.log(temp);
+            summary("../../../../upload/summary/lets_seee.txt");
           }}
         >
           <CardContent
@@ -114,13 +126,12 @@ const CallCard = (props) => {
                 marginBottom: "16px",
               }}
             >
-              {props.name}{" "}
-            </Typography>{" "}
+              {props.name}
+            </Typography>
             <Typography className={classes.pos} color="textSecondary">
-              {" "}
-              {props.date}{" "}
-            </Typography>{" "}
-          </CardContent>{" "}
+              {props.date}
+            </Typography>
+          </CardContent>
         </Button>
         <Button
           size="small"
@@ -140,7 +151,7 @@ const CallCard = (props) => {
           }}
         >
           <DeleteIcon />
-        </Button>{" "}
+        </Button>
         <Button
           size="small"
           color="primary"

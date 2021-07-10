@@ -29,9 +29,14 @@ const recordingSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    // pdf
-    // transciption
-    //summary
+    // summary: {
+    //     type: String,
+    //     required: true,
+    // },
+    // transcription: {
+    //     type: String,
+    //     required: true,
+    // },
     date: { type: String, default: disp_date }
 })
 

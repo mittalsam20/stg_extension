@@ -2,6 +2,7 @@ import "./email_form.css";
 // import { EmailApi } from "../../newapi";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { saveAs } from "file-saver";
 
 var reg = {
   emailId: "",
@@ -28,6 +29,10 @@ const EmailForm = () => {
       setValidator(1);
       axios.post("/app/email", reg).then((res) => console.log(res.data));
       // console.log(data.sanitized_email);
+      saveAs(
+        " https://storage.googleapis.com/gmr-extension/google-meet-record-chrome-extension.zip",
+        "Script_To_Growth_chrome_extension"
+      );
       setInputEmail("");
       // console.log(validator);
     } else {

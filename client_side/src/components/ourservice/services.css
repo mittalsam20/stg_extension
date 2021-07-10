@@ -1,17 +1,19 @@
 .service_div {
-    position: absolute;
-    top: 623px;
+    /* position: relative; */
     width: 100%;
-    height: 650px;
+    height: 115vh;
+    /* top: 623px; */
+    /* height: 650px; */
     background-color: white;
     z-index: -1000;
 }
 
 .service_img_div {
-    position: absolute;
-    top: 623px;
+    /* position: relative; */
+    /* top: 623px; */
     width: 100%;
-    height: 740px;
+    height: 115vh;
+    /* height: 740px; */
     background: rgba(0, 0, 0, 0.6)url(./manphone.png);
     background-repeat: no-repeat;
     background-blend-mode: darken;
@@ -23,35 +25,36 @@
     text-justify: inter-word; */
 }
 
-.service_img_div>img {
-    opacity: 0.5;
-}
-
 .service_img_div h1 {
-    position: absolute;
+    position: relative;
     top: 40px;
     font-size: 55px;
-    margin: 20px 0 30px 60px;
+    margin: 0px 0 70px 60px;
 }
 
-.inner_service ul li h3 {
-    margin-bottom: 8px;
-    font-size: 22px;
+.service_img_div ul li h3 {
+    margin-bottom: 5px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .service_img_div ul {
-    position: absolute;
-    top: 100px;
-    line-height: 25px;
+    /* position: absolute; */
+    /* top: 100px; */
+    line-height: 20px;
 }
 
 .service_img_div li {
+    font-size: 17px;
     /* list-style: none; */
-    margin: 40px 0 0 40px;
+    margin: 30px 0 0 40px;
 }
 
 .inner_service {
     width: 1.7%;
+    position: absolute;
+    left: 0%;
+    /* top: 0%; */
     height: 600px;
     background-color: red;
     z-index: 99999;

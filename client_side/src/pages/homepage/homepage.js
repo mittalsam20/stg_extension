@@ -95,6 +95,13 @@ const HomePage = () => {
               }}
             >
               <Vplayer />
+              <p>
+                hello i am able to see the text here awesome here summary hello
+                i am able to see the text here awesome here summaryhello i am
+                able to see the text here awesome here summaryhello i am able to
+                see the text here awesome here summaryhello i am able to see the
+                text here awesome here summary
+              </p>
             </Grid>
 
             <Grid
