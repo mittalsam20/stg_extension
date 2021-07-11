@@ -47,9 +47,8 @@ const LogSign = () => {
   const [error, setError] = useState("");
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
-  const [alBox, setAlBox] = useState(false);
   const [alboxcont, setAlboxcont] = useState({
-    wide: true,
+    open: false,
     message: "",
     type: "",
   });
@@ -151,44 +150,30 @@ const LogSign = () => {
 
   //----------------------------------RETURN FUNCTION---------------------------------------
 
-  useEffect(() => {
-    // retfunc(alBox, alboxcont.wide, alboxcont.message, alboxcont.type);
-    console.log("page one", alboxcont.wide);
-    <AlertContext
-      wide={alboxcont.wide}
-      message={alboxcont.message}
-      type={alboxcont.type}
-    />;
-  }, [alBox, alboxcont.message, alboxcont.wide, alboxcont.type]);
-
-  const retfunc = (s, w, m, t) => {
-    console.log("retfunc ka func");
-    console.log(s, w, m, t);
-    return <AlertContext wide={w} message={m} type={t} />;
-  };
+  // useEffect(() => {}, [alboxcont.message, alboxcont.open, alboxcont.type]);
 
   return (
     <>
       <div className="main-container">
         <div id="sign-up" className="left-container sign-up ">
-          {/* <AlertContext wide={true} message="direct" type="success" /> */}
+          {/* <AlertContext open={true} message="direct" type="success" /> */}
 
           {console.log(
             "just above",
-            alBox,
-            alboxcont.wide,
+            alboxcont.open,
             alboxcont.message,
             alboxcont.type
           )}
 
-          {alBox && (
+          {
             <AlertContext
-              wide={alboxcont.wide}
+              open={alboxcont.open}
               message={alboxcont.message}
               type={alboxcont.type}
+              setOpen={setAlboxcont}
             />
-          )}
-          {/* {retfunc(alBox, alboxcont.wide, alboxcont.message, alboxcont.type)} */}
+          }
+
           <h2>Script To Growth</h2>
           <section className="main">
             <div className="form_wrapper">
@@ -336,7 +321,7 @@ const LogSign = () => {
 
                         // retfunc(
                         //   alBox,
-                        //   alboxcont.wide,
+                        //   alboxcont.open,
                         //   alboxcont.message,
                         //   alboxcont.type
                         // );
@@ -351,13 +336,11 @@ const LogSign = () => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      setAlBox(true);
                       setAlboxcont({
-                        wide: true,
+                        open: true,
                         message: "plz work Successful..!!",
                         type: "error",
                       });
-
                       console.log("wokring");
                     }}
                   >

@@ -14,10 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlertContext({ wide, message, type }) {
+export default function AlertContext({ open, message, type, setOpen }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(wide);
-  console.log("inside context", wide, message, type);
+  console.log("inside context", open, message, type);
   //   const handleClick = () => {
   //     setOpen(true);
   //   };
@@ -30,7 +29,7 @@ export default function AlertContext({ wide, message, type }) {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(true);
+    setOpen(false);
   };
 
   return (
