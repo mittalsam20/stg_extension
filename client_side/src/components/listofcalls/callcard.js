@@ -9,6 +9,7 @@ import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 import { useContext } from "react";
 import axios from "axios";
 import { saveAs } from "file-saver";
+
 // import CardActionArea from "@material-ui/core/CardActionArea";
 // import CardActions from "@material-ui/core/CardActions";
 
@@ -85,15 +86,9 @@ const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata);
   const { curRec, setCurRec } = useContext(recContext);
 
-  const summary = (filepath) => {
-    const reader = new FileReader();
-    reader.readAsText(filepath);
-    reader.onload = () => {
-      console.log("text file", reader.result);
-    };
-    reader.onerror = () => {
-      console.log("text error", reader.error);
-    };
+  const getTxt = async (txturl) => {
+    const res = await axios.get(txturl);
+    console.log(res.data);
   };
 
   console.log("inside callcard", temp);
@@ -108,7 +103,9 @@ const CallCard = (props) => {
             setTemp(`http://localhost:5000/app${props.url}`);
             setCurRec(props.Key);
             console.log(temp);
-            summary("../../../../upload/summary/lets_seee.txt");
+            getTxt(
+              "http://localhost:5000/app/recording/recording_1625921327939.txt"
+            );
           }}
         >
           <CardContent

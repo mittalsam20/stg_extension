@@ -4,7 +4,6 @@ const Journey = () => {
     <>
       <div className="journey">
         <h2>Start Your Journey Now..!!</h2>
-
         <ul>
           <li>
             COLLABORATE WITH US TO CREATE AN IMPACT THAT IS

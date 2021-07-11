@@ -39,6 +39,7 @@ const ListOfCalls = () => {
     const data = await res.data;
     setA(data);
   };
+
   useEffect(() => {
     callSignPage();
     retUrl();
@@ -50,7 +51,7 @@ const ListOfCalls = () => {
     const userRecs = a.filter((rec) => rec.user === root._id);
     console.log("fitlered id recs", userRecs);
     setFilRecs(userRecs);
-  }, [a, root]);
+  }, [a, root, filrecs]);
 
   // console.log("just before map", a);
   // console.log(Array.isArray(a));

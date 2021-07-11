@@ -4,7 +4,8 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Car from "./car";
 import { userData } from "../../context";
-
+import AlertContext from "../alertcontext";
+import { height } from "@material-ui/system";
 const LogSign = () => {
   //---------------------USESTATES--------------------------
   const { rootUser, setRootUser } = useContext(userData);
@@ -42,11 +43,16 @@ const LogSign = () => {
   const [InputEmail, setInputEmail] = useState("");
   const [InputPass, setInputPass] = useState("");
   const [InputConfirmPass, setInputConfirmPass] = useState("");
+  const [fullName, setFullName] = useState("");
   const [error, setError] = useState("");
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
-  const [fullName, setFullName] = useState("");
-
+  const [alBox, setAlBox] = useState(false);
+  const [alboxcont, setAlboxcont] = useState({
+    wide: true,
+    message: "",
+    type: "",
+  });
   // const callMainPage = async () => {
   //   try {
   //     const res = await axios.get("/app/main", {
@@ -145,10 +151,45 @@ const LogSign = () => {
 
   //----------------------------------RETURN FUNCTION---------------------------------------
 
+  useEffect(() => {
+    // retfunc(alBox, alboxcont.wide, alboxcont.message, alboxcont.type);
+    console.log("page one", alboxcont.wide);
+    <AlertContext
+      wide={alboxcont.wide}
+      message={alboxcont.message}
+      type={alboxcont.type}
+    />;
+  }, [alBox, alboxcont.message, alboxcont.wide, alboxcont.type]);
+
+  const retfunc = (s, w, m, t) => {
+    console.log("retfunc ka func");
+    console.log(s, w, m, t);
+    return <AlertContext wide={w} message={m} type={t} />;
+  };
+
   return (
     <>
       <div className="main-container">
         <div id="sign-up" className="left-container sign-up ">
+          {/* <AlertContext wide={true} message="direct" type="success" /> */}
+
+          {console.log(
+            "just above",
+            alBox,
+            alboxcont.wide,
+            alboxcont.message,
+            alboxcont.type
+          )}
+
+          {alBox && (
+            <AlertContext
+              wide={alboxcont.wide}
+              message={alboxcont.message}
+              type={alboxcont.type}
+            />
+          )}
+          {/* {retfunc(alBox, alboxcont.wide, alboxcont.message, alboxcont.type)} */}
+          <h2>Script To Growth</h2>
           <section className="main">
             <div className="form_wrapper">
               <input
@@ -159,14 +200,14 @@ const LogSign = () => {
                 defaultChecked
               />
               <input type="radio" className="radio" name="radio" id="signup" />
-              <div className="tile"> {/* sssssssssssss */} </div>{" "}
+              <div className="tile"> {/* sssssssssssss */} </div>
               <label className="tab login_tab" for="login">
-                Login{" "}
-              </label>{" "}
+                Login
+              </label>
               <label className="tab signup_tab" for="signup">
-                Signup{" "}
-              </label>{" "}
-              <span className="shape"> </span>{" "}
+                Signup
+              </label>
+              <span className="shape"> </span>
               <div className="form_wrap">
                 <div className="form_fild login_form">
                   <div className="input_group">
@@ -179,7 +220,7 @@ const LogSign = () => {
                       className="input"
                       placeholder="Email Address"
                     />
-                  </div>{" "}
+                  </div>
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -190,10 +231,10 @@ const LogSign = () => {
                       className="input"
                       placeholder="Password"
                     />
-                  </div>{" "}
+                  </div>
                   <a href="gmail.com" className="forgot">
                     Forgot password ?
-                  </a>{" "}
+                  </a>
                   <input
                     type="submit"
                     className="btn"
@@ -220,12 +261,8 @@ const LogSign = () => {
                         });
                     }}
                   />
-                  <div className="not_mem">
-                    <label for="signup">
-                      Not a member ? <span> Signup now </span>{" "}
-                    </label>{" "}
-                  </div>{" "}
-                </div>{" "}
+                  <div className="not_mem"></div>
+                </div>
                 <div className="form_fild signup_form">
                   <div className="input_group">
                     <input
@@ -237,7 +274,7 @@ const LogSign = () => {
                       className="input"
                       placeholder="Full Name"
                     />
-                  </div>{" "}
+                  </div>
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -248,7 +285,7 @@ const LogSign = () => {
                       className="input"
                       placeholder="Email Address"
                     />
-                  </div>{" "}
+                  </div>
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -259,8 +296,9 @@ const LogSign = () => {
                       className="input"
                       placeholder="Password"
                       value={InputPass}
-                    />{" "}
-                  </div>{" "}
+                    />
+                  </div>
+
                   <div className="input_group">
                     <input
                       onChange={(ev) => {
@@ -271,9 +309,9 @@ const LogSign = () => {
                       className="input"
                       placeholder="Confirm Password"
                       value={InputConfirmPass}
-                    />{" "}
-                  </div>{" "}
-                  <p> {error} </p>{" "}
+                    />
+                  </div>
+                  <p> {error} </p>
                   <input
                     type="submit"
                     className="btn"
@@ -295,18 +333,45 @@ const LogSign = () => {
                         axios
                           .post("/app/signup", reg)
                           .then((res) => console.log(res.data));
+
+                        // retfunc(
+                        //   alBox,
+                        //   alboxcont.wide,
+                        //   alboxcont.message,
+                        //   alboxcont.type
+                        // );
+                        setInputEmail("");
+                        setInputPass("");
+                        setFullName("");
+                        setInputConfirmPass("");
                       }
                     }}
-                  />{" "}
-                </div>{" "}
-              </div>{" "}
-            </div>{" "}
-          </section>{" "}
-        </div>{" "}
+                  />
+
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setAlBox(true);
+                      setAlboxcont({
+                        wide: true,
+                        message: "plz work Successful..!!",
+                        type: "error",
+                      });
+
+                      console.log("wokring");
+                    }}
+                  >
+                    testtttttt
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
         <div className="right-container">
           <Car className="right-in" />
-        </div>{" "}
-      </div>{" "}
+        </div>
+      </div>
     </>
   );
 };
