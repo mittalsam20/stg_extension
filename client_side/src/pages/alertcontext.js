@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlertContext({ open, message, type, setOpen }) {
+export default function AlertContext({ open, message, type, setOpen, dur }) {
   const classes = useStyles();
   console.log("inside context", open, message, type);
   //   const handleClick = () => {
@@ -37,7 +37,7 @@ export default function AlertContext({ open, message, type, setOpen }) {
       {/* <Button variant="outlined" onClick={handleClick}>
         Open success snackbar
       </Button> */}
-      <Snackbar open={open} autoHideDuration={20000} onClose={handleClose}>
+      <Snackbar open={open} autoHideDuration={dur} onClose={handleClose}>
         <Alert onClose={handleClose} severity={type}>
           {message}
         </Alert>
