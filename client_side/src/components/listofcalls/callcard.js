@@ -4,9 +4,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { recContext, recurldata } from "../../pages/homepage/homepage";
+import {
+  recContext,
+  recurldata,
+  mlContext,
+} from "../../pages/homepage/homepage";
 import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { saveAs } from "file-saver";
 
@@ -85,11 +89,21 @@ const useStyles = makeStyles({
 const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata);
   const { curRec, setCurRec } = useContext(recContext);
+  const { mlData, setMldata } = useContext(mlContext);
 
   const getTxt = async (txturl) => {
     const res = await axios.get(txturl);
-    console.log(res.data);
+    console.log("text ka data", res.data);
+    setMldata({
+      summarytxt: res.data,
+      audiotxt: "ss",
+      pdfurl: "sssss",
+    });
   };
+
+  useEffect(() => {
+    console.log(mlData);
+  }, [mlData]);
 
   console.log("inside callcard", temp);
 
@@ -105,6 +119,8 @@ const CallCard = (props) => {
             console.log(temp);
             getTxt(
               "http://localhost:5000/app/recording/recording_1625921327939.txt"
+              // "/ml/return-summary/recording_1625899142046_summary.txt"
+              // "http://34.133.119.75/ml/return-summary/recording_1625899142046_summary.txt"
             );
           }}
         >
@@ -123,6 +139,7 @@ const CallCard = (props) => {
                 marginBottom: "16px",
               }}
             >
+              {/* {mlData.summarytxt} */}
               {props.name}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">

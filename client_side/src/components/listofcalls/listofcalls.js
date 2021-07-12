@@ -51,7 +51,9 @@ const ListOfCalls = () => {
     const userRecs = a.filter((rec) => rec.user === root._id);
     console.log("fitlered id recs", userRecs);
     setFilRecs(userRecs);
-  }, [a, root, filrecs]);
+  }, [a, root]);
+
+  useEffect(() => {}, [a, root, filrecs]);
 
   // console.log("just before map", a);
   // console.log(Array.isArray(a));

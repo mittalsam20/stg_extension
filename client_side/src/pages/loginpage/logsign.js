@@ -1,11 +1,15 @@
 import "./logsign.scss";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
+import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import Car from "./car";
+import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import { userData } from "../../context";
 import AlertContext from "../alertcontext";
 import { height } from "@material-ui/system";
+import { Link } from "react-router-dom";
+import FormDialog from "./dialog";
 const LogSign = () => {
   //---------------------USESTATES--------------------------
   const { rootUser, setRootUser } = useContext(userData);
@@ -46,11 +50,12 @@ const LogSign = () => {
   const [fullName, setFullName] = useState("");
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
+  const [dopen, setDopen] = useState(false);
   const [alboxcont, setAlboxcont] = useState({
     open: false,
     message: "",
     type: "",
-    dur: 5000,
+    dur: 1,
   });
 
   const callSignPage = async () => {
@@ -111,7 +116,7 @@ const LogSign = () => {
       });
     }
     if (a === b && a !== "") {
-      console.log("matched");
+      // console.log("matched");
       setAlboxcont({
         open: true,
         message: "Password's are matching..!!",
@@ -155,6 +160,11 @@ const LogSign = () => {
     <>
       <div className="main-container">
         <div id="sign-up" className="left-container sign-up ">
+          <Link to="/" exact>
+            <Button className="backarr">
+              <ArrowBackRoundedIcon style={{ fontSize: 40 }} />
+            </Button>
+          </Link>
           {
             <AlertContext
               open={alboxcont.open}
@@ -206,9 +216,17 @@ const LogSign = () => {
                       placeholder="Password"
                     />
                   </div>
-                  <a href="gmail.com" className="forgot">
+                  <Button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setDopen(true);
+                      {
+                        <FormDialog dopen={dopen} setDopen={setDopen} />;
+                      }
+                    }}
+                  >
                     Forgot password ?
-                  </a>
+                  </Button>
                   <input
                     type="submit"
                     className="btn"
@@ -319,7 +337,7 @@ const LogSign = () => {
                     value="Signup"
                     onClick={(e) => {
                       e.preventDefault();
-                      console.log("clicked");
+                      // console.log("clicked");
                       if (
                         EmailApi(InputEmail) &&
                         passwordChecker(InputPass, InputConfirmPass)

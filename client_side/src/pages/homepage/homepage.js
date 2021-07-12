@@ -39,14 +39,26 @@ const recContext = createContext({
   temp: "",
   setTemp: () => {},
 });
+const mlContext = createContext({
+  mlData: "",
+  setMldata: () => {},
+});
 //-----------------------------HOMEPAGE RAFCE
 const HomePage = () => {
   const [temp, setTemp] = useState("");
   const [curRec, setCurRec] = useState("");
+  const [mlData, setMldata] = useState({
+    summarytxt: "",
+    audiotxt: "",
+    pdfurl: "",
+  });
 
+  const mlvalue = { mlData, setMldata };
   const value = { temp, setTemp };
   const nvalue = { curRec, setCurRec };
+
   const history = useHistory();
+
   const callMainPage = async () => {
     try {
       const res = await axios.get("/app/main", {
@@ -73,50 +85,52 @@ const HomePage = () => {
   return (
     <recurldata.Provider value={value}>
       <recContext.Provider value={nvalue}>
-        <>
-          <Nav />
-          <Grid
-            container
-            className={classes.root}
-            spacing={2}
-            style={{ flexWrap: "nowrap", maxWidth: "100%" }}
-          >
-            <Grid item>
-              <ListOfCalls />
-            </Grid>
-
+        <mlContext.Provider value={mlvalue}>
+          <>
+            <Nav />
             <Grid
-              item
-              style={{
-                paddingLeft: "0px",
-                paddingRight: "8px",
-                maxWidth: "60%",
-                flexShrink: "3",
-              }}
+              container
+              className={classes.root}
+              spacing={2}
+              style={{ flexWrap: "nowrap", maxWidth: "100%" }}
             >
-              <Vplayer />
-              <p>
-                hello i am able to see the text here awesome here summary hello
-                i am able to see the text here awesome here summaryhello i am
-                able to see the text here awesome here summaryhello i am able to
-                see the text here awesome here summaryhello i am able to see the
-                text here awesome here summary
-              </p>
-            </Grid>
+              <Grid item>
+                <ListOfCalls />
+              </Grid>
 
-            <Grid
-              item
-              style={{
-                paddingLeft: "0",
-                paddingRight: "0",
-                maxWidth: "25%",
-                flexShrink: "3",
-              }}
-            >
-              <Notes />
+              <Grid
+                item
+                style={{
+                  paddingLeft: "0px",
+                  paddingRight: "8px",
+                  maxWidth: "60%",
+                  flexShrink: "3",
+                }}
+              >
+                <Vplayer />
+                <p>
+                  hello i am able to see the text here awesome here summary
+                  hello i am able to see the text here awesome here summaryhello
+                  i am able to see the text here awesome here summaryhello i am
+                  able to see the text here awesome here summaryhello i am able
+                  to see the text here awesome here summary
+                </p>
+              </Grid>
+
+              <Grid
+                item
+                style={{
+                  paddingLeft: "0",
+                  paddingRight: "0",
+                  maxWidth: "25%",
+                  flexShrink: "3",
+                }}
+              >
+                <Notes />
+              </Grid>
             </Grid>
-          </Grid>
-        </>
+          </>
+        </mlContext.Provider>
       </recContext.Provider>
     </recurldata.Provider>
   );
@@ -124,4 +138,5 @@ const HomePage = () => {
 
 export { recurldata };
 export { recContext };
+export { mlContext };
 export default HomePage;
