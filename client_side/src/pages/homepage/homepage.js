@@ -113,29 +113,29 @@ const HomePage = () => {
                     minWidth: "100vh",
                     flexShrink: "3",
                   }}
+                  className="centerdiv"
                 >
-                  <div className="centerdiv">
-                    <Vplayer />
-
-                    <div className="audiodiv">
-                      <div
-                        className="audiosubdiv"
-                        style={{
-                          padding: "8px",
-                          position: "relative",
-                          top: "-5px",
-                        }}
+                  {/* <div className="centerdiv"> */}
+                  <Vplayer />
+                  <div className="audiodiv">
+                    <div
+                      className="audiosubdiv"
+                      style={{
+                        padding: "8px",
+                        position: "relative",
+                        top: "-5px",
+                      }}
+                    >
+                      <h1
+                        className={classes.summaryh1}
+                        style={{ fontSize: "30px" }}
                       >
-                        <h1
-                          className={classes.summaryh1}
-                          style={{ fontSize: "30px" }}
-                        >
-                          Transcribtion
-                        </h1>
-                        <p className={classes.summaryp}>{mlData.audiotxt}</p>
-                      </div>
+                        Transcribtion
+                      </h1>
+                      <p className={classes.summaryp}>{mlData.audiotxt}</p>
                     </div>
                   </div>
+                  {/* </div> */}
                 </Grid>
                 <Grid
                   item

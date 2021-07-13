@@ -100,7 +100,7 @@ const MainNotes = () => {
               Key={ele._id}
               title={ele.title}
               content={ele.content}
-              //   onDelete={deleteNote}
+              setRecNotes={setRecNotes}
             />
           );
         })}
