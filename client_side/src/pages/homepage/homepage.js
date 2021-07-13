@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   control: {
     padding: theme.spacing(2),
+  },
+  vinplayer: {
+    position: "relative",
+    top: "-15px",
   },
 }));
 
@@ -108,27 +112,29 @@ const HomePage = () => {
                     flexShrink: "3",
                   }}
                 >
-                  <Vplayer />
-                  <div className="audiodiv">
-                    <div
-                      className="audiosubdiv"
-                      style={{
-                        padding: "8px",
-                        position: "relative",
-                        top: "-5px",
-                      }}
-                    >
-                      <h1
-                        className={classes.summaryh1}
-                        style={{ fontSize: "30px" }}
+                  <div className="centerdiv">
+                    <Vplayer />
+
+                    <div className="audiodiv">
+                      <div
+                        className="audiosubdiv"
+                        style={{
+                          padding: "8px",
+                          position: "relative",
+                          top: "-5px",
+                        }}
                       >
-                        Transcribtion
-                      </h1>
-                      <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                        <h1
+                          className={classes.summaryh1}
+                          style={{ fontSize: "30px" }}
+                        >
+                          Transcribtion
+                        </h1>
+                        <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                      </div>
                     </div>
                   </div>
                 </Grid>
-
                 <Grid
                   item
                   style={{

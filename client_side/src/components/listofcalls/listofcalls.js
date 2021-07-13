@@ -5,16 +5,23 @@
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
 // import { useState } from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 import CallCard from "./callcard";
 import "./listofcalls.css";
 // import { userData } from "../../context";
 import axios from "axios";
 
+const updateRecContext = createContext({
+  filrecs: "",
+  setFilRecs: () => {},
+});
+
 const ListOfCalls = () => {
   const [root, setRoot] = useState({});
   const [filrecs, setFilRecs] = useState([]);
   const [a, setA] = useState([]);
+
+  const dbvalue = { filrecs, setFilRecs };
 
   const callSignPage = async () => {
     try {
@@ -58,26 +65,37 @@ const ListOfCalls = () => {
   // console.log("just before map", a);
   // console.log(Array.isArray(a));
   return (
-    <div className="loc-container">
-      <div className="loc">
-        <h3 style={{ margin: "0 10px 0px 0", padding: "30px 10px 0 10px" }}>
-          All Recording 's
-        </h3>
-      </div>
+    <updateRecContext.Provider value={dbvalue}>
+      <div className="loc-container">
+        <div className="loc">
+          <h3
+            style={{
+              margin: "0 5px 0px 0",
+              padding: "20px 10px 0 10px",
+              letterSpacing: ".1em",
+              fontWeight: "600",
+              fontSize: "30px",
+            }}
+          >
+            Recording's
+          </h3>
+        </div>
 
-      {filrecs.map((rec) => {
-        return (
-          <CallCard
-            Key={rec._id}
-            name={rec.recordingFileName}
-            date={rec.date}
-            url={rec.recordingUrl}
-            path={rec.recordingPath}
-          />
-        );
-      })}
-    </div>
+        {filrecs.map((rec) => {
+          return (
+            <CallCard
+              Key={rec._id}
+              name={rec.recordingFileName}
+              date={rec.date}
+              url={rec.recordingUrl}
+              path={rec.recordingPath}
+            />
+          );
+        })}
+      </div>
+    </updateRecContext.Provider>
   );
 };
 
+export { updateRecContext };
 export default ListOfCalls;

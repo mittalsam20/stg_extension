@@ -11,6 +11,7 @@ import {
 } from "../../pages/homepage/homepage";
 import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 import { useContext, useEffect, useState } from "react";
+import { updateRecContext } from "./listofcalls";
 import axios from "axios";
 import { saveAs } from "file-saver";
 
@@ -86,10 +87,12 @@ const useStyles = makeStyles({
     },
   },
 });
+
 const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata);
   const { curRec, setCurRec } = useContext(recContext);
   const { mlData, setMldata } = useContext(mlContext);
+  const { filrecs, setFilRecs } = useContext(updateRecContext);
 
   const getTxt = async (a, b, c) => {
     const summaryres = await axios.get(a);
@@ -97,11 +100,22 @@ const CallCard = (props) => {
     const pdfres = await axios.get(c);
 
     setMldata({
-      summarytxt: summaryres.data,
-      audiotxt: audiores.data,
+      summarytxt: summaryres.data || "No Summary Extracted Yet",
+      audiotxt: audiores.data || "No Transcription Found Yet",
       pdfurl: pdfres.data,
     });
     // console.log("text ka data", mlData.summarytxt);
+  };
+
+  const retUrl = async () => {
+    const res = await axios.get("/app/getrecurl");
+    const data = await res.data;
+    const response = await axios.get("/app/main", {
+      withCredentials: true,
+    });
+    const userdata = await response.data;
+    const userRecs = data.filter((rec) => rec.user === userdata._id);
+    setFilRecs(userRecs);
   };
 
   useEffect(() => {
@@ -169,6 +183,7 @@ const CallCard = (props) => {
               .delete(`app/delrecurl/${props.Key}`)
               .then((res) => {
                 console.log(JSON.stringify(res.data));
+                retUrl();
               })
               .catch((err) => {
                 console.log(err);

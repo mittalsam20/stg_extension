@@ -54,7 +54,9 @@ const useStyles = makeStyles((theme) => ({
     width: "50%",
     borderRadius: "10px 10px 0 0",
     color: "#3f51b5",
-    fontWeight: "500",
+    fontWeight: "700",
+    fontSize: "16px",
+    letterSpacing: ".4em",
     "&:hover": {
       color: "#3f11ff",
       opacity: 1,
@@ -112,18 +114,8 @@ export default function LeftTabs() {
           aria-label="full width tabs example"
           style={{ boxShadow: 0 }}
         >
-          <Tab
-            label="Notes"
-            {...a11yProps(0)}
-            style={{ position: "relative", width: "50%" }}
-            className={classes.tab}
-          />
-          <Tab
-            label="Summary"
-            {...a11yProps(1)}
-            style={{ position: "relative", width: "50%" }}
-            className={classes.tab}
-          />
+          <Tab label="Notes" {...a11yProps(0)} className={classes.tab} />
+          <Tab label="Summary" {...a11yProps(1)} className={classes.tab} />
         </Tabs>
       </AppBar>
       <SwipeableViews
