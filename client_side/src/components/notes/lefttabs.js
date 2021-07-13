@@ -48,6 +48,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     width: 400,
   },
+  summaryp: {
+    padding: "0  0 0 10px ",
+  },
+  summaryh1: {
+    fontSize: "25px",
+    padding: "10px",
+    marginTop: "5px",
+  },
+  summaryplace: {
+    overflowY: "scroll",
+  },
 }));
 
 export default function LeftTabs() {
@@ -98,31 +109,18 @@ export default function LeftTabs() {
           <MainNotes />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <div
-            className="note"
-            style={{
-              padding: "0 8px 8px 8px",
-              position: "relative",
-              right: "12px",
-              top: "-10px",
-            }}
-          >
-            <h1
+          <div className="dispnote">
+            <div
+              className="note"
               style={{
-                fontSize: "25px",
-                padding: "10px",
-                marginTop: "5px",
+                padding: "8px",
+                position: "relative",
+                top: "-5px",
               }}
             >
-              Summary
-            </h1>
-            <p
-              style={{
-                padding: "0  0 0 10px ",
-              }}
-            >
-              {mlData.summarytxt}
-            </p>
+              <h1 className={classes.summaryh1}>Summary</h1>
+              <p className={classes.summaryp}>{mlData.summarytxt}</p>
+            </div>
           </div>
         </TabPanel>
       </SwipeableViews>

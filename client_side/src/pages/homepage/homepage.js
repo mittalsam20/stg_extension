@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-
+import "./hp.css";
 import ListOfCalls from "../../components/listofcalls/listofcalls";
 import Nav from "../../components/navbar/nav";
 import LeftTabs from "../../components/notes/lefttabs";
@@ -87,45 +87,47 @@ const HomePage = () => {
       <recContext.Provider value={nvalue}>
         <mlContext.Provider value={mlvalue}>
           <>
-            <Nav />
-            <Grid
-              container
-              className={classes.root}
-              spacing={2}
-              style={{ flexWrap: "nowrap", maxWidth: "100%" }}
-            >
-              <Grid item>
-                <ListOfCalls />
-              </Grid>
-
+            <div className="full">
+              <Nav />
               <Grid
-                item
-                style={{
-                  paddingLeft: "0px",
-                  paddingRight: "8px",
-                  maxWidth: "60%",
-                  flexShrink: "3",
-                }}
+                container
+                className={classes.root}
+                spacing={2}
+                style={{ flexWrap: "nowrap", maxWidth: "100%" }}
               >
-                <Vplayer />
-                <br />
-                <br />
+                <Grid item>
+                  <ListOfCalls />
+                </Grid>
 
-                <p>{mlData.summarytxt}</p>
-              </Grid>
+                <Grid
+                  item
+                  style={{
+                    paddingLeft: "0px",
+                    paddingRight: "8px",
+                    maxWidth: "60%",
+                    flexShrink: "3",
+                  }}
+                >
+                  <Vplayer />
+                  <br />
+                  <br />
 
-              <Grid
-                item
-                style={{
-                  paddingLeft: "0",
-                  paddingRight: "0",
-                  maxWidth: "25%",
-                  flexShrink: "3",
-                }}
-              >
-                <LeftTabs />
+                  <p>{mlData.summarytxt}</p>
+                </Grid>
+
+                <Grid
+                  item
+                  style={{
+                    paddingLeft: "0",
+                    paddingRight: "0",
+                    maxWidth: "25%",
+                    flexShrink: "3",
+                  }}
+                >
+                  <LeftTabs />
+                </Grid>
               </Grid>
-            </Grid>
+            </div>
           </>
         </mlContext.Provider>
       </recContext.Provider>
