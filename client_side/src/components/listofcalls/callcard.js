@@ -93,12 +93,12 @@ const CallCard = (props) => {
 
   const getTxt = async (txturl) => {
     const res = await axios.get(txturl);
-    console.log("text ka data", res.data);
     setMldata({
       summarytxt: res.data,
       audiotxt: "ss",
       pdfurl: "sssss",
     });
+    // console.log("text ka data", mlData.summarytxt);
   };
 
   useEffect(() => {
@@ -151,7 +151,8 @@ const CallCard = (props) => {
           size="small"
           color="primary"
           className={classes.btn}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             console.log("ida ida", props.Key);
             axios
               .delete(`app/delrecurl/${props.Key}`)
@@ -170,7 +171,8 @@ const CallCard = (props) => {
           size="small"
           color="primary"
           className={classes.dbtn}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             saveAs(`http://localhost:5000/app${props.url}`, props.name);
           }}
         >

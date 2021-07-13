@@ -35,6 +35,8 @@ form.create-note button {
 }
 
 .note {
+    text-align: justify;
+    text-justify: inter-word;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 2px 5px;

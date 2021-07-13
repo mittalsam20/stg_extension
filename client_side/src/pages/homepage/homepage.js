@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ListOfCalls from "../../components/listofcalls/listofcalls";
 import Nav from "../../components/navbar/nav";
-import Notes from "../../components/notes/notesheading";
+import LeftTabs from "../../components/notes/lefttabs";
 import Vplayer from "../../components/vplayer/vplayer";
 
 import Grid from "@material-ui/core/Grid";
@@ -108,13 +108,10 @@ const HomePage = () => {
                 }}
               >
                 <Vplayer />
-                <p>
-                  hello i am able to see the text here awesome here summary
-                  hello i am able to see the text here awesome here summaryhello
-                  i am able to see the text here awesome here summaryhello i am
-                  able to see the text here awesome here summaryhello i am able
-                  to see the text here awesome here summary
-                </p>
+                <br />
+                <br />
+
+                <p>{mlData.summarytxt}</p>
               </Grid>
 
               <Grid
@@ -126,7 +123,7 @@ const HomePage = () => {
                   flexShrink: "3",
                 }}
               >
-                <Notes />
+                <LeftTabs />
               </Grid>
             </Grid>
           </>
