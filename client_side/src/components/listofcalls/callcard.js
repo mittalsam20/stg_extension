@@ -4,6 +4,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import EditIcon from "@material-ui/icons/Edit";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 import {
   recContext,
   recurldata,
@@ -46,7 +54,8 @@ const useStyles = makeStyles({
   },
   btn: {
     position: "relative",
-    bottom: "54px",
+    bottom: "80px",
+
     left: "12px",
     display: "flex",
     flexDirection: "row",
@@ -67,8 +76,8 @@ const useStyles = makeStyles({
   },
   dbtn: {
     position: "relative",
-    bottom: "53px",
-    left: "23px",
+    bottom: "80px",
+    left: "30px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -86,14 +95,36 @@ const useStyles = makeStyles({
       backgroundColor: "rgb(200,200,200)",
     },
   },
+  ebtn: {
+    position: "relative",
+    bottom: "90px",
+    left: "223px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    fontSize: "1px",
+    // marginRight: "10px",
+    color: "#3f51b5",
+    border: "none",
+    borderRadius: "6px",
+    width: "10px",
+    height: "36",
+    cursor: "pointer",
+    outline: "none",
+    zIndex: "11",
+    "&:hover": {
+      backgroundColor: "rgb(200,200,200)",
+    },
+  },
 });
 
 const CallCard = (props) => {
-  const { temp, setTemp } = useContext(recurldata);
-  const { curRec, setCurRec } = useContext(recContext);
-  const { mlData, setMldata } = useContext(mlContext);
-  const { filrecs, setFilRecs } = useContext(updateRecContext);
-
+  const { temp, setTemp } = useContext(recurldata); //url link for current selected video
+  const { curRec, setCurRec } = useContext(recContext); // contains key for cur rec then transffered to all comp
+  const { mlData, setMldata } = useContext(mlContext); //all mldata for current recording
+  const { filrecs, setFilRecs } = useContext(updateRecContext); //filtered recording for current user
+  const [editopen, setEditOpen] = useState(false); //switch for edit modal
+  const [newName, setNewname] = useState("");
   const getTxt = async (a, b, c) => {
     const summaryres = await axios.get(a);
     const audiores = await axios.get(b);
@@ -126,6 +157,75 @@ const CallCard = (props) => {
 
   const classes = useStyles();
   // console.log("recirding ka name", props.name);
+
+  const editDial = () => {
+    console.log(editopen);
+    return (
+      <div>
+        <Dialog
+          open={editopen}
+          onClose={() => {
+            setEditOpen(false);
+          }}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Rename File</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="New Name"
+              type="text"
+              fullWidth
+              value={newName}
+              onchange={(e) => {
+                setNewname(e.target.value);
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setEditOpen(false);
+              }}
+              color="primary"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                var data = JSON.stringify({
+                  recordingFileName: "ddddddddddddddddddddd",
+                });
+                var config = {
+                  method: "patch",
+                  url: `http://localhost:5000/app/rename/60e7e8e23f842d45bc5697dc`,
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  data: data,
+                };
+                axios(config)
+                  .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+                setEditOpen(false);
+              }}
+              color="primary"
+            >
+              Rename
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  };
+
+  useEffect(() => {}, [editopen]);
   return (
     <>
       <Card className={classes.root}>
@@ -164,14 +264,29 @@ const CallCard = (props) => {
                 marginBottom: "16px",
               }}
             >
-              {/* {mlData.summarytxt} */}
               {props.name.substring(0, props.name.length - 5)}
             </Typography>
+
             <Typography className={classes.pos} color="textSecondary">
               {props.date}
             </Typography>
           </CardContent>
         </Button>
+        {editDial()}
+
+        <Button
+          size="small"
+          color="primary"
+          className={classes.ebtn}
+          onClick={(e) => {
+            e.preventDefault();
+            setEditOpen(true);
+            console.log(editopen);
+          }}
+        >
+          <EditIcon style={{ fontSize: "20px" }} />
+        </Button>
+
         <Button
           size="small"
           color="primary"
@@ -193,6 +308,7 @@ const CallCard = (props) => {
         >
           <DeleteIcon />
         </Button>
+
         <Button
           size="small"
           color="primary"

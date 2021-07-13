@@ -7,7 +7,7 @@ import Zoom from "@material-ui/core/Zoom";
 import Fab from "@material-ui/core/Fab";
 import "./dispnotes.css";
 import "./create.css";
-
+import AlertContext from "../../pages/alertcontext";
 const MainNotes = () => {
   const { curRec, setCurRec } = useContext(recContext);
   const [isExpanded, setExpanded] = useState(false);
@@ -15,7 +15,7 @@ const MainNotes = () => {
   const [recnotes, setRecNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const [open, setOpen] = useState(false);
   const getnotes = async () => {
     const res = await axios.get("/app/notes");
     const notesdata = res.data;
@@ -34,6 +34,8 @@ const MainNotes = () => {
     console.log("fitlered notes on the basis of recs", curRecNotes);
     setRecNotes(curRecNotes);
   }, [notes, curRec]);
+
+  useEffect(() => {}, [open]);
 
   useEffect(() => {}, [recnotes]);
   return (
@@ -72,20 +74,27 @@ const MainNotes = () => {
               <Fab
                 onClick={async (event) => {
                   event.preventDefault();
-                  const note = {
-                    rec: curRec,
-                    title: title,
-                    content: content,
-                  };
-                  const res = await axios.post("/app/notes", note);
-                  console.log("after clicking add", res.data);
-                  setTitle("");
-                  setContent("");
-                  const resonse = await axios.get("/app/notes");
-                  const notesdata = resonse.data;
-                  setNotes(notesdata);
-                  const curRecNotes = notes.filter((ele) => ele.rec === curRec);
-                  setRecNotes(curRecNotes);
+                  if (true) {
+                    console.log("entering in domian");
+                    setOpen(true);
+                  } else {
+                    const note = {
+                      rec: curRec,
+                      title: title,
+                      content: content,
+                    };
+                    const res = await axios.post("/app/notes", note);
+                    console.log("after clicking add", res.data);
+                    setTitle("");
+                    setContent("");
+                    const resonse = await axios.get("/app/notes");
+                    const notesdata = resonse.data;
+                    setNotes(notesdata);
+                    const curRecNotes = notes.filter(
+                      (ele) => ele.rec === curRec
+                    );
+                    setRecNotes(curRecNotes);
+                  }
                 }}
               >
                 <AddIcon />
@@ -94,6 +103,17 @@ const MainNotes = () => {
           </form>
         </div>
 
+        <div>
+          {
+            <AlertContext
+              open={open}
+              message="Please Fill All the Details..!!"
+              type="error"
+              setOpen={setOpen}
+              dur={40000}
+            />
+          }
+        </div>
         {recnotes.map((ele) => {
           return (
             <Note

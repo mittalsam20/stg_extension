@@ -41,4 +41,22 @@ router.delete("/delrecurl/:id", async(req, res) => {
 
 
 
+router.patch("/rename/:id", async(req, res) => {
+    try {
+        const temp = req.params.id;
+        if (temp !== null) {
+            console.log(temp)
+            const result = await recordings.findByIdAndUpdate(temp, req.body, { new: true });
+            console.log(result);
+            res.status(200).json({ message: "NewName Updated..!!" });
+        } else {
+            res.status(404).json({ message: "No Such Recording Exist..!!" });
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
+
 module.exports = router;

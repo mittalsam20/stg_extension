@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { recContext } from "../../pages/homepage/homepage";
+import Button from "@material-ui/core/Button";
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import axios from "axios";
@@ -12,7 +13,7 @@ const Note = (props) => {
     <div className="note">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
-      <button
+      <Button
         onClick={async (e) => {
           e.preventDefault();
           axios
@@ -30,7 +31,7 @@ const Note = (props) => {
         }}
       >
         <DeleteIcon />
-      </button>
+      </Button>
     </div>
   );
 };

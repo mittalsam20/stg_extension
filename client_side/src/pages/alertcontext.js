@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertContext({ open, message, type, setOpen, dur }) {
   const classes = useStyles();
-  console.log("inside context", open, message, type);
+  console.log("inside context", open, message, type, dur);
   //   const handleClick = () => {
   //     setOpen(true);
   //   };

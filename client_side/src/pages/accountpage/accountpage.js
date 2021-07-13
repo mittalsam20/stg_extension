@@ -10,7 +10,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
+import AccInfo from "./accinfo";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -102,31 +102,15 @@ const AccountPage = () => {
           <Tab label="Account Info" {...a11yProps(0)} />
           <Tab label="Reset Password" {...a11yProps(1)} />
           <Tab label="Change Email" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
-          <Tab label="Item Six" {...a11yProps(5)} />
-          <Tab label="Item Seven" {...a11yProps(6)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          Item One
+          <AccInfo />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item Five
-        </TabPanel>
-        <TabPanel value={value} index={5}>
-          Item Six
-        </TabPanel>
-        <TabPanel value={value} index={6}>
-          Item Seven
         </TabPanel>
       </div>
     </>

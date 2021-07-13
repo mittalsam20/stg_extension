@@ -173,7 +173,7 @@ const Vplayer = () => {
   const [bookmarks, setBookmarks] = useState([]);
   const [state, setState] = useState({
     pip: false,
-    playing: true,
+    playing: false,
     controls: false,
     light: false,
     muted: false,
