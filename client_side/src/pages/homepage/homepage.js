@@ -109,10 +109,24 @@ const HomePage = () => {
                   }}
                 >
                   <Vplayer />
-                  <br />
-                  <br />
-
-                  <p>{mlData.summarytxt}</p>
+                  <div className="audiodiv">
+                    <div
+                      className="audiosubdiv"
+                      style={{
+                        padding: "8px",
+                        position: "relative",
+                        top: "-5px",
+                      }}
+                    >
+                      <h1
+                        className={classes.summaryh1}
+                        style={{ fontSize: "30px" }}
+                      >
+                        Transcribtion
+                      </h1>
+                      <p className={classes.summaryp}>{mlData.summarytxt}</p>
+                    </div>
+                  </div>
                 </Grid>
 
                 <Grid
