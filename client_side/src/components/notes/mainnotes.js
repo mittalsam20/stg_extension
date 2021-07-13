@@ -34,9 +34,11 @@ const MainNotes = () => {
     console.log("fitlered notes on the basis of recs", curRecNotes);
     setRecNotes(curRecNotes);
   }, [notes, curRec]);
+
+  useEffect(() => {}, [recnotes]);
   return (
     <>
-      <div className="dispnote">
+      <div className="dispnote exscroll">
         <div>
           <form className="create-note">
             {isExpanded && (
@@ -79,6 +81,11 @@ const MainNotes = () => {
                   console.log("after clicking add", res.data);
                   setTitle("");
                   setContent("");
+                  const resonse = await axios.get("/app/notes");
+                  const notesdata = resonse.data;
+                  setNotes(notesdata);
+                  const curRecNotes = notes.filter((ele) => ele.rec === curRec);
+                  setRecNotes(curRecNotes);
                 }}
               >
                 <AddIcon />

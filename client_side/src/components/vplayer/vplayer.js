@@ -333,7 +333,8 @@ const Vplayer = () => {
         maxWidth="md"
         style={{
           padding: "0px",
-          width: "100%",
+          maxWidth: "1000vh",
+          minWidth: "100vh",
           marginRight: "0",
           marginLeft: "0",
         }}

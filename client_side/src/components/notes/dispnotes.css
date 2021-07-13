@@ -3,11 +3,16 @@
     position: relative;
     right: 20px;
     top: -25px;
-    height: 500px;
+    /* height: 500px; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     /* overflow-y: hidden; */
+}
+
+.exscroll {
+    padding-bottom: 200px;
 }
 
 .dispnote::-webkit-scrollbar {

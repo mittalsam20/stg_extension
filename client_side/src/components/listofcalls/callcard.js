@@ -104,7 +104,7 @@ const CallCard = (props) => {
       audiotxt: audiores.data || "No Transcription Found Yet",
       pdfurl: pdfres.data,
     });
-    // console.log("text ka data", mlData.summarytxt);
+    console.log("text ka data", mlData.audiotxt);
   };
 
   const retUrl = async () => {

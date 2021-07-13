@@ -103,12 +103,14 @@ const HomePage = () => {
                   <ListOfCalls />
                 </Grid>
 
+                {/* // maxWidth: "60%", */}
                 <Grid
                   item
                   style={{
                     paddingLeft: "0px",
                     paddingRight: "8px",
-                    maxWidth: "60%",
+                    maxWidth: "1000vh",
+                    minWidth: "100vh",
                     flexShrink: "3",
                   }}
                 >

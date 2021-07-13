@@ -5,7 +5,10 @@ body {
 
 .loc-container {
     /* background-color: green; */
-    height: 550px;
+    /* height: 550px; */
+    height: 100vh;
+    max-width: 50vh;
+    /* min-width: 50vh; */
     overflow-y: scroll;
     border-right: 1px solid grey
 }
