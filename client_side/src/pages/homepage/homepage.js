@@ -124,7 +124,7 @@ const HomePage = () => {
                       >
                         Transcribtion
                       </h1>
-                      <p className={classes.summaryp}>{mlData.summarytxt}</p>
+                      <p className={classes.summaryp}>{mlData.audiotxt}</p>
                     </div>
                   </div>
                 </Grid>

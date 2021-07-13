@@ -91,12 +91,15 @@ const CallCard = (props) => {
   const { curRec, setCurRec } = useContext(recContext);
   const { mlData, setMldata } = useContext(mlContext);
 
-  const getTxt = async (txturl) => {
-    const res = await axios.get(txturl);
+  const getTxt = async (a, b, c) => {
+    const summaryres = await axios.get(a);
+    const audiores = await axios.get(b);
+    const pdfres = await axios.get(c);
+
     setMldata({
-      summarytxt: res.data,
-      audiotxt: "ss",
-      pdfurl: "sssss",
+      summarytxt: summaryres.data,
+      audiotxt: audiores.data,
+      pdfurl: pdfres.data,
     });
     // console.log("text ka data", mlData.summarytxt);
   };
@@ -118,9 +121,17 @@ const CallCard = (props) => {
             setCurRec(props.Key);
             console.log(temp);
             getTxt(
-              "http://localhost:5000/app/recording/recording_1625921327939.txt"
-              // "/ml/return-summary/recording_1625899142046_summary.txt"
+              `/ml/return-summary/${props.name
+                .substring(0, props.name.length - 5)
+                .concat("_summary.txt")}`,
+              `/ml/return-transcript/${props.name
+                .substring(0, props.name.length - 5)
+                .concat(".txt")}`,
+              `/ml/return-presentation/${props.name
+                .substring(0, props.name.length - 5)
+                .concat(".pdf")}`
               // "http://34.133.119.75/ml/return-summary/recording_1625899142046_summary.txt"
+              // "http://localhost:5000/app/recording/recording_1625921327939.txt"
             );
           }}
         >
@@ -174,6 +185,7 @@ const CallCard = (props) => {
           onClick={(e) => {
             e.preventDefault();
             saveAs(`http://localhost:5000/app${props.url}`, props.name);
+            saveAs(mlData.pdfurl, props.name);
           }}
         >
           <GetAppRoundedIcon />
