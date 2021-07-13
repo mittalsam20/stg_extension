@@ -140,7 +140,7 @@ const CallCard = (props) => {
               }}
             >
               {/* {mlData.summarytxt} */}
-              {props.name}
+              {props.name.substring(0, props.name.length - 5)}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
               {props.date}

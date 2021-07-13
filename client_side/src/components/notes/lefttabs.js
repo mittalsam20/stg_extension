@@ -47,13 +47,29 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 400,
+    borderLeft: "1px solid grey",
+  },
+  tab: {
+    position: "relative",
+    width: "50%",
+    borderRadius: "10px 10px 0 0",
+    color: "#3f51b5",
+    fontWeight: "500",
+    "&:hover": {
+      color: "#3f11ff",
+      opacity: 1,
+    },
+    "&:focus": {
+      backgroundColor: "#3f51b5",
+      color: "#ffffff",
+      transition: ".6s",
+    },
   },
   summaryp: {
-    padding: "0  0 0 10px ",
+    padding: "0 0 0 5px ",
   },
   summaryh1: {
-    fontSize: "25px",
-    padding: "10px",
+    padding: "5px 0 5px 5px",
     marginTop: "5px",
   },
   summaryplace: {
@@ -77,12 +93,21 @@ export default function LeftTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default" style={{ width: "350px" }}>
+      <AppBar
+        position="static"
+        color="default"
+        style={{
+          width: "320px",
+          borderRadius: "10px 10px 0 0",
+          margin: "10px",
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
+          backgroundColor="red"
           variant="fullWidth"
           aria-label="full width tabs example"
           style={{ boxShadow: 0 }}
@@ -91,11 +116,13 @@ export default function LeftTabs() {
             label="Notes"
             {...a11yProps(0)}
             style={{ position: "relative", width: "50%" }}
+            className={classes.tab}
           />
           <Tab
             label="Summary"
             {...a11yProps(1)}
             style={{ position: "relative", width: "50%" }}
+            className={classes.tab}
           />
         </Tabs>
       </AppBar>
@@ -118,7 +145,9 @@ export default function LeftTabs() {
                 top: "-5px",
               }}
             >
-              <h1 className={classes.summaryh1}>Summary</h1>
+              <h1 className={classes.summaryh1} style={{ fontSize: "30px" }}>
+                Summary
+              </h1>
               <p className={classes.summaryp}>{mlData.summarytxt}</p>
             </div>
           </div>
