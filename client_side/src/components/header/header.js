@@ -80,11 +80,13 @@ const Header = () => {
       <div className="auto-div">
         <h2 className="">Your Very Own Meeting Transcription Tool That Can</h2>
         <h2 className="slogan">
-          <span
-            class="txt-rotate"
-            data-period="2000"
-            data-rotate='[ "Record Meetings..!!", "Transcribe Audio..!!", "Make Automatic Notes", "Make Presentation" ]'
-          ></span>
+          <strong>
+            <span
+              class="txt-rotate"
+              data-period="2000"
+              data-rotate='[ "Record Meetings..!!", "Transcribe Audio..!!", "AI Written Summary..!!", "AI Made Presentation..!!" ]'
+            ></span>
+          </strong>
         </h2>
       </div>
     </div>

@@ -1,10 +1,9 @@
  .footer {
      background-color: #1f1f1f;
-     position: absolute;
-     top: 3480px;
+     position: relative;
      width: 100%;
      padding: 50px 0;
-     height: 220px;
+     height: 50vh;
  }
  
  .left-footer {
@@ -39,6 +38,7 @@
  .left-footer h3 {
      margin: 0 0 20px 10px;
      font-size: 18px;
+     color: #fff;
  }
  
  .social-buttons a {

@@ -6,7 +6,7 @@ const Pricing = () => {
 
   return (
     <>
-      <section className="pricing pt-5 mb-5 " id="pricing">
+      <section className="pricing pt-5  " id="pricing">
         <div className="container">
           <div className="pricing-head text-center mb-3">
             <h1>Plans & Pricing</h1>
@@ -49,7 +49,7 @@ const Pricing = () => {
               </div>
               <div className="packages">
                 <div className="pricing-title">BASIC</div>
-                <h2 className="text1">₹ 299/Month/User</h2>
+                <h2 className="text1">₹ -/Month/User</h2>
                 <ul className="list">
                   <li>
                     Video Recording <i className="fas fa-check"></i>
@@ -73,7 +73,7 @@ const Pricing = () => {
               </div>
               <div className="packages">
                 <div className="pricing-title">ENTERPRISE</div>
-                <h2 className="text1">₹ 999/Month for 5 user</h2>
+                <h2 className="text1">₹ -/Month/user</h2>
                 <ul className="list">
                   <li>
                     Video Recording <i className="fas fa-check"></i>

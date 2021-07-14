@@ -16,7 +16,8 @@
 
 .sitenav li {
     margin: 15px 3.5em auto 0;
-    color: #ffffff !important;
+    color: #FF8B00;
+    /* color: #ffffff !important; */
 }
 
 .solid {
@@ -28,6 +29,7 @@
 .sitenavlink {
     position: relative;
     text-decoration: none;
+    /* color: #FF8B00; */
     color: white;
     font-weight: 700;
     font-size: 1.3rem;

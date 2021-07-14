@@ -10,13 +10,16 @@ const Footer = () => {
           <h3> Made With ❤ in INDIA. </h3> <h3> FOLLOW US ON </h3>
         </div>
         <div class="social-buttons">
-          <a href="facebook.com">
+          <a href="https://www.facebook.com/edunomics2020" target="_blank">
             <i class="fab fa-facebook circle-icon"> </i>
           </a>
-          <a href="linkedin.com">
+          <a
+            href="https://www.linkedin.com/company/edunomics-tech-solutions/"
+            target="_blank"
+          >
             <i class="fab fa-linkedin-in circle-icon"> </i>
           </a>
-          <a href="twitter.com">
+          <a href="https://twitter.com/edunomics2020" target="_blank">
             <i class="fab fa-twitter circle-icon"> </i>
           </a>
         </div>

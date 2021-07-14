@@ -1,6 +1,6 @@
 .back_div {
     width: 100%;
-    height: 100vh;
+    height: 105vh;
     color: black;
     background-color: white;
     z-index: -1000;
@@ -12,7 +12,7 @@ strong {
 
 .back_img_div {
     width: 100%;
-    height: 100vh;
+    height: 105vh;
     background: rgba(0, 0, 0, 0.7)url(./manphonelap.png);
     background-blend-mode: darken;
     background-repeat: no-repeat;
@@ -24,7 +24,7 @@ strong {
 .back_img_div h2 {
     position: relative;
     top: 100px;
-    left: 30px;
+    left: 40px;
     margin-bottom: 30px;
     font-size: 33px;
     color: #FFFFFF;
@@ -43,7 +43,8 @@ strong {
 }
 
 .inner_why {
-    width: 2%;
+    position: absolute;
+    width: 1.7%;
     height: 100vh;
     background-color: red;
     z-index: 99999;

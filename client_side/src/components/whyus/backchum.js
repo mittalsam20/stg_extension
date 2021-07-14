@@ -4,7 +4,8 @@ const Backchum = () => {
     <>
       <div className="back_div">
         <div className="back_img_div">
-          {/* <div className="inner_why"></div> */}
+          <div className="inner_why"></div>
+
           <h2>WE WILL HAVE YOUR BACK AS A CLOSE CHUM..!!</h2>
           <ul>
             <li>
