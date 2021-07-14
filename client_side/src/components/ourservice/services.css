@@ -1,7 +1,7 @@
 .service_div {
     /* position: relative; */
     width: 100%;
-    height: 115vh;
+    height: 110vh;
     /* top: 623px; */
     /* height: 650px; */
     background-color: white;
@@ -10,9 +10,9 @@
 
 .service_img_div {
     /* position: relative; */
-    /* top: 623px; */
+    /* top: 600px; */
     width: 100%;
-    height: 115vh;
+    height: 110vh;
     /* height: 740px; */
     background: rgba(0, 0, 0, 0.6)url(./manphone.png);
     background-repeat: no-repeat;
@@ -27,9 +27,9 @@
 
 .service_img_div h1 {
     position: relative;
-    top: 40px;
+    top: 50px;
     font-size: 55px;
-    margin: 0px 0 70px 60px;
+    margin: 0px 0 80px 60px;
 }
 
 .service_img_div ul li h3 {
@@ -54,7 +54,7 @@
     width: 1.7%;
     position: absolute;
     left: 0%;
-    /* top: 0%; */
+    /* top: 10%; */
     height: 600px;
     background-color: red;
     z-index: 99999;

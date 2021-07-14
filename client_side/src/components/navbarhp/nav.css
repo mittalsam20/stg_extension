@@ -2,7 +2,7 @@
     /* border: 1px solid red; */
 }
 
-nav {
+.sitenav {
     position: fixed;
     top: 0px;
     width: 100%;
@@ -14,8 +14,9 @@ nav {
     transition: background-color 1.1s ease 0s;
 }
 
-nav li {
-    margin: auto 2em auto 0;
+.sitenav li {
+    margin: 15px 3.5em auto 0;
+    color: #ffffff !important;
 }
 
 .solid {
@@ -24,21 +25,20 @@ nav li {
     /* transition: color 1s ease 0s; */
 }
 
-.navlink {
+.sitenavlink {
     position: relative;
     text-decoration: none;
     color: white;
     font-weight: 700;
-    font-size: 1.2rem;
-    margin-right: 10px;
+    font-size: 1.3rem;
 }
 
-.navlink:after,
-.navlink:before {
+.sitenavlink:after,
+.sitenavlink:before {
     transition: all .5s;
 }
 
-.navlink:after {
+.sitenavlink:after {
     position: absolute;
     top: 27px;
     bottom: 0;
@@ -46,14 +46,15 @@ nav li {
     right: 0;
     margin: auto;
     width: 0%;
-    content: '.';
+    content: ' ';
     color: transparent;
     background: #ffffff;
     height: 3px;
 }
 
-.navlink:hover:after {
+.sitenavlink:hover:after {
     width: 100%;
+    color: #ffffff !important;
 }
 
 
@@ -63,14 +64,14 @@ nav li {
     }
      */
 
-nav img {
+.sitenav img {
     margin: 0 0 0 7em;
     width: 50%;
     border: none;
     /* border-radius: 10px; */
 }
 
-nav ul {
+.sitenav ul {
     margin-left: 600px;
     display: flex;
     justify-content: space-around;

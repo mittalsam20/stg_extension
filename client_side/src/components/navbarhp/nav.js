@@ -5,28 +5,28 @@ import "./nav.css";
 const Nav = () => {
   return (
     <>
-      <nav>
+      <nav className="sitenav">
         <a href="#top">
           <img className="nav_logo" src="/images/logo_t.png" alt="ST_LOGO" />
         </a>
         <ul>
           <li>
-            <a href="#top" className="navlink">
+            <a href="#top" className="sitenavlink">
               Home
             </a>
           </li>
           <li>
-            <a href="#services" className="navlink">
-              Services
+            <a href="#services" className="sitenavlink">
+              Features
             </a>
           </li>
-          <li>
-            <a href="#footer" className="navlink">
+          {/* <li>
+            <a href="#footer" className="sitenavlink">
               Contact Us
             </a>
-          </li>
+          </li> */}
           <li>
-            <Link to="/login" className="navlink">
+            <Link to="/login" className="sitenavlink">
               Login/Signup
             </Link>
           </li>

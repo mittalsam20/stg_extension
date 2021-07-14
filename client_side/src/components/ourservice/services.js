@@ -6,7 +6,7 @@ const Services = () => {
       <div className="service_div">
         <div className="service_img_div">
           <div className="inner_service" id="services"></div>
-          <h1>Our Services</h1>
+          <h1>Our Features</h1>
           <ul>
             <li>
               <h3>RECORDING AUDIO AND VIDEO </h3>
