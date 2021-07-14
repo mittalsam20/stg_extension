@@ -110,6 +110,23 @@ router.post("/login", async(req, res) => {
 });
 
 
+router.patch("/resetpass/:id", async(req, res) => {
+    try {
+        const temp = req.params.id;
+        if (temp !== null) {
+            console.log(temp)
+            const result = await user.findByIdAndUpdate(temp, req.body, { new: true });
+            console.log(result);
+            res.status(200).json({ message: "Password Updated..!!" });
+        } else {
+            res.status(404).json({ message: "Something went Wrong..!!" });
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
 router.get("/main", AuthMid, (req, res) => {
     console.log("entered in about");
     res.status(200).send(req.rootUser);

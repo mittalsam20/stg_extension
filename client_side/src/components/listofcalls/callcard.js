@@ -11,14 +11,14 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
+import Slide from "@material-ui/core/Slide";
 import {
   recContext,
   recurldata,
   mlContext,
 } from "../../pages/homepage/homepage";
 import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { updateRecContext } from "./listofcalls";
 import axios from "axios";
 import { saveAs } from "file-saver";
@@ -117,6 +117,10 @@ const useStyles = makeStyles({
   },
 });
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const CallCard = (props) => {
   const { temp, setTemp } = useContext(recurldata); //url link for current selected video
   const { curRec, setCurRec } = useContext(recContext); // contains key for cur rec then transffered to all comp
@@ -124,6 +128,8 @@ const CallCard = (props) => {
   const { filrecs, setFilRecs } = useContext(updateRecContext); //filtered recording for current user
   const [editopen, setEditOpen] = useState(false); //switch for edit modal
   const [newName, setNewname] = useState("");
+  const [delOpen, setDelopen] = useState(false); //switch for del alert modal
+
   const getTxt = async (a, b, c) => {
     const summaryres = await axios.get(a);
     const audiores = await axios.get(b);
@@ -235,7 +241,62 @@ const CallCard = (props) => {
     );
   };
 
-  useEffect(() => {}, [editopen]);
+  const delalert = () => {
+    return (
+      <div>
+        <Dialog
+          open={delOpen}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={() => {
+            setDelopen(false);
+          }}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">{props.name}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              <strong>
+                After this you won't be able to access its summary or pdf
+              </strong>
+              <br />
+              Do you really want to delete..?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setDelopen(false);
+              }}
+              color="primary"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                axios
+                  .delete(`app/delrecurl/${props.Key}`)
+                  .then((res) => {
+                    console.log(JSON.stringify(res.data));
+                    retUrl();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                setDelopen(false);
+              }}
+              color="primary"
+            >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  };
+
+  useEffect(() => {}, [editopen, delOpen]);
   return (
     <>
       <Card className={classes.root}>
@@ -283,6 +344,7 @@ const CallCard = (props) => {
           </CardContent>
         </Button>
         {editDial()}
+        {delalert()}
 
         <Button
           size="small"
@@ -304,15 +366,8 @@ const CallCard = (props) => {
           onClick={(e) => {
             e.preventDefault();
             console.log("ida ida", props.Key);
-            axios
-              .delete(`app/delrecurl/${props.Key}`)
-              .then((res) => {
-                console.log(JSON.stringify(res.data));
-                retUrl();
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+            setDelopen(true);
+
             console.log("ss");
           }}
         >

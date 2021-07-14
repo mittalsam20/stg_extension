@@ -1,6 +1,8 @@
 import "./reset.css";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
+import bcrypt from "bcryptjs";
+
 import axios from "axios";
 const ResetPass = ({ user }) => {
   const [oldPass, setOldpass] = useState("");
@@ -46,15 +48,46 @@ const ResetPass = ({ user }) => {
                 class="btn extra"
                 onClick={async (e) => {
                   e.preventDefault();
-                  const hashedoldPass = "hello";
-                  if (hashedoldPass === user.password) {
+                  const salt = await bcrypt.genSalt(10);
+                  console.log(oldPass);
+                  const hashedoldPass = await bcrypt.hash(oldPass, salt);
+                  console.log(hashedoldPass);
+                  console.log(user.password);
+                  const userLogPass = await bcrypt.compare(
+                    oldPass,
+                    user.password
+                  );
+                  console.log(userLogPass);
+                  //   if (oldPass === user.password) {
+                  if (userLogPass) {
                     if (newPass === newcPass) {
-                      axios.patch("/resetpassword/:id").then().catch();
+                      const salt = await bcrypt.genSalt(10);
+                      const hashednewpass = await bcrypt.hash(newPass, salt);
+                      var data = JSON.stringify({
+                        password: hashednewpass,
+                      });
+
+                      var config = {
+                        method: "patch",
+                        url: `http://localhost:5000/app/resetpass/${user._id}`,
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        data: data,
+                      };
+
+                      axios(config)
+                        .then(function (response) {
+                          console.log(JSON.stringify(response.data));
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
                     } else {
                       console.log("Password Are Not Matching..!");
                     }
                   } else {
-                    console.log("wrong old password");
+                    console.log("Incorrect Password..!!");
                   }
                 }}
               >
