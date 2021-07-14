@@ -35,9 +35,8 @@ const MainNotes = () => {
     setRecNotes(curRecNotes);
   }, [notes, curRec]);
 
-  useEffect(() => {}, [open]);
+  useEffect(() => {}, [open, recnotes]);
 
-  useEffect(() => {}, [recnotes]);
   return (
     <>
       <div className="dispnote exscroll">
@@ -74,27 +73,21 @@ const MainNotes = () => {
               <Fab
                 onClick={async (event) => {
                   event.preventDefault();
-                  if (true) {
-                    console.log("entering in domian");
-                    setOpen(true);
-                  } else {
-                    const note = {
-                      rec: curRec,
-                      title: title,
-                      content: content,
-                    };
-                    const res = await axios.post("/app/notes", note);
-                    console.log("after clicking add", res.data);
-                    setTitle("");
-                    setContent("");
-                    const resonse = await axios.get("/app/notes");
-                    const notesdata = resonse.data;
-                    setNotes(notesdata);
-                    const curRecNotes = notes.filter(
-                      (ele) => ele.rec === curRec
-                    );
-                    setRecNotes(curRecNotes);
-                  }
+
+                  const note = {
+                    rec: curRec,
+                    title: title,
+                    content: content,
+                  };
+                  const res = await axios.post("/app/notes", note);
+                  console.log("after clicking add", res.data);
+                  setTitle("");
+                  setContent("");
+                  const resonse = await axios.get("/app/notes");
+                  const notesdata = resonse.data;
+                  setNotes(notesdata);
+                  const curRecNotes = notes.filter((ele) => ele.rec === curRec);
+                  setRecNotes(curRecNotes);
                 }}
               >
                 <AddIcon />

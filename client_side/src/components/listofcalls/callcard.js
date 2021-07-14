@@ -54,8 +54,7 @@ const useStyles = makeStyles({
   },
   btn: {
     position: "relative",
-    bottom: "80px",
-
+    bottom: "82px",
     left: "12px",
     display: "flex",
     flexDirection: "row",
@@ -153,6 +152,29 @@ const CallCard = (props) => {
     console.log(mlData);
   }, [mlData]);
 
+  useEffect(() => {
+    var data = JSON.stringify({
+      recordingFileName: newName.concat(".webm"),
+    });
+    var config = {
+      method: "patch",
+      url: `http://localhost:5000/app/rename/${props.Key}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        retUrl();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [newName]);
+
   console.log("inside callcard", temp);
 
   const classes = useStyles();
@@ -172,16 +194,17 @@ const CallCard = (props) => {
           <DialogTitle id="form-dialog-title">Rename File</DialogTitle>
           <DialogContent>
             <TextField
+              onChange={(e) => {
+                setNewname(e.target.value);
+              }}
               autoFocus
               margin="dense"
               id="name"
               label="New Name"
               type="text"
               fullWidth
+              autoComplete="off"
               value={newName}
-              onchange={(e) => {
-                setNewname(e.target.value);
-              }}
             />
           </DialogContent>
           <DialogActions>
@@ -195,24 +218,11 @@ const CallCard = (props) => {
             </Button>
             <Button
               onClick={() => {
-                var data = JSON.stringify({
-                  recordingFileName: "ddddddddddddddddddddd",
-                });
-                var config = {
-                  method: "patch",
-                  url: `http://localhost:5000/app/rename/60e7e8e23f842d45bc5697dc`,
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  data: data,
-                };
-                axios(config)
-                  .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
+                if (newName === "") {
+                  setNewname("Cannot Be Empy");
+                } else if (newName.length > 21) {
+                  setNewname(newName.slice(0, 21));
+                }
                 setEditOpen(false);
               }}
               color="primary"

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -11,6 +11,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import AccInfo from "./accinfo";
+import ResetPass from "./resetpass";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -23,7 +25,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={10}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -53,10 +55,12 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    margin: "100px 10px 0 100px",
   },
 }));
 
 const AccountPage = () => {
+  const [root, setRoot] = useState({});
   const history = useHistory();
   const callMainPage = async () => {
     try {
@@ -64,7 +68,8 @@ const AccountPage = () => {
         withCredentials: true,
       });
       const userdata = res.data;
-      console.log("accpage", userdata);
+      setRoot(userdata);
+      console.log("acccpage", userdata);
       // setUser(userdata);
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -80,8 +85,10 @@ const AccountPage = () => {
     callMainPage();
   }, []);
 
+  useEffect(() => {}, [root]);
+
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -101,16 +108,12 @@ const AccountPage = () => {
         >
           <Tab label="Account Info" {...a11yProps(0)} />
           <Tab label="Reset Password" {...a11yProps(1)} />
-          <Tab label="Change Email" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <AccInfo />
+          <AccInfo user={root} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
+          <ResetPass user={root} />
         </TabPanel>
       </div>
     </>
