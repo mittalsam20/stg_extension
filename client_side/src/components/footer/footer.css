@@ -1,5 +1,6 @@
  .footer {
-     background-color: #1f1f1f;
+     /* background-color: #1f1f1f; */
+     background-color: #000000;
      position: relative;
      width: 100%;
      padding: 50px 0;
@@ -57,7 +58,7 @@
  }
  
  .social-buttons a:hover i {
-     background: linear-gradient(45deg, #ffffff, #ffffff);
+     background: linear-gradient(45deg, #FF8B00, #FF8B00);
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
      transform: scale(1.5);
@@ -76,6 +77,10 @@
      color: #ffffff;
  }
  
+ .left-footer span {
+     color: #FF8B00;
+ }
+ 
  hr {
      position: relative;
      top: 165px;
@@ -83,6 +88,7 @@
      width: 85%;
      height: 1px;
      border: 0;
+     color: #ffffff;
      border-top: 1px solid #ffffff;
      margin: 1px;
      padding: 0;
@@ -96,12 +102,17 @@
  
  .links-footer ul h3,
  .down-footer ul h3 {
-     font-size: 23px;
+     font-size: 28px;
  }
  
  .links-footer li,
  .down-footer li {
      margin: 0 0 15px 0;
+     font-size: 17px;
+ }
+ 
+ .links-footer li:hover {
+     color: #FF8B00;
  }
  
  .links-footer a,

@@ -78,7 +78,7 @@ const Header = () => {
         Download For Free
       </button>
       <div className="auto-div">
-        <h2 className="">Your Very Own Meeting Transcription Tool That Can</h2>
+        <h2>Your Very Own Meeting Transcription Tool That Can</h2>
         <h2 className="slogan">
           <strong>
             <span

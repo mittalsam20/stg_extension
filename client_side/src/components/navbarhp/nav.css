@@ -20,9 +20,15 @@
     /* color: #ffffff !important; */
 }
 
+.orange {
+    font-weight: 900;
+    color: #FF6700 !important;
+}
+
 .solid {
-    background-color: #1f1f1f;
+    background-color: #000000;
     transition: background-color 1.1s ease 0s;
+    color: #FF8B00 !important;
     /* transition: color 1s ease 0s; */
 }
 
@@ -32,7 +38,7 @@
     /* color: #FF8B00; */
     color: white;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.5vw;
 }
 
 .sitenavlink:after,
@@ -59,16 +65,13 @@
     color: #ffffff !important;
 }
 
-
-/* .navlink:hover {
-        color: grey;
-        text-decoration: underline;
-    }
-     */
+.sitenavlink:hover {
+    color: #ffffff;
+}
 
 .sitenav img {
-    margin: 0 0 0 7em;
-    width: 50%;
+    margin: 0 0 0 5em;
+    width: 7.5vw;
     border: none;
     /* border-radius: 10px; */
 }

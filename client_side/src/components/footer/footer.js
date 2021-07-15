@@ -47,7 +47,7 @@ const Footer = () => {
             <li> Google Meet Extension </li>
           </ul>
         </div>
-        <p> Copyright© 2021 | Script To Growth </p> <hr />
+        <p> Copyright © 2021 | Script To Growth </p> <hr />
       </div>
     </>
   );

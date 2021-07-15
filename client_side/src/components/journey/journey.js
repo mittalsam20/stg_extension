@@ -8,15 +8,22 @@ const Journey = () => {
           <li>
             COLLABORATE WITH US TO CREATE AN IMPACT THAT IS
             <br />
-            <strong> SCALABLE AND SUSTAINABLE</strong>
+            <span className="orange">
+              <strong>SCALABLE AND SUSTAINABLE</strong>
+            </span>
           </li>
           <li>
             GROWTH THAT IS ALWAYS SOARING AND
             <br />
-            <strong>RAISING THE BAR FOR COMPETITORS</strong>
+            <span className="orange">
+              <strong>RAISING THE BAR FOR COMPETITORS</strong>
+            </span>
           </li>
           <li>
-            <strong>EFFICIENCY</strong> THAT MAKES THE PATH DEPENDENCY
+            <span className="orange">
+              <strong>EFFICIENCY </strong>
+            </span>
+            THAT MAKES THE PATH DEPENDENCY
             <br />
             OF YOUR ORGANIZATION NOT DIFFICULT BUT IMPOSSIBLE TO FOLLOW
           </li>

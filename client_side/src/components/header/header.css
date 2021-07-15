@@ -21,9 +21,10 @@
     border-radius: 10px;
     padding: 10px;
     width: 30%;
-    margin: 4% auto;
+    margin: auto;
     color: #FFFFFF;
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: 2.4vw;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.5s;
@@ -40,8 +41,9 @@
 
 .header h1 {
     font-weight: 900;
-    font-size: 75px;
-    margin: 100px auto 0 auto;
+    /* font-size: 75px; */
+    font-size: 6vw;
+    margin: 90px auto 0 auto;
     color: white;
 }
 
@@ -67,16 +69,25 @@
     /* transform: translate(45%, 0); */
     color: white;
     font-weight: 100;
-    font-size: 20px;
+    /* font-size: 30vw; */
+    /* font-size: 20px; */
     margin-bottom: 0px;
+}
+
+.auto-div h2 {
+    font-weight: 100;
+    font-size: 3vw;
 }
 
 .txt-rotate {
     /* position: absolute; */
-    font-size: 50px;
+    /* font-size: 50px; */
+    font-size: 3.7vw;
     font-weight: 1000;
     /* color: #FFFFFF; */
-    color: #FF8B00;
+    color: #FF6700;
+    /* color: #FF8B00; */
+    /* color: rgba(255, 130, 0, 100); */
 }
 
 .slogan {
