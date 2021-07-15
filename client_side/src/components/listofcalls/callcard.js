@@ -16,6 +16,7 @@ import {
   recContext,
   recurldata,
   mlContext,
+  durContext,
 } from "../../pages/homepage/homepage";
 import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 import React, { useContext, useEffect, useState } from "react";
@@ -127,9 +128,9 @@ const CallCard = (props) => {
   const { mlData, setMldata } = useContext(mlContext); //all mldata for current recording
   const { filrecs, setFilRecs } = useContext(updateRecContext); //filtered recording for current user
   const [editopen, setEditOpen] = useState(false); //switch for edit modal
-  const [newName, setNewname] = useState("");
+  const [newName, setNewname] = useState("Cannot Be Empty" || "");
   const [delOpen, setDelopen] = useState(false); //switch for del alert modal
-
+  const [curDur, setCurDur] = useContext(durContext);
   const getTxt = async (a, b, c) => {
     const summaryres = await axios.get(a);
     const audiores = await axios.get(b);
@@ -303,6 +304,8 @@ const CallCard = (props) => {
         <Button
           onClick={() => {
             setTemp(`http://localhost:5000/app${props.url}`);
+            setCurDur(props.recordingDuration);
+
             setCurRec(props.Key);
             console.log(temp);
             getTxt(

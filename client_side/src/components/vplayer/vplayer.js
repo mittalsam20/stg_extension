@@ -17,7 +17,7 @@ import VolumeMute from "@material-ui/icons/VolumeOff";
 import FullScreen from "@material-ui/icons/Fullscreen";
 import Popover from "@material-ui/core/Popover";
 import screenfull from "screenfull";
-import { recurldata } from "../../pages/homepage/homepage";
+import { recurldata, durContext } from "../../pages/homepage/homepage";
 
 const useStyles = makeStyles((theme) => ({
   playerWrapper: {
@@ -163,6 +163,7 @@ let count = 0;
 
 const Vplayer = () => {
   const { temp } = useContext(recurldata);
+  const [curDur, setCurDur] = useContext(durContext);
 
   console.log("inside vplayer value of url", temp);
   const classes = useStyles();
@@ -178,7 +179,7 @@ const Vplayer = () => {
     light: false,
     muted: false,
     played: 0,
-    duration: 0,
+    duration: curDur,
     playbackRate: 1.0,
     volume: 1,
     loop: false,

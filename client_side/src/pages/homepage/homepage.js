@@ -47,16 +47,22 @@ const mlContext = createContext({
   mlData: "",
   setMldata: () => {},
 });
+const durContext = createContext({
+  curDur: 0,
+  setCurDur: () => {},
+});
+
 //-----------------------------HOMEPAGE RAFCE
 const HomePage = () => {
   const [temp, setTemp] = useState("");
+  const [curDur, setCurDur] = useState(0);
   const [curRec, setCurRec] = useState("");
   const [mlData, setMldata] = useState({
     summarytxt: "",
     audiotxt: "",
     pdfurl: "",
   });
-
+  const dlvalue = { curDur, setCurDur };
   const mlvalue = { mlData, setMldata };
   const value = { temp, setTemp };
   const nvalue = { curRec, setCurRec };
@@ -90,73 +96,76 @@ const HomePage = () => {
     <recurldata.Provider value={value}>
       <recContext.Provider value={nvalue}>
         <mlContext.Provider value={mlvalue}>
-          <>
-            <div className="full">
-              <Nav />
-              <Grid
-                container
-                className={classes.root}
-                spacing={2}
-                style={{ flexWrap: "nowrap", maxWidth: "100%" }}
-              >
-                <Grid item>
-                  <ListOfCalls />
-                </Grid>
+          <durContext.Provider value={dlvalue}>
+            <>
+              <div className="full">
+                <Nav />
+                <Grid
+                  container
+                  className={classes.root}
+                  spacing={2}
+                  style={{ flexWrap: "nowrap", maxWidth: "100%" }}
+                >
+                  <Grid item>
+                    <ListOfCalls />
+                  </Grid>
 
-                {/* // maxWidth: "60%", */}
-                <Grid
-                  item
-                  style={{
-                    paddingLeft: "0px",
-                    paddingRight: "8px",
-                    maxWidth: "1000vh",
-                    minWidth: "100vh",
-                    flexShrink: "3",
-                  }}
-                  className="centerdiv"
-                >
-                  {/* <div className="centerdiv"> */}
-                  <Vplayer />
-                  <div className="audiodiv">
-                    <div
-                      className="audiosubdiv"
-                      style={{
-                        padding: "8px",
-                        position: "relative",
-                        top: "-5px",
-                      }}
-                    >
-                      <h1
-                        className={classes.summaryh1}
-                        style={{ fontSize: "30px" }}
+                  {/* // maxWidth: "60%", */}
+                  <Grid
+                    item
+                    style={{
+                      paddingLeft: "0px",
+                      paddingRight: "8px",
+                      maxWidth: "1000vh",
+                      minWidth: "100vh",
+                      flexShrink: "3",
+                    }}
+                    className="centerdiv"
+                  >
+                    {/* <div className="centerdiv"> */}
+                    <Vplayer />
+                    <div className="audiodiv">
+                      <div
+                        className="audiosubdiv"
+                        style={{
+                          padding: "8px",
+                          position: "relative",
+                          top: "-5px",
+                        }}
                       >
-                        Transcribtion
-                      </h1>
-                      <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                        <h1
+                          className={classes.summaryh1}
+                          style={{ fontSize: "30px" }}
+                        >
+                          Transcribtion
+                        </h1>
+                        <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                      </div>
                     </div>
-                  </div>
-                  {/* </div> */}
+                    {/* </div> */}
+                  </Grid>
+                  <Grid
+                    item
+                    style={{
+                      paddingLeft: "0",
+                      paddingRight: "0",
+                      maxWidth: "25%",
+                      flexShrink: "3",
+                    }}
+                  >
+                    <LeftTabs />
+                  </Grid>
                 </Grid>
-                <Grid
-                  item
-                  style={{
-                    paddingLeft: "0",
-                    paddingRight: "0",
-                    maxWidth: "25%",
-                    flexShrink: "3",
-                  }}
-                >
-                  <LeftTabs />
-                </Grid>
-              </Grid>
-            </div>
-          </>
+              </div>
+            </>
+          </durContext.Provider>
         </mlContext.Provider>
       </recContext.Provider>
     </recurldata.Provider>
   );
 };
 
+export { durContext };
 export { recurldata };
 export { recContext };
 export { mlContext };
