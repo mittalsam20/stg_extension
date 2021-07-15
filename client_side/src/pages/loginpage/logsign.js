@@ -168,17 +168,28 @@ const LogSign = () => {
   //     }
   //   }, [validator]);
 
+  //----------------------------------RANDOM PASSWORD GENERATOR---------------------------------------
+  const passgen = () => {
+    const length = 9;
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+  };
+
   //----------------------------------RETURN FUNCTION---------------------------------------
   const [forgotOpen, setForgotopen] = useState(false);
   const [forEmail, setForemail] = useState("");
   const [otp, setotp] = useState("");
+  const [mailedotp, setMailedotp] = useState(
+    Math.floor(100000 + Math.random() * 900000)
+  );
+  const [newPass, setNewpass] = useState(passgen());
 
-  const templateParams = {
-    name: "James",
-    notes: "Check this out!",
-  };
-
-  // useEffect(() => {}, [alboxcont.message, alboxcont.open, alboxcont.type]);
+  useEffect(() => {}, [mailedotp, otp, newPass, forEmail]);
   const forgotpass = () => {
     console.log(forgotOpen);
     return (
@@ -210,16 +221,29 @@ const LogSign = () => {
             <DialogActions>
               <Button
                 onClick={(e) => {
+                  // setMailedotp(Math.floor(100000 + Math.random() * 900000));
+                  console.log(mailedotp);
                   e.preventDefault();
                   emailjs
                     .send(
-                      "<YOUR SERVICE ID>",
-                      "<YOUR TEMPLATE ID>",
-                      templateParams,
-                      "<YOUR USER ID>"
+                      "service_9bpsy9c",
+                      "template_v545mxb",
+                      {
+                        from_name: "Script To Growth",
+                        to_name: "user ka naam",
+                        message: mailedotp,
+                        user: forEmail,
+                      },
+                      "user_JvU7IPyDjI1J1OCd53U8i"
                     )
                     .then(
                       (response) => {
+                        setAlboxcont({
+                          open: true,
+                          message: "OTP HAS BEEN MAILED..!!",
+                          type: "success",
+                          dur: 7000,
+                        });
                         console.log("SUCCESS!", response.status, response.text);
                       },
                       (err) => {
@@ -251,6 +275,45 @@ const LogSign = () => {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
+                  console.log(mailedotp, otp);
+                  if (mailedotp === Number(otp)) {
+                    emailjs
+                      .send(
+                        "service_9bpsy9c",
+                        "template_iibcj0f",
+                        {
+                          to_name: "user ka naam",
+                          message: newPass,
+                          user: forEmail,
+                        },
+                        "user_JvU7IPyDjI1J1OCd53U8i"
+                      )
+                      .then(
+                        (response) => {
+                          setAlboxcont({
+                            open: true,
+                            message: "NEW PASSWORD HAS BEEN MAILED..!!",
+                            type: "success",
+                            dur: 7000,
+                          });
+                          console.log(
+                            "SUCCESS!",
+                            response.status,
+                            response.text
+                          );
+                        },
+                        (err) => {
+                          console.log("FAILED...", err);
+                        }
+                      );
+                  } else {
+                    setAlboxcont({
+                      open: true,
+                      message: "OTP ENTERED IS WRONG..!!",
+                      type: "error",
+                      dur: 7000,
+                    });
+                  }
                 }}
                 color="primary"
               >
