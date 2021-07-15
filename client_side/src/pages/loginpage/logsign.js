@@ -2,6 +2,12 @@ import "./logsign.scss";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import { useHistory } from "react-router-dom";
 import Car from "./car";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
@@ -10,6 +16,7 @@ import AlertContext from "../alertcontext";
 import { height } from "@material-ui/system";
 import { Link } from "react-router-dom";
 import FormDialog from "./dialog";
+import emailjs from "emailjs-com";
 
 const LogSign = () => {
   //---------------------USESTATES--------------------------
@@ -51,7 +58,6 @@ const LogSign = () => {
   const [fullName, setFullName] = useState("");
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
-  const [dopen, setDopen] = useState(false);
   const [emailVal, setEmailval] = useState(true);
   const [passCheck, setpasscheck] = useState(false);
   const [alboxcont, setAlboxcont] = useState({
@@ -163,8 +169,99 @@ const LogSign = () => {
   //   }, [validator]);
 
   //----------------------------------RETURN FUNCTION---------------------------------------
+  const [forgotOpen, setForgotopen] = useState(false);
+  const [forEmail, setForemail] = useState("");
+  const [otp, setotp] = useState("");
+
+  const templateParams = {
+    name: "James",
+    notes: "Check this out!",
+  };
 
   // useEffect(() => {}, [alboxcont.message, alboxcont.open, alboxcont.type]);
+  const forgotpass = () => {
+    console.log(forgotOpen);
+    return (
+      <div>
+        <Dialog
+          open={forgotOpen}
+          onClose={() => {
+            setForgotopen(false);
+          }}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">
+            Reset Password via Email-Id
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              onChange={(e) => {
+                setForemail(e.target.value);
+              }}
+              autoFocus
+              margin="dense"
+              id="foremail"
+              label="Email-Id"
+              type="email"
+              fullWidth
+              autoComplete="off"
+              value={forEmail}
+            />
+            <DialogActions>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  emailjs
+                    .send(
+                      "<YOUR SERVICE ID>",
+                      "<YOUR TEMPLATE ID>",
+                      templateParams,
+                      "<YOUR USER ID>"
+                    )
+                    .then(
+                      (response) => {
+                        console.log("SUCCESS!", response.status, response.text);
+                      },
+                      (err) => {
+                        console.log("FAILED...", err);
+                      }
+                    );
+                }}
+                color="primary"
+              >
+                SEND OTP
+              </Button>
+            </DialogActions>
+          </DialogContent>
+
+          <DialogContent>
+            <TextField
+              onChange={(e) => {
+                setotp(e.target.value);
+              }}
+              margin="dense"
+              id="forotp"
+              label="OTP"
+              type="text"
+              fullWidth
+              autoComplete="off"
+              value={otp}
+            />
+            <DialogActions>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+                color="primary"
+              >
+                Verify OTP
+              </Button>
+            </DialogActions>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -184,6 +281,8 @@ const LogSign = () => {
               dur={alboxcont.dur}
             />
           }
+          {forgotpass()}
+
           <h1>Script To Growth</h1>
           <section className="main">
             <div className="form_wrapper">
@@ -229,10 +328,7 @@ const LogSign = () => {
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
-                      setDopen(true);
-                      {
-                        <FormDialog dopen={dopen} setDopen={setDopen} />;
-                      }
+                      setForgotopen(true);
                     }}
                   >
                     Forgot password ?

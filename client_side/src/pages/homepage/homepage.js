@@ -137,7 +137,7 @@ const HomePage = () => {
                           className={classes.summaryh1}
                           style={{ fontSize: "30px" }}
                         >
-                          Transcribtion
+                          Transcription
                         </h1>
                         <p className={classes.summaryp}>{mlData.audiotxt}</p>
                       </div>

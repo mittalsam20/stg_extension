@@ -2,17 +2,31 @@ import "./reset.css";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import bcrypt from "bcryptjs";
-
+import AlertContext from "../alertcontext";
 import axios from "axios";
 const ResetPass = ({ user }) => {
   const [oldPass, setOldpass] = useState("");
   const [newPass, setNewpass] = useState("");
   const [newcPass, setNewcpass] = useState("");
-
+  const [alboxcont, setAlboxcont] = useState({
+    open: false,
+    message: "",
+    type: "",
+    dur: 1,
+  });
   return (
     <>
       <div>
         <h1>Reset Password</h1>
+        {
+          <AlertContext
+            open={alboxcont.open}
+            message={alboxcont.message}
+            type={alboxcont.type}
+            setOpen={setAlboxcont}
+            dur={alboxcont.dur}
+          />
+        }
         <div class="resetcont">
           <div id="resetform">
             <form>
@@ -79,15 +93,42 @@ const ResetPass = ({ user }) => {
                       axios(config)
                         .then(function (response) {
                           console.log(JSON.stringify(response.data));
+                          setAlboxcont({
+                            open: true,
+                            message: "Password Changed..!!",
+                            type: "success",
+                            dur: 4000,
+                          });
+                          setOldpass("");
+                          setNewpass("");
+                          setNewcpass("");
                         })
                         .catch(function (error) {
                           console.log(error);
+                          setAlboxcont({
+                            open: true,
+                            message: "Server Error..!!",
+                            type: "error",
+                            dur: 4000,
+                          });
                         });
                     } else {
-                      console.log("Password Are Not Matching..!");
+                      console.log("Password Are Not Matching..!!");
+                      setAlboxcont({
+                        open: true,
+                        message: "Password Are Not Matching..!!",
+                        type: "error",
+                        dur: 4000,
+                      });
                     }
                   } else {
-                    console.log("Incorrect Password..!!");
+                    console.log("Incorrect Old Password..!!");
+                    setAlboxcont({
+                      open: true,
+                      message: "Incorrect Old Password..!!",
+                      type: "error",
+                      dur: 4000,
+                    });
                   }
                 }}
               >

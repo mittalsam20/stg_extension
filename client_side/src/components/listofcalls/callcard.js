@@ -115,6 +115,9 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "rgb(200,200,200)",
     },
+    "&:hover .tooltiptext": {
+      visibility: "visible",
+    },
   },
 });
 
@@ -130,7 +133,7 @@ const CallCard = (props) => {
   const [editopen, setEditOpen] = useState(false); //switch for edit modal
   const [newName, setNewname] = useState("Cannot Be Empty" || "");
   const [delOpen, setDelopen] = useState(false); //switch for del alert modal
-  const [curDur, setCurDur] = useContext(durContext);
+  const { curDur, setCurDur } = useContext(durContext);
   const getTxt = async (a, b, c) => {
     const summaryres = await axios.get(a);
     const audiores = await axios.get(b);

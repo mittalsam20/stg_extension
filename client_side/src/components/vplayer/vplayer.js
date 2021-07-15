@@ -163,7 +163,7 @@ let count = 0;
 
 const Vplayer = () => {
   const { temp } = useContext(recurldata);
-  const [curDur, setCurDur] = useContext(durContext);
+  const { curDur, setCurDur } = useContext(durContext);
 
   console.log("inside vplayer value of url", temp);
   const classes = useStyles();
