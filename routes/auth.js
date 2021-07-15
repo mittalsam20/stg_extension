@@ -127,6 +127,28 @@ router.patch("/resetpass/:id", async(req, res) => {
 })
 
 
+router.get("/forgotpass/:emailid", async(req, res) => {
+    try {
+        const temp = req.params.emailid;
+        if (temp !== null) {
+            console.log(temp)
+            const result = await user.findOne({ emailId, temp });
+            console.log(result);
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).json({ message: "Email Not Recognized Please Signup With Us..!!" });
+            }
+        } else {
+            res.status(400).json({ message: "Please Fill The Email-Id Field..!!" });
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+
+
 router.get("/main", AuthMid, (req, res) => {
     console.log("entered in about");
     res.status(200).send(req.rootUser);

@@ -314,6 +314,9 @@ const LogSign = () => {
                       dur: 7000,
                     });
                   }
+                  setForemail("");
+                  setotp("");
+                  setForgotopen(false);
                 }}
                 color="primary"
               >
