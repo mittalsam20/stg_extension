@@ -25,9 +25,10 @@ const Car = () => {
         </div>
         <div className=" fourth">
           <h1>
-            Accurate <span>Transcription</span>
+            Accurate <span>Transcription </span>
+            Of
             <br />
-            of Audio In Your Hands
+            Audio In Your Hands
           </h1>
         </div>
         <div className=" first">

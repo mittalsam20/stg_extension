@@ -10,6 +10,7 @@ import AlertContext from "../alertcontext";
 import { height } from "@material-ui/system";
 import { Link } from "react-router-dom";
 import FormDialog from "./dialog";
+
 const LogSign = () => {
   //---------------------USESTATES--------------------------
   const { rootUser, setRootUser } = useContext(userData);
@@ -51,6 +52,8 @@ const LogSign = () => {
   const [logEmail, setLogEmail] = useState("");
   const [logPass, setLogPass] = useState("");
   const [dopen, setDopen] = useState(false);
+  const [emailVal, setEmailval] = useState(true);
+  const [passCheck, setpasscheck] = useState(false);
   const [alboxcont, setAlboxcont] = useState({
     open: false,
     message: "",
@@ -92,8 +95,10 @@ const LogSign = () => {
     const data = await res.data;
     // console.log("parser", data.message);
     if (data.message === "Email is Correct") {
+      setEmailval(true);
       return 1;
     } else {
+      setEmailval(false);
       setAlboxcont({
         open: true,
         message: "Please Use a Valid Email..!!",
@@ -116,7 +121,8 @@ const LogSign = () => {
       });
     }
     if (a === b && a !== "") {
-      // console.log("matched");
+      setpasscheck(true);
+      console.log("matched");
       setAlboxcont({
         open: true,
         message: "Password's are matching..!!",
@@ -124,6 +130,8 @@ const LogSign = () => {
         dur: 1000,
       });
       if (a.length < 8) {
+        setpasscheck(false);
+
         console.log("sss", a.length);
         setAlboxcont({
           open: true,
@@ -134,6 +142,8 @@ const LogSign = () => {
       }
       return 1;
     } else if (a !== "") {
+      setpasscheck(false);
+
       console.log("not matched");
       setAlboxcont({
         open: true,
@@ -174,7 +184,7 @@ const LogSign = () => {
               dur={alboxcont.dur}
             />
           }
-          <h2>Script To Growth</h2>
+          <h1>Script To Growth</h1>
           <section className="main">
             <div className="form_wrapper">
               <input
@@ -311,7 +321,7 @@ const LogSign = () => {
                       value={InputPass}
                       onChange={(ev) => {
                         setInputPass(ev.target.value);
-                        passwordChecker(InputPass, ev.target.value);
+                        passwordChecker(InputConfirmPass, ev.target.value);
                       }}
                       type="password"
                       className="input"
@@ -338,9 +348,12 @@ const LogSign = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       // console.log("clicked");
+                      EmailApi(InputEmail);
+                      console.log(emailVal, passCheck);
                       if (
-                        EmailApi(InputEmail) &&
-                        passwordChecker(InputPass, InputConfirmPass)
+                        emailVal &&
+                        passCheck
+                        // passwordChecker(InputPass, InputConfirmPass)
                       ) {
                         const reg = {
                           emailId: InputEmail,

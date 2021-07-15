@@ -20,9 +20,9 @@
 }
 
 .first span {
-    font-weight: 900;
+    font-weight: 900 !important;
     color: black;
-    font-size: 50px;
+    font-size: 70px;
 }
 
 .car-contain {
@@ -33,7 +33,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .2)url(./images/5-min.jpg);
+    background: rgba(0, 0, 0, .4)url(./images/5-min.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,15 +44,15 @@
     margin: 40px;
     position: absolute;
     bottom: 50px;
-    left: 50px;
+    left: 100px;
     font-weight: 700;
     color: white;
 }
 
 .sec span {
-    font-weight: 900;
+    font-weight: 900 !important;
     color: black;
-    font-size: 60px;
+    font-size: 70px;
 }
 
 .third {
@@ -68,17 +68,17 @@
 
 .third h1 {
     position: absolute;
-    bottom: 150px;
-    left: 30px;
-    margin: 30px;
+    bottom: 130px;
+    left: 50px;
+    margin: 50px;
     font-weight: 700;
     color: white;
 }
 
 .third span {
-    font-weight: 900;
+    font-weight: 900 !important;
     color: black;
-    font-size: 60px;
+    font-size: 70px;
 }
 
 .fourth {
@@ -102,9 +102,9 @@
 }
 
 .fourth span {
-    font-weight: 900;
+    font-weight: 900 !important;
     color: black;
-    font-size: 55px;
+    font-size: 70px;
 }
 
 .fifth {
@@ -121,7 +121,7 @@
 .fifth h1 {
     position: absolute;
     top: 50px;
-    left: 20px;
+    left: 10px;
     margin: 40px;
     font-weight: 700;
     color: white;
@@ -130,5 +130,5 @@
 .fifth span {
     font-weight: 900;
     color: palevioletred;
-    font-size: 65px;
+    font-size: 70px;
 }
