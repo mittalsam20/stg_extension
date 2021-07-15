@@ -78,7 +78,7 @@
             
             .pricing-head {
                 font-family: 'Wavehaus';
-                font-weight: 900;
+                font-weight: 900 !important;
                 font-size: 25px;
             }
             

@@ -23,7 +23,7 @@
     outline: none;
 }
 
-.EmailFormDiv button {
+.diffbutton {
     background-color: transparent;
     border: solid 3px #252826;
     border-radius: 8px;

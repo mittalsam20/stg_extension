@@ -3,16 +3,18 @@ import "./email_form.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
-
+import AlertContext from "../../pages/alertcontext";
 var reg = {
   emailId: "",
 };
 const EmailForm = () => {
   const [InputEmail, setInputEmail] = useState("");
-  const [validator, setValidator] = useState(2);
-  const [EmailChecker, setemailChecker] = useState(
-    "Please Enter Your Email To Download The Extension"
-  );
+  const [alcont, setAlcont] = useState({
+    open: false,
+    message: "",
+    type: "",
+    dur: 1,
+  });
 
   const EmailApi = async (Email) => {
     // const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc";
@@ -26,7 +28,12 @@ const EmailForm = () => {
     if (data.message === "Email is Correct") {
       console.log(Email);
       reg.emailId = Email;
-      setValidator(1);
+      setAlcont({
+        open: true,
+        message: "Extension Downloaded..!!",
+        type: "success",
+        dur: 4000,
+      });
       axios.post("/app/email", reg).then((res) => console.log(res.data));
       // console.log(data.sanitized_email);
       saveAs(
@@ -36,8 +43,15 @@ const EmailForm = () => {
       setInputEmail("");
       // console.log(validator);
     } else {
-      setValidator(0);
+      setAlcont({
+        open: true,
+        message: "Please Use A Valid Email.!!",
+        type: "error",
+        dur: 4000,
+      });
       console.log("set 0");
+      setInputEmail("");
+
       // console.log("Please Enter An Valid Email..!!");
       // console.log(validator);
     }
@@ -51,18 +65,10 @@ const EmailForm = () => {
   function handleClick(e) {
     e.preventDefault();
     EmailApi(InputEmail);
+    setAlcont({ ...alcont, open: false });
   }
 
-  useEffect(() => {
-    // console.log(validator);
-    if (validator === 1) {
-      setemailChecker("Started Downloading..!");
-    } else if (validator === 0) {
-      setemailChecker("Please use a valid Email-Id");
-    } else {
-      setemailChecker("Enter Your Email To Download The Extension");
-    }
-  }, [validator]);
+  useEffect(() => {}, [alcont]);
   // const getid = () => {
   //   return reg.emailId;
   // };
@@ -79,9 +85,21 @@ const EmailForm = () => {
               placeHolder="Email"
               value={InputEmail}
             />
-            <button onClick={handleClick}> Download </button>
+            <button className="diffbutton" onClick={handleClick}>
+              {" "}
+              Download{" "}
+            </button>
           </form>
-          <p> {EmailChecker} </p>
+          <p>Enter Your Email To Download The Extension</p>
+          {
+            <AlertContext
+              open={alcont.open}
+              message={alcont.message}
+              type={alcont.type}
+              setOpen={setAlcont}
+              dur={4000}
+            />
+          }
         </div>
       </div>
     </>
