@@ -132,7 +132,7 @@ router.get("/forgotpass/:emailid", async(req, res) => {
         const temp = req.params.emailid;
         if (temp !== null) {
             console.log(temp)
-            const result = await user.findOne({ emailId, temp });
+            const result = await user.findOne({ emailId: temp });
             console.log(result);
             if (result) {
                 res.status(200).send(result);
@@ -143,6 +143,7 @@ router.get("/forgotpass/:emailid", async(req, res) => {
             res.status(400).json({ message: "Please Fill The Email-Id Field..!!" });
         }
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 })

@@ -1,5 +1,7 @@
 import "./logsign.scss";
 import axios from "axios";
+import bcrypt from "bcryptjs";
+
 import { useState, useEffect, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -184,12 +186,13 @@ const LogSign = () => {
   const [forgotOpen, setForgotopen] = useState(false);
   const [forEmail, setForemail] = useState("");
   const [otp, setotp] = useState("");
+  const [forUser, setforuser] = useState({});
   const [mailedotp, setMailedotp] = useState(
     Math.floor(100000 + Math.random() * 900000)
   );
   const [newPass, setNewpass] = useState(passgen());
 
-  useEffect(() => {}, [mailedotp, otp, newPass, forEmail]);
+  useEffect(() => {}, [mailedotp, otp, newPass, forEmail, forUser]);
   const forgotpass = () => {
     console.log(forgotOpen);
     return (
@@ -222,34 +225,47 @@ const LogSign = () => {
               <Button
                 onClick={(e) => {
                   // setMailedotp(Math.floor(100000 + Math.random() * 900000));
-                  console.log(mailedotp);
                   e.preventDefault();
-                  emailjs
-                    .send(
-                      "service_9bpsy9c",
-                      "template_v545mxb",
-                      {
-                        from_name: "Script To Growth",
-                        to_name: "user ka naam",
-                        message: mailedotp,
-                        user: forEmail,
-                      },
-                      "user_JvU7IPyDjI1J1OCd53U8i"
-                    )
-                    .then(
-                      (response) => {
-                        setAlboxcont({
-                          open: true,
-                          message: "OTP HAS BEEN MAILED..!!",
-                          type: "success",
-                          dur: 7000,
-                        });
-                        console.log("SUCCESS!", response.status, response.text);
-                      },
-                      (err) => {
-                        console.log("FAILED...", err);
-                      }
-                    );
+                  console.log(mailedotp);
+                  axios
+                    .get(`http://localhost:5000/app/forgotpass/${forEmail}`)
+                    .then(function (response) {
+                      setforuser(response.data);
+                      console.log(JSON.stringify(response.data));
+                      emailjs
+                        .send(
+                          "service_9bpsy9c",
+                          "template_v545mxb",
+                          {
+                            from_name: "Script To Growth",
+                            to_name: forUser.fullName,
+                            message: mailedotp,
+                            user: forEmail,
+                          },
+                          "user_JvU7IPyDjI1J1OCd53U8i"
+                        )
+                        .then(
+                          (response) => {
+                            setAlboxcont({
+                              open: true,
+                              message: "OTP HAS BEEN MAILED..!!",
+                              type: "success",
+                              dur: 7000,
+                            });
+                            console.log(
+                              "SUCCESS!",
+                              response.status,
+                              response.text
+                            );
+                          },
+                          (err) => {
+                            console.log("FAILED...", err);
+                          }
+                        );
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
                 }}
                 color="primary"
               >
@@ -273,16 +289,51 @@ const LogSign = () => {
             />
             <DialogActions>
               <Button
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault();
                   console.log(mailedotp, otp);
                   if (mailedotp === Number(otp)) {
+                    const salt = await bcrypt.genSalt(10);
+                    const hashednewpass = await bcrypt.hash(newPass, salt);
+                    var data = JSON.stringify({
+                      password: hashednewpass,
+                    });
+
+                    var config = {
+                      method: "patch",
+                      url: `http://localhost:5000/app/resetpass/${forUser._id}`,
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      data: data,
+                    };
+
+                    axios(config)
+                      .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        // setAlboxcont({
+                        //   open: true,
+                        //   message: "Password Changed..!!",
+                        //   type: "success",
+                        //   dur: 4000,
+                        // });
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                        setAlboxcont({
+                          open: true,
+                          message: "Server Error..!!",
+                          type: "error",
+                          dur: 4000,
+                        });
+                      });
+
                     emailjs
                       .send(
                         "service_9bpsy9c",
                         "template_iibcj0f",
                         {
-                          to_name: "user ka naam",
+                          to_name: forUser.fullName,
                           message: newPass,
                           user: forEmail,
                         },
