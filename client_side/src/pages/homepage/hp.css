@@ -44,3 +44,14 @@
 .centerdiv::-webkit-scrollbar {
     display: none;
 }
+
+.notrec {
+    color: lightgrey;
+    font-size: 40px;
+    display: flex;
+    margin-top: 150px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

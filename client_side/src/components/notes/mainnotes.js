@@ -40,61 +40,68 @@ const MainNotes = () => {
   return (
     <>
       <div className="dispnote exscroll">
-        <div>
-          <form className="create-note">
-            {isExpanded && (
-              <input
-                name="title"
+        {curRec ? (
+          <div>
+            <form className="create-note">
+              {isExpanded && (
+                <input
+                  name="title"
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setTitle(e.target.value);
+                  }}
+                  value={title}
+                  placeholder="Title"
+                  autoComplete="off"
+                />
+              )}
+
+              <textarea
+                name="content"
+                onClick={() => {
+                  setExpanded(true);
+                }}
                 onChange={(e) => {
                   e.preventDefault();
-                  setTitle(e.target.value);
+                  setContent(e.target.value);
                 }}
-                value={title}
-                placeholder="Title"
-                autoComplete="off"
+                value={content}
+                placeholder="Take a note..."
+                rows={isExpanded ? 3 : 1}
               />
-            )}
+              <Zoom in={isExpanded}>
+                <Fab
+                  onClick={async (event) => {
+                    event.preventDefault();
 
-            <textarea
-              name="content"
-              onClick={() => {
-                setExpanded(true);
-              }}
-              onChange={(e) => {
-                e.preventDefault();
-                setContent(e.target.value);
-              }}
-              value={content}
-              placeholder="Take a note..."
-              rows={isExpanded ? 3 : 1}
-            />
-
-            <Zoom in={isExpanded}>
-              <Fab
-                onClick={async (event) => {
-                  event.preventDefault();
-
-                  const note = {
-                    rec: curRec,
-                    title: title,
-                    content: content,
-                  };
-                  const res = await axios.post("/app/notes", note);
-                  console.log("after clicking add", res.data);
-                  setTitle("");
-                  setContent("");
-                  const resonse = await axios.get("/app/notes");
-                  const notesdata = resonse.data;
-                  setNotes(notesdata);
-                  const curRecNotes = notes.filter((ele) => ele.rec === curRec);
-                  setRecNotes(curRecNotes);
-                }}
-              >
-                <AddIcon />
-              </Fab>
-            </Zoom>
-          </form>
-        </div>
+                    const note = {
+                      rec: curRec,
+                      title: title,
+                      content: content,
+                    };
+                    const res = await axios.post("/app/notes", note);
+                    console.log("after clicking add", res.data);
+                    setTitle("");
+                    setContent("");
+                    const resonse = await axios.get("/app/notes");
+                    const notesdata = resonse.data;
+                    setNotes(notesdata);
+                    const curRecNotes = notes.filter(
+                      (ele) => ele.rec === curRec
+                    );
+                    setRecNotes(curRecNotes);
+                  }}
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </form>
+          </div>
+        ) : (
+          <div className="notrec">
+            <p>Please Select a Recording..!!</p>
+          </div>
+        )}
 
         <div>
           {

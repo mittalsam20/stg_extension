@@ -124,24 +124,30 @@ const HomePage = () => {
                   >
                     {/* <div className="centerdiv"> */}
                     <Vplayer />
-                    <div className="audiodiv">
-                      <div
-                        className="audiosubdiv"
-                        style={{
-                          padding: "8px",
-                          position: "relative",
-                          top: "-5px",
-                        }}
-                      >
-                        <h1
-                          className={classes.summaryh1}
-                          style={{ fontSize: "30px" }}
+                    {curRec ? (
+                      <div className="audiodiv">
+                        <div
+                          className="audiosubdiv"
+                          style={{
+                            padding: "8px",
+                            position: "relative",
+                            top: "-5px",
+                          }}
                         >
-                          Transcription
-                        </h1>
-                        <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                          <h1
+                            className={classes.summaryh1}
+                            style={{ fontSize: "30px" }}
+                          >
+                            Transcription
+                          </h1>
+                          <p className={classes.summaryp}>{mlData.audiotxt}</p>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="notrec">
+                        <p>Please Select a Recording..!!</p>
+                      </div>
+                    )}
                     {/* </div> */}
                   </Grid>
                   <Grid
