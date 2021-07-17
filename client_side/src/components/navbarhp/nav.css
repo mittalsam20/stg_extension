@@ -82,3 +82,30 @@
     justify-content: space-around;
     list-style: none;
 }
+
+@media(max-width:900px) {
+    .sitenav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sitenav li {
+        margin: 15px 3em auto 0;
+    }
+    .solid {
+        color: #FF8B00 !important;
+    }
+    .sitenavlink {
+        position: relative;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+    .sitenav img {
+        display: none;
+    }
+    .sitenav ul {
+        margin-left: 0px;
+        display: flex;
+        justify-content: space-around;
+    }
+}

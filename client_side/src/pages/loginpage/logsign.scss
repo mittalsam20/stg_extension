@@ -237,7 +237,6 @@ body {
 }
 
 .main-container {
-    background-color: red;
     display: flex;
     width: 100%;
     height: 100vh;
@@ -327,11 +326,21 @@ left-container>* {
     .right-container {
         display: none;
     }
+    .backarr {
+        position: absolute;
+        top: 20px;
+        right: 280px;
+    }
 }
 
 @media (max-width:550px) {
+    .backarr {
+        position: absolute;
+        top: 20px;
+        right: 210px;
+    }
     .main-container {
-        width: 90%;
+        width: 100%;
         left: 5%;
     }
 }
