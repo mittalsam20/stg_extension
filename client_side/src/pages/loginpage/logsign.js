@@ -228,7 +228,7 @@ const LogSign = () => {
                   e.preventDefault();
                   console.log(mailedotp);
                   axios
-                    .get(`http://localhost:5000/app/forgotpass/${forEmail}`)
+                    .get(`/app/forgotpass/${forEmail}`)
                     .then(function (response) {
                       setforuser(response.data);
                       console.log(JSON.stringify(response.data));
@@ -301,7 +301,7 @@ const LogSign = () => {
 
                     var config = {
                       method: "patch",
-                      url: `http://localhost:5000/app/resetpass/${forUser._id}`,
+                      url: `/app/resetpass/${forUser._id}`,
                       headers: {
                         "Content-Type": "application/json",
                       },

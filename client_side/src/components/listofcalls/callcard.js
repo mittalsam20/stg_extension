@@ -168,7 +168,7 @@ const CallCard = (props) => {
     });
     var config = {
       method: "patch",
-      url: `http://localhost:5000/app/rename/${props.Key}`,
+      url: `/app/rename/${props.Key}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -306,7 +306,7 @@ const CallCard = (props) => {
       <Card className={classes.root}>
         <Button
           onClick={() => {
-            setTemp(`http://localhost:5000/app${props.url}`);
+            setTemp(`/app${props.url}`);
             setCurDur(props.recordingDuration);
 
             setCurRec(props.Key);
@@ -386,7 +386,7 @@ const CallCard = (props) => {
           className={classes.dbtn}
           onClick={(e) => {
             e.preventDefault();
-            saveAs(`http://localhost:5000/app${props.url}`, props.name);
+            saveAs(`/app${props.url}`, props.name);
             saveAs(mlData.pdfurl, props.name);
           }}
         >

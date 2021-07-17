@@ -83,7 +83,7 @@ const ResetPass = ({ user }) => {
 
                       var config = {
                         method: "patch",
-                        url: `http://localhost:5000/app/resetpass/${user._id}`,
+                        url: `/app/resetpass/${user._id}`,
                         headers: {
                           "Content-Type": "application/json",
                         },
