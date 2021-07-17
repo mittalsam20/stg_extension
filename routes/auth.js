@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const user = require("../models/signupmodels");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const AuthMid = require("../middleware/authmid");
-router.use(bodyParser.urlencoded({ extended: true }));
 const cors = require("cors");
 
-// || !req.body.firstName ||  !req.body.lastName
-
+//Initializing
 router.use(cors());
+router.use(bodyParser.urlencoded({ extended: true }));
+const user = require("../models/signupmodels");
+const AuthMid = require("../middleware/authmid");
 
 
 router.post("/signup", async(req, res) => {
