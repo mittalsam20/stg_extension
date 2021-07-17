@@ -63,22 +63,23 @@ strong {
         min-height: 125vh;
     }
     .back_img_div h2 {
+        text-align: center;
         margin-right: 50px;
         position: relative;
         top: 190px;
-        left: 40px;
+        left: 25px;
         font-weight: 900;
         margin-bottom: 30px;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         color: #FFFFFF;
     }
     .back_img_div ul {
         position: relative;
         top: 180px;
-        left: 30px;
+        left: 15px;
     }
     .back_img_div li {
-        margin: 25px 0 0px 0;
-        font-size: .9rem;
+        margin: 25px 17px 0px 0;
+        font-size: .8rem;
     }
 }

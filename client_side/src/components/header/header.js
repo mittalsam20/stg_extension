@@ -70,7 +70,7 @@ const Header = () => {
       <button
         onClick={() => {
           window.scrollTo({
-            top: 2550,
+            top: 2700,
             behavior: "smooth",
           });
         }}
@@ -84,7 +84,7 @@ const Header = () => {
             <span
               class="txt-rotate"
               data-period="2000"
-              data-rotate='[ "Record Meetings..!!", "Transcribe Audio..!!", "AI Written Summary..!!", "AI Made Presentation..!!" ]'
+              data-rotate='[ "Record Meetings..!!", "Transcribe Audio..!!", "Write Summary..!!", "Make Presentation..!!" ]'
             ></span>
           </strong>
         </h2>
