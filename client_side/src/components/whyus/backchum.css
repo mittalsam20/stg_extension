@@ -54,3 +54,31 @@ strong {
     background-color: red;
     z-index: 99999;
 }
+
+@media (max-width:900px) {
+    .back_div {
+        min-height: 125vh;
+    }
+    .back_img_div {
+        min-height: 125vh;
+    }
+    .back_img_div h2 {
+        margin-right: 50px;
+        position: relative;
+        top: 190px;
+        left: 40px;
+        font-weight: 900;
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+        color: #FFFFFF;
+    }
+    .back_img_div ul {
+        position: relative;
+        top: 180px;
+        left: 30px;
+    }
+    .back_img_div li {
+        margin: 25px 0 0px 0;
+        font-size: .9rem;
+    }
+}
