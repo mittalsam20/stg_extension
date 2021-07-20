@@ -33,7 +33,7 @@ const Nav = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <img src="/logo_w.png" alt="" style={{ width: "8%" }} />{" "}
+            <img src="/images/logo_w.png" alt="" style={{ width: "8%" }} />{" "}
           </Typography>{" "}
           <NavLink
             exact
