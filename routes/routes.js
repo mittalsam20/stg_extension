@@ -5,8 +5,6 @@ const emailTemplateCopy = require("../models/emailmodel")
 const fetch = require("node-fetch");
 router.use(bodyParser.urlencoded({ extended: false }));
 
-
-
 router.post("/selfproxy/:Email", (req, res) => {
     try {
         const Key = "ji5gzJYlaRp86krIbRJsRcOHBxnaLzMc"

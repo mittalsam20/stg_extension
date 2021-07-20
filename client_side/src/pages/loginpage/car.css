@@ -2,7 +2,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/2-min.jpg);
+    background: rgba(0, 0, 0, .4)url(./images/13.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -33,7 +33,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/5-min.jpg);
+    background: rgba(0, 0, 0, .3)url(./images/ch.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,7 +44,7 @@
     margin: 40px;
     position: absolute;
     bottom: 50px;
-    left: 100px;
+    left: 50px;
     font-weight: 700;
     color: white;
 }
@@ -59,7 +59,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .3)url(./images/3-min.jpg);
+    background: rgba(0, 0, 0, .3)url(./images/33.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -85,7 +85,7 @@
     width: 100%;
     /* background-color: blue; */
     height: 100%;
-    background: rgba(0, 0, 0, .4)url(./images/4-min.jpg);
+    background: rgba(0, 0, 0, .4)url(./images/14.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
