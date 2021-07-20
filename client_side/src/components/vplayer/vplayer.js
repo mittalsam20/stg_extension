@@ -319,12 +319,13 @@ const Vplayer = () => {
       ? playerRef.current.getCurrentTime()
       : "00:00";
 
-  const duration =
-    playerRef && playerRef.current ? playerRef.current.getDuration() : "00:00";
+  // const duration =
+  //   playerRef && playerRef.current ? playerRef.current.getDuration() : "00:00";
   const elapsedTime =
     timeDisplayFormat === "normal"
       ? format(currentTime)
       : `-${format(duration - currentTime)}`;
+  const duration = curDur;
 
   const totalDuration = format(duration);
 

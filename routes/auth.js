@@ -22,11 +22,7 @@ router.post("/signup", async(req, res) => {
             return res
                 .status(400)
                 .json({ message: "Please Fill All The Details..!!" });
-        }
-        //  else if (req.body.password.length < 8) {
-        //     return res.status(400).json({ message: "Minimum Password Length Is 8 Characters" })
-        // }
-        else if (req.body.password.length < 8) {
+        } else if (req.body.password.length < 8) {
             return res
                 .status(400)
                 .json({ message: "Minimum Password Length Is 8 Characters" });
@@ -47,7 +43,7 @@ router.post("/signup", async(req, res) => {
             .save()
             .then((data) => {
                 res.status(200).json({
-                    message: "Registration Successfully..!!",
+                    message: "Registration Successfull..!!",
                     data,
                 });
             })
