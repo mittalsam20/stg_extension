@@ -135,10 +135,10 @@ const CallCard = (props) => {
   const [delOpen, setDelopen] = useState(false); //switch for del alert modal
   const { curDur, setCurDur } = useContext(durContext);
   const getTxt = async (a, b, c) => {
+    console.log(a, b, c);
     const summaryres = await axios.get(a);
     const audiores = await axios.get(b);
     const pdfres = await axios.get(c);
-
     setMldata({
       summarytxt: summaryres.data || "No Summary Extracted Yet",
       audiotxt: audiores.data || "No Transcription Found Yet",
@@ -312,14 +312,14 @@ const CallCard = (props) => {
             setCurRec(props.Key);
             console.log(temp);
             getTxt(
-              `/ml/return-summary/${props.name
-                .substring(0, props.name.length - 5)
+              `/ml/return-summary/${props.originalName
+                .substring(0, props.originalName.length - 5)
                 .concat("_summary.txt")}`,
-              `/ml/return-transcript/${props.name
-                .substring(0, props.name.length - 5)
+              `/ml/return-transcript/${props.originalName
+                .substring(0, props.originalName.length - 5)
                 .concat(".txt")}`,
-              `/ml/return-presentation/${props.name
-                .substring(0, props.name.length - 5)
+              `/ml/return-presentation/${props.originalName
+                .substring(0, props.originalName.length - 5)
                 .concat(".pdf")}`
               // "http://34.133.119.75/ml/return-summary/recording_1625899142046_summary.txt"
               // "http://localhost:5000/app/recording/recording_1625921327939.txt"

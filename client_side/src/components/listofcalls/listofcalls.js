@@ -82,6 +82,7 @@ const ListOfCalls = () => {
         </div>
 
         {filrecs.map((rec) => {
+          const originalName = rec.recordingPath.slice(7);
           return (
             <CallCard
               Key={rec._id}
@@ -90,6 +91,7 @@ const ListOfCalls = () => {
               url={rec.recordingUrl}
               path={rec.recordingPath}
               recordingDuration={rec.duration}
+              originalName={originalName}
             />
           );
         })}
