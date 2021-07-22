@@ -101,7 +101,7 @@ export default function LeftTabs() {
         style={{
           width: "320px",
           borderRadius: "10px 10px 0 0",
-          margin: "10px",
+          margin: "10px ",
         }}
       >
         <Tabs

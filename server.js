@@ -31,7 +31,7 @@ const Port = process.env.PORT || 5000;
 const authRoute = require("./routes/auth");
 const recRoute = require("./routes/recordingurl")
 const noteRoute = require("./routes/noteurl")
-const routerUrls = require("./routes/routes");
+const routerUrls = require("./routes/emailroute");
 
 //DB Connection
 dotenv.config();

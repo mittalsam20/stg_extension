@@ -10,7 +10,8 @@ body {
     max-width: 50vh;
     min-width: 30vh;
     overflow-y: scroll;
-    border-right: 1px solid grey
+    border-right: 1px solid grey;
+    padding-bottom: 80px;
 }
 
 .loc-container::-webkit-scrollbar {
@@ -26,6 +27,7 @@ body {
 }
 
 .loc {
+    /* position: sticky; */
     /* background-color: red; */
     margin-bottom: 30px;
 }

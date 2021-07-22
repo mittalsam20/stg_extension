@@ -303,7 +303,12 @@ const CallCard = (props) => {
   useEffect(() => {}, [editopen, delOpen]);
   return (
     <>
-      <Card className={classes.root}>
+      <Card
+        className={classes.root}
+        style={{
+          backgroundColor: curRec === props.tid && "rgba(180,180,180,1)",
+        }}
+      >
         <Button
           onClick={() => {
             setTemp(`/app${props.url}`);

@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const date = new Date(Date.now());
-disp_date = date.toGMTString().slice(0, 22)
-    // disp_time = date.toGMTString().slice(17, 22)
-    // console.log(disp_date);
-    // console.log(disp_time);
+// disp_date = date.toGMTString().slice(0, 22)
+const disp_date = date.toLocaleString().slice(0, 17);
+// disp_time = date.toGMTString().slice(17, 22)
+// console.log(disp_date);
+// console.log(disp_time);
 const recordingSchema = new mongoose.Schema({
     user: {
         type: String,

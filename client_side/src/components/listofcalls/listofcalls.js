@@ -86,6 +86,7 @@ const ListOfCalls = () => {
           return (
             <CallCard
               Key={rec._id}
+              tid={rec._id}
               name={rec.recordingFileName}
               date={rec.date}
               url={rec.recordingUrl}
