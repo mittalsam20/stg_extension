@@ -17,14 +17,13 @@
     flex-direction: column;
 }
 
-.header button {
+.header .changeit button {
     background-color: transparent;
     border: solid 3px white;
     border-radius: 10px;
     padding: 10px;
     width: 30%;
     margin: auto;
-    color: #FFFFFF;
     /* font-size: 30px; */
     font-size: 2.4vw;
     font-weight: 700;
@@ -34,12 +33,21 @@
     animation: float 4s ease-in-out infinite;
     overflow: hidden;
     margin: 55px !important;
+    color: #fff !important;
 }
 
 .header button:hover {
-    color: black;
     border-color: white;
     background-color: #FFFFFF;
+}
+
+.changeit {
+    width: 100%;
+    color: #fff !important;
+}
+
+.header button:hover {
+    color: black !important;
 }
 
 .header h1 {

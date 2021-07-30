@@ -67,16 +67,13 @@ const Header = () => {
         SCRIPT TO <br />
         GROWTH
       </h1>
-      <button
-        onClick={() => {
-          window.scrollTo({
-            top: 2700,
-            behavior: "smooth",
-          });
-        }}
+      <a
+        href="#pricing"
+        style={{ textDecoration: "none", color: "white" }}
+        className="changeit"
       >
-        Download For Free
-      </button>
+        <button>Download For Free</button>
+      </a>
       <div className="auto-div">
         <h2>Your Very Own Meeting Transcription Tool That Can</h2>
         <h2 className="slogan">

@@ -34,18 +34,17 @@ const Pricing = () => {
                     Presentation Of the Meeting <i class="fas fa-times"></i>
                   </li>
                 </ul>
-                <button
-                  className=" pricing-button"
-                  onClick={() => {
-                    setFlag(true);
-                    window.scrollTo({
-                      top: 2900,
-                      behavior: "smooth",
-                    });
-                  }}
-                >
-                  Start Now
-                </button>
+
+                <a href="#emailform">
+                  <button
+                    className=" pricing-button"
+                    onClick={() => {
+                      setFlag(true);
+                    }}
+                  >
+                    Start Now
+                  </button>
+                </a>
               </div>
               <div className="packages">
                 <div className="pricing-title">BASIC</div>
