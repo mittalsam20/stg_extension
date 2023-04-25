@@ -15,7 +15,6 @@ const ResetPass = ({ user }) => {
     type: "",
     dur: 1,
   });
-
   return (
     <>
       <div>

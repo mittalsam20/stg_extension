@@ -31,6 +31,7 @@ const authRoute = require("./routes/auth");
 const recRoute = require("./routes/recordingurl");
 const noteRoute = require("./routes/noteurl");
 const routerUrls = require("./routes/emailroute");
+const recording = require("./models/recordingmodels");
 
 //DB Connection
 dotenv.config();
@@ -44,7 +45,6 @@ mongoose.connect(
   },
   () => console.log("Database Connected successfully..!!")
 );
-const recording = require("./models/recordingmodels");
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");

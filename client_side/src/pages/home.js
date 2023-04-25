@@ -6,7 +6,6 @@ import Pricing from "../components/pricing/pricing";
 import "./home.css";
 import Nav from "../components/navbarhp/nav";
 import Footer from "../components/footer/footer";
-
 const Home = () => {
   return (
     <>

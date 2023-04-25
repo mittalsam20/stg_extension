@@ -1,5 +1,4 @@
 import "./info.css";
-
 const AccInfo = ({ user }) => {
   return (
     <>
