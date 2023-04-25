@@ -1,0 +1,65 @@
+.full {
+  overflow-y: hidden !important;
+  overflow-x: hidden;
+  max-height: 100vh;
+}
+
+.audiodiv {
+  padding: 0 8px 8px 8px;
+  position: relative;
+  top: 25px;
+  border-top: 1px solid grey;
+  width: 100%;
+  /* height: 500px; */
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: scroll !important; */
+  /* overflow-x: hidden; */
+}
+
+.audiodiv::-webkit-scrollbar {
+  display: none;
+}
+
+.audiodiv p {
+  word-wrap: break-word;
+}
+
+.audiosubdiv {
+  text-align: justify;
+  text-justify: inter-word;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px;
+  padding: 14px;
+  width: 100%;
+  /* min-height: 10px; */
+  margin-top: 10px;
+  float: left;
+  height: 25vh;
+  overflow-x: hidden;
+  overflow-y: scroll !important;
+}
+
+.centerdiv {
+  position: relative;
+  top: -11px;
+  /* overflow-y: scroll; */
+  padding-bottom: 3000px;
+  /* overflow-y: hidden; */
+}
+
+.centerdiv::-webkit-scrollbar {
+  display: none;
+}
+
+.notrec {
+  color: lightgrey;
+  font-size: 40px;
+  display: flex;
+  margin-top: 150px;
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

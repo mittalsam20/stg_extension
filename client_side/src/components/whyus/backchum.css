@@ -1,0 +1,85 @@
+.back_div {
+    width: 100%;
+    min-height: 115vh;
+    color: black;
+    background-color: white;
+    z-index: -1000;
+}
+
+strong {
+    font-size: larger;
+}
+
+.back_img_div {
+    width: 100%;
+    min-height: 115vh;
+    background: rgba(0, 0, 0, 0.7)url(./manphonelap.png);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    /* background-position: right; */
+    background-size: 100% 100%;
+    clip-path: polygon(0% 0%, 0 78%, 100% 100%, 100% 22%);
+}
+
+.back_img_div h2 {
+    position: relative;
+    top: 120px;
+    left: 40px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    /* font-size: 1.5rem; */
+    font-size: 2.3vw;
+    /* font-size: 33px; */
+    color: #FFFFFF;
+}
+
+.back_img_div ul {
+    position: relative;
+    top: 120px;
+    left: 30px;
+}
+
+.back_img_div li {
+    margin: 25px 0 5px 0;
+    /* font-size: 15px; */
+    font-size: 1.4vw;
+    /* font-size: 1.2rem; */
+    color: #FFFFFF;
+}
+
+.inner_why {
+    position: absolute;
+    width: 1.7%;
+    height: 100vh;
+    background-color: red;
+    z-index: 99999;
+}
+
+@media (max-width:900px) {
+    .back_div {
+        min-height: 125vh;
+    }
+    .back_img_div {
+        min-height: 125vh;
+    }
+    .back_img_div h2 {
+        text-align: center;
+        margin-right: 50px;
+        position: relative;
+        top: 190px;
+        left: 25px;
+        font-weight: 900;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        color: #FFFFFF;
+    }
+    .back_img_div ul {
+        position: relative;
+        top: 180px;
+        left: 15px;
+    }
+    .back_img_div li {
+        margin: 25px 17px 0px 0;
+        font-size: .8rem;
+    }
+}

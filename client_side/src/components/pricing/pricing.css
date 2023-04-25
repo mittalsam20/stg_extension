@@ -1,0 +1,111 @@
+            .pricing {
+                /* left: 75px; */
+                width: 100%;
+                text-align: center;
+                background-color: #F5F4F4;
+                padding: 20px 0 80px 0;
+            }
+            
+            .packages {
+                margin: 20px;
+                height: auto;
+                width: 300px;
+                font-family: 'Wavehaus';
+                font-weight: 600;
+                padding: 1.5em;
+                /* background-color: #ffffff; */
+                background-color: #252826;
+                border: 1px none #e7e7e7;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-radius: 20px;
+                /* box-shadow: 2px 2px 4px rgb(0, 0, 0); */
+                box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 1);
+                flex-wrap: wrap;
+                color: #ffffff;
+            }
+            
+            .list li {
+                font-size: 16px;
+                line-height: 20px;
+                list-style: none;
+                /* border-bottom: 1px solid #f4f4f4; */
+                padding-inline-start: 0;
+                border-width: 1px;
+                padding: 10px;
+            }
+            
+            .list {
+                width: 100%;
+                display: contents;
+            }
+            
+            .pricing-button {
+                background-color: transparent;
+                border: solid 2px white;
+                border-radius: 8px;
+                padding: 7px;
+                color: #FFFFFF;
+                font-size: 21px;
+                font-weight: 700;
+                margin: 20px 0 8px 0;
+                cursor: pointer;
+                /* padding: 10px; */
+                overflow: hidden;
+                box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            }
+            
+            .pricing-button:hover {
+                color: black;
+                border-color: white;
+                background-color: #FFFFFF;
+            }
+            
+            .package-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .pricing-title {
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 0px;
+            }
+            
+            .pricing-head {
+                font-family: 'Wavehaus';
+                font-weight: 900 !important;
+                font-size: 25px;
+            }
+            
+            .text1 {
+                padding-top: 5px;
+                padding-bottom: 10px;
+                font-family: 'Wavehaus';
+                font-weight: 800;
+                font-size: 28px;
+            }
+            
+            .text2 {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                font-family: 'Wavehaus';
+                font-weight: 800;
+                font-size: 20px;
+            }
+            
+            .fas {
+                margin-left: 5px;
+            }
+            
+            .cursorClick {
+                cursor: pointer;
+            }
+            
+            .cursorNill {
+                cursor: not-allowed !important;
+            }

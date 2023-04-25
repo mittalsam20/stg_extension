@@ -1,0 +1,189 @@
+.header {
+    top: 0;
+    width: 100%;
+    /* height: 40%; */
+    /* height: 623px; */
+    height: 99.8vh;
+    background: rgba(0, 0, 0, .4)url(./head.png);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: flex-start; */
+    flex-direction: column;
+}
+
+.header .changeit button {
+    background-color: transparent;
+    border: solid 3px white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 30%;
+    margin: auto;
+    /* font-size: 30px; */
+    font-size: 2.4vw;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    animation: float 4s ease-in-out infinite;
+    overflow: hidden;
+    margin: 55px !important;
+    color: #fff !important;
+}
+
+.header button:hover {
+    border-color: white;
+    background-color: #FFFFFF;
+}
+
+.changeit {
+    width: 100%;
+    color: #fff !important;
+}
+
+.header button:hover {
+    color: black !important;
+}
+
+.header h1 {
+    font-weight: 900;
+    /* font-size: 75px; */
+    font-size: 6vw;
+    margin: 90px auto 0 auto;
+    color: white;
+}
+
+@keyframes float {
+    0% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+    50% {
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+        transform: translatey(-10px);
+    }
+    100% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+}
+
+.auto-div {
+    justify-content: center;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* transform: translate(45%, 0); */
+    color: white;
+    font-weight: 100;
+    /* font-size: 30vw; */
+    /* font-size: 20px; */
+    margin-bottom: 0px;
+}
+
+.auto-div h2 {
+    font-weight: 100;
+    font-size: 3vw;
+}
+
+.txt-rotate {
+    /* position: absolute; */
+    /* font-size: 50px; */
+    font-size: 3.7vw;
+    font-weight: 1000;
+    /* color: #FFFFFF; */
+    color: #FF6700;
+    /* color: #FF8B00; */
+    /* color: rgba(255, 130, 0, 100); */
+}
+
+.slogan {
+    margin-bottom: 40px;
+}
+
+@media (max-width:900px) {
+    .header {
+        height: 99.8vh;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* justify-content: flex-start; */
+        flex-direction: column;
+    }
+    .header button {
+        border: solid 1px white;
+        border-radius: 5px;
+        padding: 10px;
+        width: auto;
+        margin: auto;
+        color: #FFFFFF;
+        /* font-size: 30px; */
+        font-size: 1.3rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.5s;
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        animation: float 4s ease-in-out infinite;
+        overflow: hidden;
+        margin: 55px !important;
+    }
+    .header button:hover {
+        color: black;
+        border-color: white;
+        background-color: #FFFFFF;
+    }
+    .header h1 {
+        font-weight: 900;
+        /* font-size: 75px; */
+        font-size: 3.5rem;
+        margin: 90px auto 0 auto;
+        color: white;
+    }
+    @keyframes float {
+        0% {
+            box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            transform: translatey(0px);
+        }
+        50% {
+            box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+            transform: translatey(-10px);
+        }
+        100% {
+            box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            transform: translatey(0px);
+        }
+    }
+    .auto-div {
+        justify-content: center;
+        /* margin-left: auto; */
+        /* margin-right: auto; */
+        /* transform: translate(45%, 0); */
+        color: white;
+        font-weight: 100;
+        /* font-size: 30vw; */
+        /* font-size: 20px; */
+        margin-bottom: 0px;
+    }
+    .auto-div h2 {
+        font-weight: 100;
+        font-size: 1.5rem;
+    }
+    .txt-rotate {
+        /* position: absolute; */
+        /* font-size: 50px; */
+        font-size: 1.9rem;
+        font-weight: 1000;
+        /* color: #FFFFFF; */
+        color: #FF6700;
+        /* color: #FF8B00; */
+        /* color: rgba(255, 130, 0, 100); */
+    }
+    .slogan {
+        margin-bottom: 40px;
+    }
+}
