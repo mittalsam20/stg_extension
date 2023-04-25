@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Quicksand");
+
 * {
   font-family: "quicksand", Arial, Helvetica, sans-serif;
   box-sizing: border-box;
@@ -76,7 +77,6 @@
 
 .resetcont input:focus,
 .resetcont input:active {
-<<<<<<< HEAD
   transform: scaleX(1.02);
 }
 
@@ -114,42 +114,3 @@
     display: none !important;
   }
 }
-=======
-    transform: scaleX(1.02);
-}
-
-.resetcont input::-webkit-input-placeholder {
-    color: #222;
-}
-
-.resetcont p {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.resetcont p a {
-    color: #57b846;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.resetcont p a:hover {
-    color: #222;
-}
-
-.-box-sd-effect:hover {
-    box-shadow: 0 4px 8px hsla(210, 2%, 84%, .2);
-}
-
-@media only screen and (max-width:500px) {
-    .resetcont {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width:400px) {
-    i {
-        display: none!important;
-    }
-}
->>>>>>> 86946e2b381887713ee4edd336bdf0df00b625e9
