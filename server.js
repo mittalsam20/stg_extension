@@ -108,12 +108,12 @@ app.use("/app", authRoute);
 app.use("/app", recRoute);
 app.use("/app", noteRoute);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client_side/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client_side", "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client_side/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client_side", "build", "index.html"));
+//   });
+// }
 
 app.use((req, res, next) => {
   res.status(404).json({

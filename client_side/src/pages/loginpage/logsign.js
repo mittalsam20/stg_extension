@@ -81,9 +81,6 @@ const LogSign = () => {
         console.log("userdata is there..!!");
         history.push("/home");
       }
-
-      // else {
-      // }
     } catch (err) {
       console.log("error i am finding", err);
       history.push("/login");
@@ -91,7 +88,7 @@ const LogSign = () => {
   };
 
   useEffect(() => {
-    // callSignPage();
+    callSignPage();
   }, []);
 
   // -----------------------EMAIL VALIDATION------------------------
