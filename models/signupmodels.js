@@ -31,3 +31,5 @@ userSchema.methods.generateAuthToken = async function () {
 };
 
 module.exports = mongoose.model("user", userSchema);
+
+// http://localhost:5000
